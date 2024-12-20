@@ -1,5 +1,5 @@
 // Creado por Leonardo Martínez Peña
-// fecha ....
+// 20/12/2024
 
 #include <iostream> 
 using namespace std;
