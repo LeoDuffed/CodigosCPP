@@ -7,7 +7,7 @@ using namespace std;
 
 void MostrarTodoVentas(string nombre[4], string productos[5], int ventas[4][5]){
 
-    cout << "Todas las ventas" << endl;
+    cout << "\n\nTodas las ventas" << endl;
 
     int i = 0, j = 0;
 
@@ -25,7 +25,7 @@ void MostrarTodoVentas(string nombre[4], string productos[5], int ventas[4][5]){
 
 void MostrarTodoStock(string nombre[4], string productos[5], int stock[4][5]){
 
-    cout << "Todo el stock" << endl;
+    cout << "\n\nTodo el stock" << endl;
 
     int i = 0, j = 0;
 
@@ -40,7 +40,7 @@ void MostrarTodoStock(string nombre[4], string productos[5], int stock[4][5]){
 
 void MostrarTodasLasVentas(string nombre[4], string productos[5], int ventas[4][5]){
 
-    cout << "Ventas de sucursal" << endl;
+    cout << "\n\nVentas de sucursal" << endl;
 
     int sucursal = 0;
     bool validar = false;
@@ -67,7 +67,7 @@ void MostrarTodasLasVentas(string nombre[4], string productos[5], int ventas[4][
 
 void MostrarStockEnSucursal(string nombre[4], string productos[5], int stock[4][5]){
 
-    cout << "Stock de sucursal" << endl;
+    cout << "\n\nStock de sucursal" << endl;
 
     int sucursal = 0; 
     bool validar = false;
@@ -95,7 +95,7 @@ void MostrarStockEnSucursal(string nombre[4], string productos[5], int stock[4][
 
 void MostrarVentaDeProducto(string nombre[4], string producto[5], int ventas[4][5]){
 
-    cout << "Venta de productos en especifico" << endl;
+    cout << "\n\nVenta de productos en especifico" << endl;
 
     int sucursal = 0, item = 0;
     bool validar = false;
@@ -139,7 +139,7 @@ void MostrarVentaDeProducto(string nombre[4], string producto[5], int ventas[4][
 
 void MostrarStockDeProducto (string nombre[4], string producto[5], int stock[4][5]){
 
-    cout << "Ver el stock en sucursal pedida"<< endl;
+    cout << "\n\nVer el stock en sucursal pedida"<< endl;
 
     int sucursal = 0, item = 0; 
     bool validar = false;
@@ -180,6 +180,8 @@ void MostrarStockDeProducto (string nombre[4], string producto[5], int stock[4][
 
 void RecaudacionPorSucursal (string nombre[4], int precios[5],int ventas[4][5]){
 
+    cout << "\n\nTodo el dinero recaudado en cada sucursal." << endl;
+
     int i = 0,j = 0, suma = 0;
 
     for (i = 0; i < 4; i++){ // i = Tienda
@@ -198,6 +200,8 @@ void RecaudacionPorSucursal (string nombre[4], int precios[5],int ventas[4][5]){
 }
 
 void SucursalConMayorVenta(string nombre[4], int ventas [4][5]){
+
+    cout << "\n\nSucursal con mayor ventas." << endl;
 
     int i = 0, j = 0, suma = 0, mayor = 0, sucursal = 0; 
 
@@ -218,6 +222,51 @@ void SucursalConMayorVenta(string nombre[4], int ventas [4][5]){
     }
 
     cout << "La sucursal con la mayour cantidad de unidades ventidas fue " << nombre[sucursal] << " con el total de: $" << mayor << endl;
+
+}
+
+void SucursalConMayorRecaudacion(string nombre[4],int precios[5], int ventas[4][5]){
+
+    cout << "\n\nRecaudacion total de todas las sucursales."<< endl;
+
+    int i = 0, j = 0, suma = 0, mayor = 0, sucursal = 0;
+
+    for (i = 0; i < 4; i++){
+        for (j = 0; j < 5; j++){
+
+            suma = suma + (ventas[i][j] * precios[j]);
+
+            if (j == 4){
+                if (suma > mayor){
+                    mayor = suma; 
+                    sucursal = i;
+                }
+                suma = 0;
+            }
+
+        }
+        j = 0;
+    }
+
+    cout << "La sucursal con la mayor recaudacion fue " << nombre[sucursal] << " con el total de: $" << mayor << endl;
+
+
+}
+
+void RecaudacionTotal(string nombre[4], int precios[5], int ventas[4][5]){
+
+    int i = 0, j = 0, suma = 0, sumaTotal = 0;
+
+    for (i = 0; i < 4; i++){
+        for (j = 0; j < 5; j++){
+
+            sumaTotal = sumaTotal + (ventas[i][j] * precios[j]);
+
+        }
+        j = 0;
+    }
+
+    cout << "La recaudacion total de todas las sucursales fue de: $" << sumaTotal << endl; 
 
 }
 
@@ -272,6 +321,12 @@ void Menu(string nombre[4], string productos[5], int precios[5], int stock[4][5]
                 break;
             case 8: 
                 SucursalConMayorVenta(nombre, ventas);
+                break;
+            case 9: 
+                SucursalConMayorRecaudacion(nombre, precios, ventas);
+                break;
+            case 10: 
+                RecaudacionTotal(nombre, precios, ventas);
                 break;
             case 0: 
                 cout << "Saliendo..."; 
