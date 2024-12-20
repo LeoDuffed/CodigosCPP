@@ -329,7 +329,7 @@ void Menu(string nombre[4], string productos[5], int precios[5], int stock[4][5]
                 RecaudacionTotal(nombre, precios, ventas);
                 break;
             case 0: 
-                cout << "Saliendo..."; 
+                cout << "Saliendo..." << endl; 
                 break;
             default: 
                 cout << "Opcion Invalida" << endl;
