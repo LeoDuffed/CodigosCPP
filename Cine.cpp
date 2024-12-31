@@ -119,6 +119,7 @@ void AgregarPelicula (string nombre, int precio, string genero1, string genero2,
 
         Pelicula *aux = lista->pelicula;
         while (aux != NULL){
+            
             aux = aux->sig;
         }
     }
