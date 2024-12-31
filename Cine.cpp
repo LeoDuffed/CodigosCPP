@@ -119,9 +119,12 @@ void AgregarPelicula (string nombre, int precio, string genero1, string genero2,
 
         Pelicula *aux = lista->pelicula;
         while (aux != NULL){
-            
+
             aux = aux->sig;
         }
+
+        aux->sig = CrearNodo(nombre, precio, genero1, genero2, genero3, anio, mes, dia, hora, min);
+        lista->longitud = (lista->longitud) + 1;
     }
 
 }
