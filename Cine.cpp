@@ -81,7 +81,8 @@ Pelicula *CrearNodo(string nombre, int precio, string genero1, string genero2, s
 	aux->genero.infantil=false;
 	aux->genero.romance=false;
 	aux->genero.terror=false;
-	
+
+    // Para que tipo de genero es
 	if(genero1.compare("accion")==0 || genero2.compare("accion")==0 || genero3.compare("accion")==0)
 		aux->genero.accion=true;
 	if(genero1.compare("aventura")==0 || genero2.compare("aventura")==0 || genero3.compare("aventura")==0)
@@ -111,11 +112,12 @@ Pelicula *CrearNodo(string nombre, int precio, string genero1, string genero2, s
 
 void AgregarPelicula (string nombre, int precio, string genero1, string genero2, string genero3, int anio, int mes, int dia, int hora, int min){
 
-    if (lista == NULL){
+    if (lista == NULL){ // Para la primera pelicula
         lista = new Catalogo; // Pedimos memoria para crear una estructura de tipo Catologo.
         lista->longitud = 1;
         lista->pelicula = CrearNodo(nombre, precio, genero1, genero2, genero3, anio, mes, dia, hora, min);
-    } else {
+
+    } else { // Vamos agregando las siguientes peliculas usando la funcion de tipo Catalogo
 
         Pelicula *aux = lista->pelicula;
         while (aux != NULL){
@@ -124,13 +126,14 @@ void AgregarPelicula (string nombre, int precio, string genero1, string genero2,
         }
 
         aux->sig = CrearNodo(nombre, precio, genero1, genero2, genero3, anio, mes, dia, hora, min);
-        lista->longitud = (lista->longitud) + 1;
+        lista->longitud = (lista->longitud) + 1; 
     }
 
 }
 
 int main(){
 
+    // Predefinimos las peliculas
 	AgregarPelicula("La era del hielo",10000,"aventura","comedia"," ",2022,11,4,1,30);
 	AgregarPelicula("titanic",7000,"romance","drama"," ",1997,12,19,3,15);
 	AgregarPelicula("Harry Potter y la piedra filosofal",6500,"fantasia","aventura"," ",2001,11,16,2,32);
