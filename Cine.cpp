@@ -106,8 +106,6 @@ Pelicula *CrearNodo(string nombre, int precio, string genero1, string genero2, s
 	aux->sig=NULL;
 	aux->ant=NULL;
 
-
-
     return aux;
 }
 
@@ -117,6 +115,12 @@ void AgregarPelicula (string nombre, int precio, string genero1, string genero2,
         lista = new Catalogo; // Pedimos memoria para crear una estructura de tipo Catologo.
         lista->longitud = 1;
         lista->pelicula = CrearNodo(nombre, precio, genero1, genero2, genero3, anio, mes, dia, hora, min);
+    } else {
+
+        Pelicula *aux = lista->pelicula;
+        while (aux != NULL){
+            aux = aux->sig;
+        }
     }
 
 }
