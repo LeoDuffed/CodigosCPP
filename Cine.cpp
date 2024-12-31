@@ -6,16 +6,16 @@ using namespace std;
 
 struct Genero{
 
-    bool Accion;
-    bool Aventura;
-    bool Terror;
-    bool Fantacia;
-    bool Comedia;
-    bool Infantil;
-    bool Romance;
-    bool CienciaFiccion;
-    bool Animacion;
-    bool Drama;
+	bool accion;
+	bool aventura;
+	bool comedia;
+	bool fantasia;
+	bool terror;
+	bool infantil;
+	bool drama;
+	bool cienciaFiccion;
+	bool romance;
+	bool animacion;
 
 };
 
@@ -56,7 +56,57 @@ Catalogo *lista = NULL; // Inicializamos la lista en NULL (vacia)
 
 Pelicula *CrearNodo(string nombre, int precio, string genero1, string genero2, string genero3, int anio, int mes, int dia, int hora, int min){
 
-    Pelicula *aux;
+    Pelicula *aux = new Pelicula;
+
+    aux->nombre = nombre;
+    aux->precio = precio;
+    aux->asientos = 150;
+
+    aux->duracion = new Duracion;
+    aux->duracion->horas = hora;
+    aux->duracion->min = min;
+
+    aux->estreno = new Estreno;
+    aux->estreno->anio = anio;
+    aux->estreno->mes = mes;
+    aux->estreno->dia = dia;
+
+    aux->genero.accion=false;
+	aux->genero.animacion=false;
+	aux->genero.aventura=false;
+	aux->genero.cienciaFiccion=false;
+	aux->genero.comedia=false;
+	aux->genero.drama=false;
+	aux->genero.fantasia=false;
+	aux->genero.infantil=false;
+	aux->genero.romance=false;
+	aux->genero.terror=false;
+	
+	if(genero1.compare("accion")==0 || genero2.compare("accion")==0 || genero3.compare("accion")==0)
+		aux->genero.accion=true;
+	if(genero1.compare("aventura")==0 || genero2.compare("aventura")==0 || genero3.compare("aventura")==0)
+		aux->genero.aventura=true;
+	if(genero1.compare("animacion")==0 || genero2.compare("animacion")==0 || genero3.compare("animacion")==0)
+		aux->genero.animacion=true;
+	if(genero1.compare("comedia")==0 || genero2.compare("comedia")==0 || genero3.compare("comedia")==0)
+		aux->genero.comedia=true;
+	if(genero1.compare("terror")==0 || genero2.compare("terror")==0 || genero3.compare("terror")==0)
+		aux->genero.terror=true;
+	if(genero1.compare("infantil")==0 || genero2.compare("infantil")==0 || genero3.compare("infantil")==0)
+		aux->genero.infantil=true;
+	if(genero1.compare("drama")==0 || genero2.compare("drama")==0 || genero3.compare("drama")==0)
+		aux->genero.drama=true;
+	if(genero1.compare("fantasia")==0 || genero2.compare("fantasia")==0 || genero3.compare("fantasia")==0)
+		aux->genero.fantasia=true;
+	if(genero1.compare("romance")==0 || genero2.compare("romance")==0 || genero3.compare("romance")==0)
+		aux->genero.romance=true;
+	if(genero1.compare("ciencia ficcion")==0 || genero2.compare("ciencia ficcion")==0 || genero3.compare("ciencia ficcion")==0)
+		aux->genero.romance=true;
+
+	aux->sig=NULL;
+	aux->ant=NULL;
+
+
 
     return aux;
 }
