@@ -199,7 +199,7 @@ int main(){
 	AgregarPelicula("Finding Nemo",200,"aventura","comedia","animacion",2003,5,30,14,20);
 	AgregarPelicula("Inception",200,"cienciaFiccion","accion"," ",2010,7,16,22,10);
 	AgregarPelicula("Coco",200,"animacion","infantil"," ",2017,11,22,16,50);
-	AgregarPelicula("Interstellar",200,"cienciaFiccion","drama","aventura",2014,11,7,19,00);
+	AgregarPelicula("Interstellar",200,"cienciaFiccion","drama","aventura",2014,11,7,19,0);
 	AgregarPelicula("Shrek",200,"comedia","aventura","animacion",2001,5,18,15,30);
 	AgregarPelicula("Avatar",200,"cienciaFiccion","aventura","fantasia",2009,12,18,21,45);
 	AgregarPelicula("The Lion King",200,"animacion","drama"," ",1994,6,24,17,15);
