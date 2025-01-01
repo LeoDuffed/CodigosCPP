@@ -191,6 +191,17 @@ int main(){
 	AgregarPelicula("Harry Potter y la piedra filosofal",6500,"fantasia","aventura"," ",2001,11,16,2,32);
 	AgregarPelicula("Avatar",5200,"animacion","aventura","drama",2009,12,18,2,42);
 	AgregarPelicula("El rey Leon",7000,"romance","drama","aventura",1994,6,15,1,28);
+	AgregarPelicula("Jurassic Park",15000,"aventura","accion","ciencia ficcion",1993,6,11,10,15);
+	AgregarPelicula("Toy Story",12000,"animacion","comedia","familia",1995,11,22,18,45);
+	AgregarPelicula("The Dark Knight",20000,"accion","drama","crimen",2008,7,18,20,30);
+	AgregarPelicula("Finding Nemo",13000,"aventura","comedia","animacion",2003,5,30,14,20);
+	AgregarPelicula("Inception",18000,"ciencia ficcion","accion","suspenso",2010,7,16,22,10);
+	AgregarPelicula("Coco",11000,"animacion","musical","familia",2017,11,22,16,50);
+	AgregarPelicula("Interstellar",19000,"ciencia ficcion","drama","aventura",2014,11,7,19,00);
+	AgregarPelicula("Shrek",14000,"comedia","aventura","animacion",2001,5,18,15,30);
+	AgregarPelicula("Avatar",21000,"ciencia ficcion","aventura","fantasia",2009,12,18,21,45);
+	AgregarPelicula("The Lion King",10000,"animacion","drama","familia",1994,6,24,17,15);
+
 
 	MostrarLista();
 
