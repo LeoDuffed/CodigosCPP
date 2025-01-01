@@ -110,7 +110,7 @@ Pelicula *CrearNodo(string nombre, int precio, string genero1, string genero2, s
     return aux;
 }
 
-void AgregarPelicula (string nombre, int precio, string genero1, string genero2, string genero3, int anio, int mes, int dia, int hora, int min){
+int AgregarPelicula (string nombre, int precio, string genero1, string genero2, string genero3, int anio, int mes, int dia, int hora, int min){
 
     if (lista == NULL){ // Para la primera pelicula
         lista = new Catalogo; // Pedimos memoria para crear una estructura de tipo Catologo.
@@ -119,16 +119,68 @@ void AgregarPelicula (string nombre, int precio, string genero1, string genero2,
 
     } else { // Vamos agregando las siguientes peliculas usando la funcion de tipo Catalogo
 
-        Pelicula *aux = lista->pelicula;
+        Pelicula *aux = lista->pelicula; // Primer elemento de la lista (primera pelicula)
         while (aux != NULL){
+
+			if (aux->sig == NULL){
+
+			    aux->sig = CrearNodo(nombre, precio, genero1, genero2, genero3, anio, mes, dia, hora, min);
+				aux->sig->ant = aux;
+				return 0;
+
+			}
 
             aux = aux->sig;
         }
 
-        aux->sig = CrearNodo(nombre, precio, genero1, genero2, genero3, anio, mes, dia, hora, min);
-        lista->longitud = (lista->longitud) + 1; 
     }
 
+	return 0;
+
+}
+
+void MostrarNodo(Pelicula *aux){
+
+	cout << "\n\nNombre: " << aux->nombre << endl;
+	cout << "Precio: " << aux->precio << endl;
+	cout << "Asientos: " << aux->asientos << endl;
+	cout<<"Generos: ";
+	if(aux->genero.accion)
+		cout<<"accion ";
+	if(aux->genero.animacion)
+		cout<<"animacion ";	
+	if(aux->genero.aventura)
+		cout<<"aventura ";	
+	if(aux->genero.cienciaFiccion)
+		cout<<"ciencia ficcion ";	
+	if(aux->genero.comedia)
+		cout<<"comedia ";	
+	if(aux->genero.drama)
+		cout<<"drama ";	
+	if(aux->genero.fantasia)
+		cout<<"fantasia ";	
+	if(aux->genero.infantil)
+		cout<<"infantil ";	
+	if(aux->genero.romance)
+		cout<<"romance ";	
+	if(aux->genero.terror)
+		cout<<"terror ";
+
+	cout << "Duracion: " << aux->duracion->horas << " horas, " << aux->duracion->min << " min" << endl;
+	cout << "Fecha de estreno: " << aux->estreno->dia << " / " << aux->estreno->mes<< " / " << aux->estreno->anio << endl;
+}
+
+void MostrarLista(){
+
+	if (lista == NULL){
+		cout << "La lista esta vacia" << endl;
+	} else {
+		Pelicula *aux = lista->pelicula;
+		while (aux != NULL){
+			MostrarNodo(aux);
+			aux = aux->sig;
+		}
+	}
 }
 
 int main(){
@@ -139,6 +191,8 @@ int main(){
 	AgregarPelicula("Harry Potter y la piedra filosofal",6500,"fantasia","aventura"," ",2001,11,16,2,32);
 	AgregarPelicula("Avatar",5200,"animacion","aventura","drama",2009,12,18,2,42);
 	AgregarPelicula("El rey Leon",7000,"romance","drama","aventura",1994,6,15,1,28);
+
+	MostrarLista();
 
     return 0;
 }
