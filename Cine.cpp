@@ -42,7 +42,7 @@ struct Pelicula{
     struct Duracion *duracion;
     struct Estreno *estreno;
     struct Genero genero;
-    struct Pelicula *ant, *sig; // Todas las peliculas estan enlazadas entre si.
+    struct Pelicula *ant, *sig; // Todas las peliculas estan enlazadas entre si .
 
 };
 
@@ -127,7 +127,7 @@ int AgregarPelicula (string nombre, int precio, string genero1, string genero2, 
 			if (aux->sig == NULL){
 
 			    aux->sig = CrearNodo(nombre, precio, genero1, genero2, genero3, anio, mes, dia, hora, min);
-				aux->sig->ant = aux;
+				aux->sig->ant = aux; // Creamos el doble enlace en la lista.
 				return 0;
 
 			}
