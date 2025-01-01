@@ -147,28 +147,29 @@ void MostrarNodo(Pelicula *aux){ // Metodo para mostrar cada elemento de la list
 	cout << "Precio: $" << aux->precio << endl;
 	cout << "Asientos: " << aux->asientos << endl;
 	cout<<"Generos: ";
-	if(aux->genero.accion)
-		cout<<"accion ";
-	if(aux->genero.animacion)
-		cout<<"animacion ";	
-	if(aux->genero.aventura)
-		cout<<"aventura ";	
-	if(aux->genero.cienciaFiccion)
-		cout<<"ciencia ficcion ";	
-	if(aux->genero.comedia)
-		cout<<"comedia ";	
-	if(aux->genero.drama)
-		cout<<"drama ";	
-	if(aux->genero.fantasia)
-		cout<<"fantasia ";	
-	if(aux->genero.infantil)
-		cout<<"infantil ";	
-	if(aux->genero.romance)
-		cout<<"romance ";	
-	if(aux->genero.terror)
-		cout<<"terror ";
 
-	cout << "Duracion: " << aux->duracion->horas << " horas, " << aux->duracion->min << " min" << endl;
+	if(aux->genero.accion)
+		cout<<"\n ◊ accion ";
+	if(aux->genero.animacion)
+		cout<<"\n ◊ animacion ";	
+	if(aux->genero.aventura)
+		cout<<"\n ◊ aventura ";	
+	if(aux->genero.cienciaFiccion)
+		cout<<"\n ◊ ciencia ficcion ";	
+	if(aux->genero.comedia)
+		cout<<"\n ◊ comedia ";	
+	if(aux->genero.drama)
+		cout<<"\n ◊ drama ";	
+	if(aux->genero.fantasia)
+		cout<<"\n ◊ fantasia ";	
+	if(aux->genero.infantil)
+		cout<<"\n ◊ infantil ";	
+	if(aux->genero.romance)
+		cout<<"\n ◊ romance ";	
+	if(aux->genero.terror)
+		cout<<"\n ◊ terror ";
+
+	cout << "\nDuracion: " << aux->duracion->horas << " horas, " << aux->duracion->min << " min" << endl;
 	cout << "Fecha de estreno: " << aux->estreno->dia << " / " << aux->estreno->mes<< " / " << aux->estreno->anio << endl;
 }
 
