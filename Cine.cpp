@@ -193,16 +193,17 @@ int main(){
 	AgregarPelicula("Harry Potter y la piedra filosofal",130,"fantasia","aventura"," ",2001,11,16,2,32);
 	AgregarPelicula("Avatar",104,"animacion","aventura","drama",2009,12,18,2,42);
 	AgregarPelicula("El rey Leon",140,"romance","drama","aventura",1994,6,15,1,28);
-	AgregarPelicula("Jurassic Park",200,"aventura","accion","cienciaFiccion",1993,6,11,10,15);
-	AgregarPelicula("Toy Story",200,"animacion","comedia"," ",1995,11,22,18,45);
-	AgregarPelicula("The Dark Knight",200,"accion","drama"," ",2008,7,18,20,30);
-	AgregarPelicula("Finding Nemo",200,"aventura","comedia","animacion",2003,5,30,14,20);
-	AgregarPelicula("Inception",200,"cienciaFiccion","accion"," ",2010,7,16,22,10);
-	AgregarPelicula("Coco",200,"animacion","infantil"," ",2017,11,22,16,50);
-	AgregarPelicula("Interstellar",200,"cienciaFiccion","drama","aventura",2014,11,7,19,0);
-	AgregarPelicula("Shrek",200,"comedia","aventura","animacion",2001,5,18,15,30);
-	AgregarPelicula("Avatar",200,"cienciaFiccion","aventura","fantasia",2009,12,18,21,45);
-	AgregarPelicula("The Lion King",200,"animacion","drama"," ",1994,6,24,17,15);
+	AgregarPelicula("Jurassic Park",200,"aventura","accion","cienciaFiccion",1993,6,11,2,7);
+	AgregarPelicula("Toy Story",200,"animacion","comedia"," ",1995,11,22,1,21);
+	AgregarPelicula("The Dark Knight",200,"accion","drama"," ",2008,7,18,2,32);
+	AgregarPelicula("Finding Nemo",200,"aventura","comedia","animacion",2003,5,30,1,40);
+	AgregarPelicula("Inception",200,"cienciaFiccion","accion"," ",2010,7,16,2,28);
+	AgregarPelicula("Coco",200,"animacion","infantil"," ",2017,11,22,1,45);
+	AgregarPelicula("Interstellar",200,"cienciaFiccion","drama","aventura",2014,11,7,2,49);
+	AgregarPelicula("Shrek",200,"comedia","aventura","animacion",2001,5,18,1,35);
+	AgregarPelicula("Avatar",200,"cienciaFiccion","aventura","fantasia",2009,12,18,2,42);
+	AgregarPelicula("The Lion King",200,"animacion","drama"," ",1994,6,24,1,29);
+
 
 
 
