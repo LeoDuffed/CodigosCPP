@@ -55,8 +55,10 @@ struct Catalogo{ // Estructura mas grande
 Catalogo *lista = NULL; // Inicializamos la lista en NULL (vacia)
 
 Pelicula *CrearNodo(string nombre, int precio, string genero1, string genero2, string genero3, int anio, int mes, int dia, int hora, int min){
-
-    Pelicula *aux = new Pelicula;
+	
+	// Le damos valores inciales a la lista.
+    
+	Pelicula *aux = new Pelicula;
 
     aux->nombre = nombre;
     aux->precio = precio;
@@ -139,7 +141,7 @@ int AgregarPelicula (string nombre, int precio, string genero1, string genero2, 
 
 }
 
-void MostrarNodo(Pelicula *aux){
+void MostrarNodo(Pelicula *aux){ // Metodo para mostrar cada elemento de la lista
 
 	cout << "\n\nNombre: " << aux->nombre << endl;
 	cout << "Precio: " << aux->precio << endl;
@@ -170,14 +172,14 @@ void MostrarNodo(Pelicula *aux){
 	cout << "Fecha de estreno: " << aux->estreno->dia << " / " << aux->estreno->mes<< " / " << aux->estreno->anio << endl;
 }
 
-void MostrarLista(){
+void MostrarLista(){ // Metodo para ir recorriendo la lista 
 
 	if (lista == NULL){
 		cout << "La lista esta vacia" << endl;
 	} else {
 		Pelicula *aux = lista->pelicula;
 		while (aux != NULL){
-			MostrarNodo(aux);
+			MostrarNodo(aux); // Mandamos a llamar a otro metodo para mostrar la lista
 			aux = aux->sig;
 		}
 	}
