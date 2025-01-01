@@ -144,7 +144,7 @@ int AgregarPelicula (string nombre, int precio, string genero1, string genero2, 
 void MostrarNodo(Pelicula *aux){ // Metodo para mostrar cada elemento de la lista
 
 	cout << "\n\nNombre: " << aux->nombre << endl;
-	cout << "Precio: " << aux->precio << endl;
+	cout << "Precio: $" << aux->precio << endl;
 	cout << "Asientos: " << aux->asientos << endl;
 	cout<<"Generos: ";
 	if(aux->genero.accion)
@@ -188,21 +188,22 @@ void MostrarLista(){ // Metodo para ir recorriendo la lista
 int main(){
 
     // Predefinimos las peliculas
-	AgregarPelicula("La era del hielo",10000,"aventura","comedia"," ",2022,11,4,1,30);
-	AgregarPelicula("titanic",7000,"romance","drama"," ",1997,12,19,3,15);
-	AgregarPelicula("Harry Potter y la piedra filosofal",6500,"fantasia","aventura"," ",2001,11,16,2,32);
-	AgregarPelicula("Avatar",5200,"animacion","aventura","drama",2009,12,18,2,42);
-	AgregarPelicula("El rey Leon",7000,"romance","drama","aventura",1994,6,15,1,28);
-	AgregarPelicula("Jurassic Park",15000,"aventura","accion","cienciaFiccion",1993,6,11,10,15);
-	AgregarPelicula("Toy Story",12000,"animacion","comedia"," ",1995,11,22,18,45);
-	AgregarPelicula("The Dark Knight",20000,"accion","drama"," ",2008,7,18,20,30);
-	AgregarPelicula("Finding Nemo",13000,"aventura","comedia","animacion",2003,5,30,14,20);
-	AgregarPelicula("Inception",18000,"cienciaFiccion","accion"," ",2010,7,16,22,10);
-	AgregarPelicula("Coco",11000,"animacion","infantil"," ",2017,11,22,16,50);
-	AgregarPelicula("Interstellar",19000,"cienciaFiccion","drama","aventura",2014,11,7,19,00);
-	AgregarPelicula("Shrek",14000,"comedia","aventura","animacion",2001,5,18,15,30);
-	AgregarPelicula("Avatar",21000,"cienciaFiccion","aventura","fantasia",2009,12,18,21,45);
-	AgregarPelicula("The Lion King",10000,"animacion","drama"," ",1994,6,24,17,15);
+	AgregarPelicula("La era del hielo",200,"aventura","comedia"," ",2022,11,4,1,30);
+	AgregarPelicula("Titanic",140,"romance","drama"," ",1997,12,19,3,15);
+	AgregarPelicula("Harry Potter y la piedra filosofal",130,"fantasia","aventura"," ",2001,11,16,2,32);
+	AgregarPelicula("Avatar",104,"animacion","aventura","drama",2009,12,18,2,42);
+	AgregarPelicula("El rey Leon",140,"romance","drama","aventura",1994,6,15,1,28);
+	AgregarPelicula("Jurassic Park",200,"aventura","accion","cienciaFiccion",1993,6,11,10,15);
+	AgregarPelicula("Toy Story",200,"animacion","comedia"," ",1995,11,22,18,45);
+	AgregarPelicula("The Dark Knight",200,"accion","drama"," ",2008,7,18,20,30);
+	AgregarPelicula("Finding Nemo",200,"aventura","comedia","animacion",2003,5,30,14,20);
+	AgregarPelicula("Inception",200,"cienciaFiccion","accion"," ",2010,7,16,22,10);
+	AgregarPelicula("Coco",200,"animacion","infantil"," ",2017,11,22,16,50);
+	AgregarPelicula("Interstellar",200,"cienciaFiccion","drama","aventura",2014,11,7,19,00);
+	AgregarPelicula("Shrek",200,"comedia","aventura","animacion",2001,5,18,15,30);
+	AgregarPelicula("Avatar",200,"cienciaFiccion","aventura","fantasia",2009,12,18,21,45);
+	AgregarPelicula("The Lion King",200,"animacion","drama"," ",1994,6,24,17,15);
+
 
 
 	MostrarLista();
