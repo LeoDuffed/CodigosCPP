@@ -221,6 +221,7 @@ void EliminarPelicula(){
 	} else {
 
 		cout << "La siguiente pelicula va a ser eliminada" << endl;
+		Pelicula *aux = BuscarPorNombre();
 	}
 }
 
