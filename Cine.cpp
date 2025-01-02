@@ -186,6 +186,44 @@ void MostrarLista(){ // Metodo para ir recorriendo la lista
 	}
 }
 
+Pelicula *BuscarPorNombre(){
+
+	string nombre;
+
+	if (lista == NULL){
+		cout << "\nLa lista esta vacia" << endl;
+
+	} else {
+
+		cout << "\n\nIngrese el nombre de la pelicula que estas buscando: ";
+		fflush(stdin);
+		getline(cin, nombre);
+		Pelicula *aux = lista->pelicula;
+		while (aux != NULL){
+
+			if(nombre.compare(aux->nombre) == 0){
+				MostrarNodo(aux);
+				return aux; 
+			}
+			aux = aux->sig;
+		}
+	}
+
+	cout << "\nLa pelicula " << nombre << " no ha sido encontrada" << endl;
+	return NULL;
+
+}
+
+void EliminarPelicula(){
+
+	if (lista == NULL){
+		cout << "La lista esta vacia" << endl;
+	} else {
+
+		cout << "La siguiente pelicula va a ser eliminada" << endl;
+	}
+}
+
 int main(){
 
     // Predefinimos las peliculas
@@ -205,10 +243,9 @@ int main(){
 	AgregarPelicula("Avatar",200,"cienciaFiccion","aventura","fantasia",2009,12,18,2,42);
 	AgregarPelicula("The Lion King",200,"animacion","drama"," ",1994,6,24,1,29);
 
-
-
-
 	MostrarLista();
+	BuscarPorNombre();
+	EliminarPelicula();
 
     return 0;
 }
