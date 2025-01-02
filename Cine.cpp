@@ -214,23 +214,37 @@ Pelicula *BuscarPorNombre(){ // Funcion de tipo pelicula que buscar por nombre u
 
 }
 
-void EliminarPelicula(){ // Metodo para eliminar peliculas en la lista
+int EliminarPelicula(){ // Metodo para eliminar peliculas en la lista
 
 	if (lista == NULL){
 		cout << "La lista esta vacia" << endl;
 	} else {
 
-		cout << "La siguiente pelicula va a ser eliminada" << endl;
 		Pelicula *aux = BuscarPorNombre();
 
 		if (aux != NULL){
-			
-			// Cambiando la direccion de a donde puntas la pelicula anterior y siguiente
-			aux->ant->sig = aux->sig; 
-			aux->sig->ant = aux->ant;
-			delete aux;
+
+			if (lista->pelicula->sig == NULL){ // Si la lista solo tiene un elemento
+
+				delete aux;
+				lista = NULL;
+				return 0;
+
+			} else { // Si la lista > 1
+			 		
+				// Cambiando la direccion de a donde puntas la pelicula anterior y siguiente
+				aux->ant->sig = aux->sig; 
+				aux->sig->ant = aux->ant;
+				delete aux;
+				lista->longitud = (lista->longitud - 1);
+				cout << "La pelicula " << aux->nombre << " ha sido elimindada" << endl;
+				return 0;
+				
+			}
 		}
 	}
+
+	return 0;
 }
 
 int main(){
