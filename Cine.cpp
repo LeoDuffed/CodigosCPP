@@ -225,8 +225,8 @@ void EliminarPelicula(){ // Metodo para eliminar peliculas en la lista
 
 		if (aux != NULL){
 
-			aux->ant->sig = aux->sig;
-			aux->ant->sig = aux->ant;
+			aux->ant->sig = aux->sig; // 
+			aux->sig->ant = aux->ant;
 			delete aux;
 		}
 	}
