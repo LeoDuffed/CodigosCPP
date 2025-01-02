@@ -222,6 +222,13 @@ void EliminarPelicula(){
 
 		cout << "La siguiente pelicula va a ser eliminada" << endl;
 		Pelicula *aux = BuscarPorNombre();
+
+		if (aux != NULL){
+
+			aux->ant->sig = aux->sig;
+			aux->ant->sig = aux->ant;
+			delete aux;
+		}
 	}
 }
 
