@@ -275,6 +275,44 @@ int EliminarPelicula(){ // Metodo para eliminar peliculas en la lista
 	return 0;
 }
 
+void Menu(){
+	int eleccion = 1;
+
+	while (eleccion != 0){
+
+		eleccion = 0;
+
+		cout << "\n\n\nBienvenido al catalogo de peliculas" << endl;
+		cout << "1. Mostrar catalogo" << endl;
+		cout << "2. Buscar pelicula por nombre" << endl;
+		cout << "3. Eliminar pelicula" << endl;
+		cout << "0. Salir" << endl;
+		cout << "Ingrese su eleccion: ";
+		cin >> eleccion;
+
+		switch(eleccion){
+
+			case 1:
+				MostrarLista();
+				break;
+			case 2:
+				BuscarPorNombre();
+				break;
+			case 3:
+				BuscarPorNombreParaBorrar();
+				break;
+			case 0:
+				cout << "Saliendo..." << endl;
+				break;
+			default:
+				cout << "Opcion invalida" << endl;
+		}
+	}
+
+
+
+}
+
 int main(){
 
     // Predefinimos las peliculas
@@ -294,10 +332,7 @@ int main(){
 	AgregarPelicula("Avatar",200,"cienciaFiccion","aventura","fantasia",2009,12,18,2,42);
 	AgregarPelicula("The Lion King",200,"animacion","drama"," ",1994,6,24,1,29);
 
-	MostrarLista();
-	BuscarPorNombre();
-	EliminarPelicula();
-	MostrarLista();
+	Menu();
 
     return 0;
 }
