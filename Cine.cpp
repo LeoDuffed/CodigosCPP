@@ -186,7 +186,7 @@ void MostrarLista(){ // Metodo para ir recorriendo la lista
 	}
 }
 
-Pelicula *BuscarPorNombre(){
+Pelicula *BuscarPorNombre(){ // Funcion de tipo pelicula que buscar por nombre una pelicula en la lista
 
 	string nombre;
 
@@ -214,7 +214,7 @@ Pelicula *BuscarPorNombre(){
 
 }
 
-void EliminarPelicula(){
+void EliminarPelicula(){ // Metodo para eliminar peliculas en la lista
 
 	if (lista == NULL){
 		cout << "La lista esta vacia" << endl;
