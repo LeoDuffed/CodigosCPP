@@ -218,25 +218,19 @@ Pelicula *BuscarPorNombreParaBorrar(){
 
 	string nombre;
 
-	if (lista == NULL){
-		cout << "\nLa lista esta vacia" << endl;
-	} else {
+	cout << "\nIngresa el nombre de la pelicula que deseas borrar: ";
+	fflush(stdin);
+	getline(cin, nombre);
+	Pelicula *aux = lista->pelicula;
+	while (aux != NULL){
 
-		cout << "\nIngresa el nombre de la pelicula que deseas borrar: ";
-		fflush(stdin);
-		getline(cin, nombre);
-		Pelicula *aux = lista->pelicula;
-		while (aux != NULL){
-
-			if (nombre.compare(aux->nombre) == 0){
-				return aux;
-			}
-			aux = aux->sig;
+		if (nombre.compare(aux->nombre) == 0){
+			return aux;
 		}
+		aux = aux->sig;
 	}
-
+	
 	cout << "\nLa pelicula " << nombre << " no ha sido encontrada" << endl;
-
 	return 0;
 }	
 
@@ -275,6 +269,62 @@ int EliminarPelicula(){ // Metodo para eliminar peliculas en la lista
 	return 0;
 }
 
+void BuscarPorGenero(string genero){
+
+	Pelicula *aux = lista->pelicula;
+	while (aux != NULL){
+
+		if ((genero.compare("accion") == 0 || genero.compare("Accion") == 0) && aux->genero.accion){
+			MostrarNodo(aux);
+		}
+		if ((genero.compare("animacion") == 0 || genero.compare("Animacion") == 0) && aux->genero.animacion){
+			MostrarNodo(aux);
+		}
+		if ((genero.compare("aventura") == 0 || genero.compare("Aventura") == 0) && aux->genero.aventura){
+			MostrarNodo(aux);
+		}
+		if ((genero.compare("ciencia ficcion") == 0 || genero.compare("Ciencia Ficcion") == 0) && aux->genero.cienciaFiccion){
+			MostrarNodo(aux);
+		}
+		if ((genero.compare("comedia") == 0 || genero.compare("Comedia") == 0) && aux->genero.comedia){
+			MostrarNodo(aux);
+		}
+		if ((genero.compare("drama") == 0 || genero.compare("Drama") == 0) && aux->genero.drama){
+			MostrarNodo(aux);
+		}
+		if ((genero.compare("fantasia") == 0 || genero.compare("Fantasia") == 0) && aux->genero.fantasia){
+			MostrarNodo(aux);
+		}
+		if ((genero.compare("infantil") == 0 || genero.compare("Infantil") == 0) && aux->genero.infantil){
+			MostrarNodo(aux);
+		}
+		if ((genero.compare("romance") == 0 || genero.compare("Romance") == 0) && aux->genero.romance){
+			MostrarNodo(aux);
+		}
+		if ((genero.compare("terror") == 0 || genero.compare("Terror") == 0) && aux->genero.terror){
+			MostrarNodo(aux);
+		}
+
+		aux = aux->sig;
+	}
+}
+
+void MostrarPorGenero(){
+
+	string genero;
+	
+	if (lista == NULL){
+		cout << "La lista esta vacia" << endl;
+	} else {
+
+		cout << "Ingrese el genero que desea buscar: ";
+		fflush(stdin);
+		getline(cin, genero);
+		
+		BuscarPorGenero(genero);
+	}
+}
+
 void Menu(){
 	int eleccion = 1;
 
@@ -286,6 +336,7 @@ void Menu(){
 		cout << "1. Mostrar catalogo" << endl;
 		cout << "2. Buscar pelicula por nombre" << endl;
 		cout << "3. Eliminar pelicula" << endl;
+		cout << "4. Buscar por genero" << endl;
 		cout << "0. Salir" << endl;
 		cout << "Ingrese su eleccion: ";
 		cin >> eleccion;
@@ -301,6 +352,9 @@ void Menu(){
 			case 3:
 				BuscarPorNombreParaBorrar();
 				break;
+			case 4:
+				MostrarPorGenero();
+				break;
 			case 0:
 				cout << "Saliendo..." << endl;
 				break;
@@ -308,8 +362,6 @@ void Menu(){
 				cout << "Opcion invalida" << endl;
 		}
 	}
-
-
 
 }
 
