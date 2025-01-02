@@ -224,8 +224,9 @@ void EliminarPelicula(){ // Metodo para eliminar peliculas en la lista
 		Pelicula *aux = BuscarPorNombre();
 
 		if (aux != NULL){
-
-			aux->ant->sig = aux->sig; // 
+			
+			// Cambiando la direccion de a donde puntas la pelicula anterior y siguiente
+			aux->ant->sig = aux->sig; 
 			aux->sig->ant = aux->ant;
 			delete aux;
 		}
