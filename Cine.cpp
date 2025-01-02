@@ -214,13 +214,40 @@ Pelicula *BuscarPorNombre(){ // Funcion de tipo pelicula que buscar por nombre u
 
 }
 
+Pelicula *BuscarPorNombreParaBorrar(){
+
+	string nombre;
+
+	if (lista == NULL){
+		cout << "\nLa lista esta vacia" << endl;
+	} else {
+
+		cout << "\nIngresa el nombre de la pelicula que deseas borrar: ";
+		fflush(stdin);
+		getline(cin, nombre);
+		Pelicula *aux = lista->pelicula;
+		while (aux != NULL){
+
+			if (nombre.compare(aux->nombre) == 0){
+				return aux;
+			}
+			aux = aux->sig;
+		}
+	}
+
+	cout << "\nLa pelicula " << nombre << " no ha sido encontrada" << endl;
+
+	return 0;
+}	
+
+
 int EliminarPelicula(){ // Metodo para eliminar peliculas en la lista
 
 	if (lista == NULL){
 		cout << "La lista esta vacia" << endl;
 	} else {
 
-		Pelicula *aux = BuscarPorNombre();
+		Pelicula *aux = BuscarPorNombreParaBorrar();
 
 		if (aux != NULL){
 
@@ -228,6 +255,7 @@ int EliminarPelicula(){ // Metodo para eliminar peliculas en la lista
 
 				delete aux;
 				lista = NULL;
+				cout << "La pelicula " << aux->nombre << " ha sido eliminada con exito" << endl;
 				return 0;
 
 			} else { // Si la lista > 1
@@ -237,7 +265,7 @@ int EliminarPelicula(){ // Metodo para eliminar peliculas en la lista
 				aux->sig->ant = aux->ant;
 				delete aux;
 				lista->longitud = (lista->longitud - 1);
-				cout << "La pelicula " << aux->nombre << " ha sido elimindada" << endl;
+				cout << "La pelicula " << aux->nombre << " ha sido elimindada con exito" << endl;
 				return 0;
 				
 			}
@@ -269,6 +297,7 @@ int main(){
 	MostrarLista();
 	BuscarPorNombre();
 	EliminarPelicula();
+	MostrarLista();
 
     return 0;
 }
