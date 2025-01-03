@@ -314,13 +314,24 @@ void MostrarPorGenero(){
 	string genero;
 	
 	if (lista == NULL){
-		cout << "La lista esta vacia" << endl;
+		cout << "\nLa lista esta vacia" << endl;
 	} else {
-
+		cout << "\n\n --- Opciones: --- " << endl;
+		cout << " ✦ Accion" << endl;
+		cout << " ✦ Animacion" << endl;
+		cout << " ✦ Aventura" << endl;
+		cout << " ✦ Ciencia Ficcion" << endl;
+		cout << " ✦ Comedia" << endl;
+		cout << " ✦ Drama" << endl;
+		cout << " ✦ Fantasia" << endl;
+		cout << " ✦ Infantil" << endl;
+		cout << " ✦ Romance" << endl;
+		cout << " ✦ Terror" << endl;
 		cout << "Ingrese el genero que desea buscar: ";
+
 		fflush(stdin);
 		getline(cin, genero);
-		
+
 		BuscarPorGenero(genero);
 	}
 }
