@@ -25,7 +25,7 @@ Nodo *CrearNodo(){
 
     Nodo *aux = new Nodo;
 
-    cout << "Ingrese nombre completo: ";
+    cout << "\nIngrese nombre completo: ";
     fflush(stdin);
     getline(cin, aux->nombre);
     cout << "Ingrese el servicio que desea: ";
@@ -64,11 +64,31 @@ void AgregarCliente(){
 void MostrarPrimerCliente(){
 
     if (cola == NULL){
-        cout << "No hay nadie en la fila" << endl;
+        cout << "\nNo hay nadie en la fila" << endl;
     } else {
-        cout << "Nombre: " << cola->primero->nombre << endl;
+        cout << "\nNombre: " << cola->primero->nombre << endl;
         cout << "Servicio solicitado: " << cola->primero->servicioSolicitado << endl;
     }
+
+}
+void MostrarTodosLosClientes(){
+
+    if (cola == NULL){
+
+        cout << "\nNo hay nadie en la fila " << endl;
+    } else {
+
+        Nodo *aux = cola->primero;
+
+        while (aux != NULL) {
+
+            cout << "\nNombre: " << aux->nombre << endl;
+            cout << "Servicio solicitado: " << aux->servicioSolicitado << endl;
+
+            aux = aux->sig;
+        }
+    }
+
 
 }
 
@@ -78,10 +98,11 @@ void Menu(){
 
     while(cont == 1){
 
-        cout << "1. Agregar cliente" << endl;
+        cout << "\n\n1. Agregar cliente" << endl;
         cout << "2. Mostrar primer cliente en cola" << endl;
-        cout << "3. Eliminar cliente" << endl;
-        cout << "4. Destruir cola" << endl;
+        cout << "3. Mostrar todos los clientes" << endl;
+        cout << "4. Eliminar cliente" << endl;
+        cout << "5. Destruir cola" << endl;
         cout << "0. Salir" << endl;
         cout << "Ingrese eleccion: ";
         cin >> resp;
@@ -95,8 +116,11 @@ void Menu(){
                 MostrarPrimerCliente();
                 break;
             case 3:
+                MostrarTodosLosClientes();
                 break;
             case 4: 
+                break;
+            case 5: 
                 break;
             case 0:
                 cout << "Saliendo del programa..." << endl;
