@@ -92,6 +92,28 @@ void MostrarTodosLosClientes(){
 
 }
 
+void EliminarCliente(){
+
+    if (cola == NULL){
+
+        cout << "No hay nadie en la fila" << endl;
+    } else {
+
+        if (cola->primero->sig == NULL){
+
+            delete cola->primero;
+            delete cola;
+            cola = NULL;
+        } else {
+
+            Nodo *aux = cola->primero->sig;
+            delete (cola->primero);
+            cola->primero = aux;
+            cola->longitudCola = (cola->longitudCola) - 1;
+        } 
+    }
+}
+
 void Menu(){
 
     int resp = 0, cont = 1;
@@ -119,6 +141,7 @@ void Menu(){
                 MostrarTodosLosClientes();
                 break;
             case 4: 
+                EliminarCliente();
                 break;
             case 5: 
                 break;
