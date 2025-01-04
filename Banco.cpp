@@ -58,6 +58,17 @@ void AgregarCliente(){
         cola->longitudCola = (cola->longitudCola) + 1;
 
     }
+
+}
+
+void MostrarPrimerCliente(){
+
+    if (cola == NULL){
+        cout << "No hay nadie en la fila" << endl;
+    } else {
+        cout << "Nombre: " << cola->primero->nombre << endl;
+        cout << "Servicio solicitado: " << cola->primero->servicioSolicitado << endl;
+    }
     
 }
 
@@ -81,6 +92,7 @@ void Menu(){
                 AgregarCliente();
                 break;
             case 2: 
+                MostrarPrimerCliente();
                 break;
             case 3:
                 break;
