@@ -1,4 +1,5 @@
 // Creado por Leonardo Martinez Peña
+// Programa con Listas estaticas 
 
 #include <iostream> 
 #include <thread>

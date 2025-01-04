@@ -1,4 +1,5 @@
 // Creado por Leonardo Martínez Peña
+// Hecho para ver como usar listas
 // 20/12/2024
 
 #include <iostream> 

@@ -1,4 +1,4 @@
-// Programa con listas doblemente enlazadas
+// Programa con Listas doblemente enlazadas
 // Creado por Leonardo Martínez Peña
 // Fecha 3/01/2025
 

@@ -1,4 +1,5 @@
 // Creado por Leonardo Martinez Peña
+// Programa con Listas dinamicas simplemente enlazadas
 
 #include <iostream> 
 #include <cstdlib> 
