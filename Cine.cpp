@@ -214,7 +214,7 @@ Pelicula *BuscarPorNombre(){ // Funcion de tipo pelicula que buscar por nombre u
 
 }
 
-Pelicula *BuscarPorNombreParaBorrar(){
+Pelicula *BuscarPorNombreParaBorrar(){ // Funcion casi igual a BuscarPorNombre
 
 	string nombre;
 
@@ -269,7 +269,7 @@ int EliminarPelicula(){ // Metodo para eliminar peliculas en la lista
 	return 0;
 }
 
-void BuscarPorGenero(string genero){
+void BuscarPorGenero(string genero){ // Metodo para buscar peliculas por genero
 
 	Pelicula *aux = lista->pelicula;
 	while (aux != NULL){
@@ -309,7 +309,7 @@ void BuscarPorGenero(string genero){
 	}
 }
 
-void MostrarPorGenero(){
+void MostrarPorGenero(){ // Menu del metodo BuscarPorGenero
 
 	string genero;
 	
@@ -336,7 +336,7 @@ void MostrarPorGenero(){
 	}
 }
 
-int ValidarDisponibilidadAsientos(Pelicula *aux, int cantidad){
+int ValidarDisponibilidadAsientos(Pelicula *aux, int cantidad){ // Funcion para validar si quedan asientos para alguna pelicula
 
 	if ((aux->asientos) - cantidad >= 0){
 		return true;
@@ -346,14 +346,14 @@ int ValidarDisponibilidadAsientos(Pelicula *aux, int cantidad){
 
 }
 
-void PrecioEntradas(){
+void ComprarVoletos(){ // Metodo para comprar  voletos
 
 	if (lista == NULL){
 		cout << "La lista esta vacia" << endl;
 	} else {
 		int cantidad = 0;
 		string resp;
-		
+
 		BuscarPorNombre();
 
 		Pelicula *aux = BuscarPorNombre();
@@ -415,7 +415,7 @@ void Menu(){
 				MostrarPorGenero();
 				break;
 			case 5: 
-				PrecioEntradas();
+				ComprarVoletos();
 				break;
 			case 0:
 				cout << "Saliendo..." << endl;
