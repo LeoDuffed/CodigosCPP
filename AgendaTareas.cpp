@@ -1,3 +1,5 @@
+// Creado por Leonardo Martinez Peña
+
 #include <iostream> 
 #include <cstdlib> 
 using namespace std;
