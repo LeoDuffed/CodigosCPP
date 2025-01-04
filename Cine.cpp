@@ -232,7 +232,7 @@ Pelicula *BuscarPorNombreParaBorrar(){ // Funcion casi igual a BuscarPorNombre
 	}
 	
 	cout << "\nLa pelicula " << nombre << " no ha sido encontrada" << endl;
-	return 0;
+	return NULL;
 }	
 
 
@@ -260,7 +260,7 @@ int EliminarPelicula(){ // Metodo para eliminar peliculas en la lista
 				aux->sig->ant = aux->ant;
 				delete aux;
 				lista->longitud = (lista->longitud - 1);
-				cout << "La pelicula " << aux->nombre << " ha sido elimindada con exito" << endl;
+				cout << "\nLa pelicula " << aux->nombre << " ha sido elimindada con exito" << endl;
 				return 0;
 				
 			}
@@ -410,7 +410,7 @@ void Menu(){
 				BuscarPorNombre();
 				break;
 			case 3:
-				BuscarPorNombreParaBorrar();
+				EliminarPelicula();
 				break;
 			case 4:
 				MostrarPorGenero();
