@@ -19,6 +19,47 @@ struct Banco{
 
 };
 
+Banco *cola = NULL; // Inicializamos la cola
+
+Nodo *CrearNodo(){
+
+    Nodo *aux = new Nodo;
+
+    cout << "Ingrese nombre completo: ";
+    fflush(stdin);
+    getline(cin, aux->nombre);
+    cout << "Ingrese el servicio: ";
+    fflush(stdin);
+    getline(cin, aux->servicioSolicitado);
+
+    aux->sig = NULL;
+
+    return aux;
+}
+
+void AgregarCliente(){
+
+    if (cola == NULL){
+
+        cola = new Banco;
+        cola->primero = CrearNodo();
+        cola->longitudCola = 1;
+
+    } else {
+
+        Nodo *aux = cola->primero;
+        while (aux->sig != NULL){
+
+            aux = aux->sig;
+        }
+
+        aux->sig = CrearNodo();
+
+        cola->longitudCola = (cola->longitudCola) + 1;
+
+    }
+}
+
 void Menu(){
 
     int resp = 0, cont = 1;
@@ -36,6 +77,7 @@ void Menu(){
         switch (resp){
 
             case 1: 
+                AgregarCliente();
                 break;
             case 2: 
                 break;
@@ -45,6 +87,7 @@ void Menu(){
                 break;
             case 0:
                 cout << "Saliendo del programa..." << endl;
+                cont = 1;
                 break;
             default:
                 cout << "Opcion invalida" << endl;
