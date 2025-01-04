@@ -353,8 +353,7 @@ void PrecioEntradas(){
 	} else {
 		int cantidad = 0;
 		string resp;
-		cout << "Ingrese el nombre de la pelicula: ";
-
+		
 		BuscarPorNombre();
 
 		Pelicula *aux = BuscarPorNombre();
@@ -371,13 +370,17 @@ void PrecioEntradas(){
 				cin >> cantidad;
 				bool validar = ValidarDisponibilidadAsientos(aux, cantidad);
 
-				if (validar == )
+				if (validar == true){
 
+					cout << "El total a pagar es de: $" << (aux->precio) * cantidad << endl;
+					aux->asientos = (aux->asientos) - cantidad;
+				} else {
+					cout << "Ya esta agotada esta funcion" << endl;
+				}
 			}
-
 		}
-
 	}
+
 }
 
 void Menu(){
@@ -392,6 +395,7 @@ void Menu(){
 		cout << "2. Buscar pelicula por nombre" << endl;
 		cout << "3. Eliminar pelicula" << endl;
 		cout << "4. Buscar por genero" << endl;
+		cout << "5. Comprar boletos" << endl;
 		cout << "0. Salir" << endl;
 		cout << "Ingrese su eleccion: ";
 		cin >> eleccion;
@@ -409,6 +413,9 @@ void Menu(){
 				break;
 			case 4:
 				MostrarPorGenero();
+				break;
+			case 5: 
+				PrecioEntradas();
 				break;
 			case 0:
 				cout << "Saliendo..." << endl;
