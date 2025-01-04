@@ -28,7 +28,7 @@ Nodo *CrearNodo(){
     cout << "Ingrese nombre completo: ";
     fflush(stdin);
     getline(cin, aux->nombre);
-    cout << "Ingrese el servicio: ";
+    cout << "Ingrese el servicio que desea: ";
     fflush(stdin);
     getline(cin, aux->servicioSolicitado);
 
@@ -69,7 +69,7 @@ void MostrarPrimerCliente(){
         cout << "Nombre: " << cola->primero->nombre << endl;
         cout << "Servicio solicitado: " << cola->primero->servicioSolicitado << endl;
     }
-    
+
 }
 
 void Menu(){
