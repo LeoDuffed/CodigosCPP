@@ -336,6 +336,16 @@ void MostrarPorGenero(){
 	}
 }
 
+int ValidarDisponibilidadAsientos(Pelicula *aux, int cantidad){
+
+	if ((aux->asientos) - cantidad >= 0){
+		return true;
+	} else {
+		return false;
+	}
+
+}
+
 void PrecioEntradas(){
 
 	if (lista == NULL){
@@ -359,8 +369,9 @@ void PrecioEntradas(){
 
 				cout << "Cuantas entradas deseas comprar: ";
 				cin >> cantidad;
-				bool validar = ValidadDisponibilidadAsientos(cantidad);
+				bool validar = ValidarDisponibilidadAsientos(aux, cantidad);
 
+				if (validar == )
 
 			}
 
