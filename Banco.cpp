@@ -4,7 +4,20 @@
 #include <iostream> 
 using namespace std;
 
+struct Nodo{
 
+    string nombre;
+    string servicioSolicitado;
+    struct Nodo *sig; // Estructura simplemente enlazada
+
+};
+
+struct Banco{
+
+    int longitudCola;
+    struct Nodo *primero;
+
+};
 
 void Menu(){
 
