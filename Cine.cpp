@@ -336,6 +336,39 @@ void MostrarPorGenero(){
 	}
 }
 
+void PrecioEntradas(){
+
+	if (lista == NULL){
+		cout << "La lista esta vacia" << endl;
+	} else {
+		int cantidad = 0;
+		string resp;
+		cout << "Ingrese el nombre de la pelicula: ";
+
+		BuscarPorNombre();
+
+		Pelicula *aux = BuscarPorNombre();
+
+		if (aux != NULL){
+
+			cout << "El precio de la pelicula " << aux->nombre << " es de: $" << aux->precio << endl;
+			cout << "Deseas comprar entradas (s/n): ";
+			cin >> resp;
+
+			if (resp == "S" || resp == "s"){
+
+				cout << "Cuantas entradas deseas comprar: ";
+				cin >> cantidad;
+				bool validar = ValidadDisponibilidadAsientos(cantidad);
+
+
+			}
+
+		}
+
+	}
+}
+
 void Menu(){
 	int eleccion = 1;
 
