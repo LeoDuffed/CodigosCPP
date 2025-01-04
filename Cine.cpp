@@ -1,5 +1,6 @@
 // Programa con listas doblemente enlazadas
 // Creado por Leonardo Martínez Peña
+// Fecha 3/01/2025
 
 #include <iostream> 
 using namespace std;
