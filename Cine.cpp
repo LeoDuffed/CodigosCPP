@@ -391,14 +391,14 @@ void Menu(){
 
 		eleccion = 0;
 
-		cout << "\n\n\nBienvenido al catalogo de peliculas" << endl;
-		cout << "1. Mostrar catalogo" << endl;
-		cout << "2. Buscar pelicula por nombre" << endl;
-		cout << "3. Eliminar pelicula" << endl;
-		cout << "4. Buscar por genero" << endl;
-		cout << "5. Comprar boletos" << endl;
-		cout << "0. Salir" << endl;
-		cout << "Ingrese su eleccion: ";
+		cout << "\n\n\n --- Bienvenido al catalogo de peliculas --- \n" << endl;
+		cout << " 1. Mostrar catalogo" << endl;
+		cout << " 2. Buscar pelicula por nombre" << endl;
+		cout << " 3. Eliminar pelicula" << endl;
+		cout << " 4. Buscar por genero" << endl;
+		cout << " 5. Comprar boletos" << endl;
+		cout << " 0. Salir" << endl;
+		cout << " \nIngrese su eleccion: ";
 		cin >> eleccion;
 
 		switch(eleccion){
