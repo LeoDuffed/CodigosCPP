@@ -58,6 +58,7 @@ void AgregarCliente(){
         cola->longitudCola = (cola->longitudCola) + 1;
 
     }
+    
 }
 
 void Menu(){
