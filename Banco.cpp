@@ -89,7 +89,6 @@ void MostrarTodosLosClientes(){
         }
     }
 
-
 }
 
 void EliminarCliente(){
@@ -112,6 +111,30 @@ void EliminarCliente(){
             cola->longitudCola = (cola->longitudCola) - 1;
         } 
     }
+
+}
+
+void DestruirCola(){
+
+    if (cola == NULL){
+        cout << "No hay nadie en la fila" << endl;
+
+    } else {
+        
+        Nodo *aux = cola->primero;
+        while (aux != NULL){
+
+            Nodo *aux2 = aux->sig;
+            delete aux;
+            aux = aux2;
+
+
+        }
+        cola = NULL;
+
+        cout << "La fila se ha reiniciado con exito" << endl;
+    }
+
 }
 
 void Menu(){
@@ -124,7 +147,7 @@ void Menu(){
         cout << "2. Mostrar primer cliente en cola" << endl;
         cout << "3. Mostrar todos los clientes" << endl;
         cout << "4. Eliminar cliente" << endl;
-        cout << "5. Destruir cola" << endl;
+        cout << "5. Reiniciar cola" << endl;
         cout << "0. Salir" << endl;
         cout << "Ingrese eleccion: ";
         cin >> resp;
@@ -144,6 +167,7 @@ void Menu(){
                 EliminarCliente();
                 break;
             case 5: 
+                DestruirCola();
                 break;
             case 0:
                 cout << "Saliendo del programa..." << endl;
@@ -154,6 +178,7 @@ void Menu(){
         }
 
     }
+
 }
 
 int main(){
@@ -161,4 +186,5 @@ int main(){
     Menu();
 
     return 0; 
+
 }
