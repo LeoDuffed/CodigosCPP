@@ -22,7 +22,7 @@ struct Banco{
 
 Banco *cola = NULL; // Inicializamos la cola
 
-Nodo *CrearNodo(){
+Nodo *CrearNodo(){ // Funcion para que el usario pueda ingresar y se alamacene en la cola
 
     Nodo *aux = new Nodo;
 
@@ -33,20 +33,20 @@ Nodo *CrearNodo(){
     fflush(stdin);
     getline(cin, aux->servicioSolicitado);
 
-    aux->sig = NULL;
+    aux->sig = NULL; // Le damos valor al siguiente elemento de la cola 
 
     return aux;
 }
 
-void AgregarCliente(){
+void AgregarCliente(){ // Metodo para agregar clientes a la cola
 
-    if (cola == NULL){
+    if (cola == NULL){ // Si es el primer elemento de la cola
 
-        cola = new Banco;
+        cola = new Banco; // Pedimos memoria para empezar a hacer la cola
         cola->primero = CrearNodo();
         cola->longitudCola = 1;
 
-    } else {
+    } else { // Si no es el primer elemento de la cola 
 
         Nodo *aux = cola->primero;
         while (aux->sig != NULL){
@@ -56,13 +56,13 @@ void AgregarCliente(){
 
         aux->sig = CrearNodo();
 
-        cola->longitudCola = (cola->longitudCola) + 1;
+        cola->longitudCola = (cola->longitudCola) + 1; // Vamos incremenentado la longitud en 1 
 
     }
 
 }
 
-void MostrarPrimerCliente(){
+void MostrarPrimerCliente(){ // Metodo para mostrar solo el primer cliente de la cola 
 
     if (cola == NULL){
         cout << "\nNo hay nadie en la fila" << endl;
@@ -72,7 +72,7 @@ void MostrarPrimerCliente(){
     }
 
 }
-void MostrarTodosLosClientes(){
+void MostrarTodosLosClientes(){ // Metodo que muestra a todos los clientes de la cola 
 
     if (cola == NULL){
 
@@ -92,30 +92,30 @@ void MostrarTodosLosClientes(){
 
 }
 
-void EliminarCliente(){
+void EliminarCliente(){ // Metodo para eliminar clientes (FIFO)
 
     if (cola == NULL){
 
         cout << "No hay nadie en la fila" << endl;
     } else {
 
-        if (cola->primero->sig == NULL){
+        if (cola->primero->sig == NULL){ // En caso de que solo haya un dato en la cola
 
             delete cola->primero;
             delete cola;
-            cola = NULL;
-        } else {
+            cola = NULL; // Le damos el valor a la cola
+        } else { // Si hay mas de un elemento en la cola 
 
             Nodo *aux = cola->primero->sig;
             delete (cola->primero);
             cola->primero = aux;
-            cola->longitudCola = (cola->longitudCola) - 1;
+            cola->longitudCola = (cola->longitudCola) - 1; // La longitud de la cola decrese en 1 
         } 
     }
 
 }
 
-void DestruirCola(){
+void DestruirCola(){ // Borramos todos los elementos de la cola 
 
     if (cola == NULL){
         cout << "No hay nadie en la fila" << endl;
@@ -123,12 +123,11 @@ void DestruirCola(){
     } else {
         
         Nodo *aux = cola->primero;
-        while (aux != NULL){
+        while (aux != NULL){ // Vamos borrando uno por uno los datos de la cola
 
             Nodo *aux2 = aux->sig;
             delete aux;
             aux = aux2;
-
 
         }
         cola = NULL;
@@ -138,7 +137,7 @@ void DestruirCola(){
 
 }
 
-void Menu(){
+void Menu(){ // Menu del programa 
 
     int resp = 0, cont = 1;
 
