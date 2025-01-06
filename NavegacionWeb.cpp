@@ -37,6 +37,14 @@ void AgreagarElemento(string nombre){
         pila = new Historial;
         pila->cantidadPaginas = 1;
         pila->tope = CrearNodo(nombre);
+
+    } else {
+
+        Nodo *aux;
+        while (aux != NULL){
+            
+        }
+
     }
 
 }
