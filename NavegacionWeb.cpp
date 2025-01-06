@@ -38,11 +38,11 @@ void AgreagarElemento(string nombre){
         pila->cantidadPaginas = 1;
         pila->tope = CrearNodo(nombre);
 
-    } else {
+    } else { // Falta terminar de hacer este else 
 
         Nodo *aux;
         while (aux != NULL){
-            
+
         }
 
     }
