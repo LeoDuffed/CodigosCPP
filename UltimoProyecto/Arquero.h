@@ -33,7 +33,6 @@ class Arquero : public Personaje{
     void toString();
     void flechaVenenosa();
     void DisparoPreciso();
-    void Trampas();
 
 };
 

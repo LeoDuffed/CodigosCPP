@@ -55,3 +55,11 @@ void Arquero :: toString(){
     cout << "Precision: " << precision << endl;
     cout << "Evasion de daño: " << evasion << endl;
 }
+
+void Arquero :: flechaVenenosa(){
+    cout << nombre << " ha lanzado una flecha venenosa con su habilidad de arco de " << habilidadArco << endl; 
+}
+
+void Arquero :: DisparoPreciso(){
+    cout << nombre << " ha hecho un disparo preciso con su precision de " << precision << endl;
+}

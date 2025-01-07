@@ -36,5 +36,11 @@ int main() {
     cout << "\nArquero 1" << endl;
     miArquero.toString();
 
+    cout << "\nHaciendo que el archero lanze una flecha venenosa..." << endl;
+    miArquero.flechaVenenosa();
+
+    cout << "\nHaciendo que el arquero haga un disparo preciso..." << endl;
+    miArquero.DisparoPreciso();
+
     return 0;
 }
