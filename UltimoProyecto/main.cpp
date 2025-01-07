@@ -1,3 +1,7 @@
+//
+// Creado por Leonardo Martinez Peña
+// Programa usando Herencia y POO
+//
 #include "Personaje.h"
 #include "Guerrero.h"
 #include <iostream>

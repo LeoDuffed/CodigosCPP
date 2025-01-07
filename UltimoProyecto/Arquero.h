@@ -1,3 +1,6 @@
+//
+// Creado por Leonardo Martinez Peña
+//
 #ifndef Arquero_H
 #define Arquero_H
 #include <iostream> 

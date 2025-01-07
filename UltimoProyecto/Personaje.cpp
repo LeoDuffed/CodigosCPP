@@ -1,3 +1,4 @@
+// Creado por Leonardo Martinez Peña
 #include "Personaje.h"
 #include <iostream> 
 using namespace std;

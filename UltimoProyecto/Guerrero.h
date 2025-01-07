@@ -1,3 +1,6 @@
+//
+// Creado por Leonardo Martinez Peña
+//
 #ifndef Guerrero_H
 #define Guerrero_H
 #include "Personaje.h"
