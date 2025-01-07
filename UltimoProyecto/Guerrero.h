@@ -14,7 +14,7 @@ class Guerrero : public Personaje{
     public: 
         Guerrero();
         ~Guerrero(){}
-        Guerrero(int fuerzam, int regeneracionVida, int bloqueo);
+        Guerrero(string nombre, int vida, int nivel, int defenzaFisica, int defenzaMagica, int velocidadMovimiento, int velocidadATK, int rango, int fuerzam, int regeneracionVida, int bloqueo);
 
         void setFuerza(int fuerza);
         void setRegeneracionVida(int regeneracionVida);

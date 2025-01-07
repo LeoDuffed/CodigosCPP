@@ -6,7 +6,7 @@ using namespace std;
 
 class Personaje{
 
-    private: 
+    protected: 
     string nombre;
     int vida;
     int nivel;
