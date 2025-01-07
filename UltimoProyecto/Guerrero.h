@@ -29,7 +29,7 @@ class Guerrero : public Personaje{
 
         void toString();
         void intimidar();
-        void emebestir();
+        void embestir();
 
 
 };

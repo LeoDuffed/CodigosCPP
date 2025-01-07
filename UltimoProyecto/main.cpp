@@ -23,5 +23,13 @@ int main() {
     cout << "\nNuevos atributos Guerrero 1: " << endl;
     miGuerrero.toString();
 
+    // Metodo de intimidar de la clase Guerrero
+    cout << "\nHaciendo que el guerrero intimide..." << endl;
+    miGuerrero.intimidar();
+
+    // Metodo de embestir de la clase Guerrro
+    cout << "\nHaciendo que el guerrero embista..." << endl;
+    miGuerrero.embestir();
+
     return 0;
 }

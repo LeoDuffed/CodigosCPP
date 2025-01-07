@@ -50,4 +50,12 @@ void Guerrero :: toString(){
 
 }
 
+void Guerrero :: intimidar() {
+    cout << nombre << " intimida a su enemigo con una fuerza de " << fuerza << "." << endl;
+}
+
+void Guerrero::embestir() {
+    cout << nombre << " embiste con un ataque devastador, causando " << fuerza * 2 << " de daño." << endl;
+}
+
 
