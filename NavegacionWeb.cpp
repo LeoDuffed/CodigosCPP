@@ -1,5 +1,6 @@
 // Creado por Leonardo Martínez Peña
 // Programa usando Pilas 
+// Fecha 6/01/2025
 
 #include <iostream> 
 using namespace std;
@@ -30,7 +31,7 @@ Nodo *CrearNodo(string nombre){
 
 }
 
-void AgreagarElemento(string nombre){
+void AgregarElemento(string nombre){
     
     if (pila == NULL){
 
@@ -40,24 +41,30 @@ void AgreagarElemento(string nombre){
 
     } else { // Falta terminar de hacer este else 
 
-        Nodo *aux;
-        while (aux != NULL){
-
-        }
+        Nodo *aux = CrearNodo(nombre);
+        aux->sig = pila->tope;
+        pila->cantidadPaginas = (pila->cantidadPaginas) + 1;
+        pila->tope = aux;
 
     }
 
 }
 
-/*
-AgregarElemento("google");
-AgregarElemento("facebook");
-AgregarElemento("Perfil");
-AgregarElemento("fotos");
-*/
+void MostrarPaginaVisitada(){
 
+    if (pila = NULL){
+        cout << "La pila esta vacia" << endl;
+    } else {
+        cout << "Nombre pagina web: " << pila->tope->nombreWeb << endl;
+    }
+}
 
 int main(){
+
+    AgregarElemento("google");
+    AgregarElemento("facebook");
+    AgregarElemento("Perfil");
+    AgregarElemento("fotos");
 
     return 0;
 
