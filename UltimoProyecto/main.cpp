@@ -16,7 +16,7 @@ int main() {
     cout << "Nivel: " << miPersonaje.getNivel() << endl;
     cout << "Velocidad de ATK: " << miPersonaje.getVelocidadATK() << endl;
 
-    Guerrero miGuerrero("Thor", 100, 5, 20, 15, 10, 8, 5, 30, 5, 10);// Guerrero 1
+    Guerrero miGuerrero("Thor", 100, 5, 20, 15, 10, 8, 5, 30, 5, 10);// Guerrero 1 
     cout << "\nGuerrero 1" << endl;
     cout << "Nombre: " << miGuerrero.getNombre() << endl;
     cout << "Vida: " << miGuerrero.getVida() << endl;
