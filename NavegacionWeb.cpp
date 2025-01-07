@@ -33,16 +33,16 @@ Nodo *CrearNodo(string nombre){
 
 void AgregarElemento(string nombre){
     
-    if (pila == NULL){
+    if (pila == NULL){ // Si la pila esta vacia 
 
         pila = new Historial;
-        pila->cantidadPaginas = 1;
+        pila->cantidadPaginas = 1; 
         pila->tope = CrearNodo(nombre);
 
-    } else { // Falta terminar de hacer este else 
+    } else { // Si no es el primer elmento de la pila
 
         Nodo *aux = CrearNodo(nombre);
-        aux->sig = pila->tope;
+        aux->sig = pila->tope; // Le damos el valor al ultimo elemento de la lista
         pila->cantidadPaginas = (pila->cantidadPaginas) + 1;
         pila->tope = aux;
 
@@ -50,13 +50,14 @@ void AgregarElemento(string nombre){
 
 }
 
-void MostrarPaginaVisitada(){
+void MostrarPaginaVisitada(){ // Metodo para mostrar la ultima pagina visitada 
 
     if (pila = NULL){
         cout << "La pila esta vacia" << endl;
     } else {
         cout << "Nombre pagina web: " << pila->tope->nombreWeb << endl;
     }
+
 }
 
 int main(){
