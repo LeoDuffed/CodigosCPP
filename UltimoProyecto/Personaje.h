@@ -1,6 +1,5 @@
 #ifndef Personaje_H
 #define Personaje_H
-#include "Guerrero.h"
 #include <iostream> 
 using namespace std;
 

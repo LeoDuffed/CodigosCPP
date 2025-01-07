@@ -6,10 +6,11 @@ Guerrero :: Guerrero() : Personaje(){
 
     fuerza = 0;
     regeneracionVida = 0;
-    bloqueo;
+    bloqueo = 0;
 }
 
-Guerrero :: Guerrero(string nombre, int vida, int nivel, int defenzaFisica, int defenzaMagica, int velocidadMovimiento, int velocidadATK, int rango, int fuerza, int regeneracionVida, int bloqueo) : Personaje(nombre, vida, nivel, defenzaFisica, defenzaMagica, velocidadMovimiento, velocidadATK, rango){
+Guerrero :: Guerrero(string nombre, int vida, int nivel, int defenzaFisica, int defenzaMagica, int velocidadMovimiento, int velocidadATK, int rango, int fuerza, int regeneracionVida, int bloqueo) 
+: Personaje(nombre, vida, nivel, defenzaFisica, defenzaMagica, velocidadMovimiento, velocidadATK, rango){
 
     this -> fuerza = fuerza;
     this -> regeneracionVida = regeneracionVida;
