@@ -39,6 +39,8 @@ class Personaje{
     int getVelocidadATK();
     int getRango();
 
+    void toString();
+
 };
 
 #endif

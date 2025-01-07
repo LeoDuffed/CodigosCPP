@@ -41,3 +41,13 @@ int Guerrero :: getBloqueo(){
     return bloqueo;
 }
 
+void Guerrero :: toString(){
+
+    Personaje :: toString();
+    cout << "Fuerza: " << fuerza << endl;
+    cout << "Regeneración de Vida: " << regeneracionVida << endl;
+    cout << "Bloqueo: " << bloqueo << endl;
+
+}
+
+

@@ -78,3 +78,12 @@ int Personaje :: getVelocidadATK(){
 int Personaje :: getRango(){
     return rango;
 }
+
+void Personaje :: toString(){
+
+    cout << "Nombre: " << nombre << endl;
+    cout << "Vida: " << vida << endl;
+    cout << "Nivel: " << nivel << endl;
+    cout << "Velocidad de ATK: " << velocidadATK << endl;
+
+}

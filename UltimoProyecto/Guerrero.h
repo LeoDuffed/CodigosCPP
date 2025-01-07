@@ -27,6 +27,7 @@ class Guerrero : public Personaje{
         int getRegeneracionVida();
         int getBloqueo();
 
+        void toString();
         void intimidar();
         void emebestir();
 
