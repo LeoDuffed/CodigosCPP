@@ -46,3 +46,12 @@ int Arquero :: getPrecision(){
 int Arquero :: getEvasion(){
     return evasion;
 }
+
+void Arquero :: toString(){
+    
+    Personaje :: toString();
+    cout << "Habilidad con arco: " << habilidadArco << endl;
+    cout << "ATK critico: " << criticos << endl;
+    cout << "Precision: " << precision << endl;
+    cout << "Evasion de daño: " << evasion << endl;
+}

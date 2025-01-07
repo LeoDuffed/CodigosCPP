@@ -4,6 +4,7 @@
 //
 #include "Personaje.h"
 #include "Guerrero.h"
+#include "Arquero.h"
 #include <iostream>
 using namespace std;
 
@@ -30,6 +31,10 @@ int main() {
     // Metodo de embestir de la clase Guerrro
     cout << "\nHaciendo que el guerrero embista..." << endl;
     miGuerrero.embestir();
+
+    Arquero miArquero("Ojo verde",100,1, 20, 5, 10, 10, 1, 80, 3, 90, 30); // Arquerio uno
+    cout << "\nArquero 1" << endl;
+    miArquero.toString();
 
     return 0;
 }
