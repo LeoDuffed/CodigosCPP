@@ -84,6 +84,10 @@ void Personaje :: toString(){
     cout << "Nombre: " << nombre << endl;
     cout << "Vida: " << vida << endl;
     cout << "Nivel: " << nivel << endl;
+    cout << "Defenza Fisica: " << defenzaFisica << endl;
+    cout << "Defenza Magica: " << defenzaMagica << endl;
+    cout << "Velocidad Movimiento: " << velocidadMovimiento << endl;
     cout << "Velocidad de ATK: " << velocidadATK << endl;
+    cout << "Rango: " << rango << endl;
 
 }
