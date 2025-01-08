@@ -1,4 +1,6 @@
+//
 // Creado por Leonardo Martinez Peña
+//
 #ifndef Personaje_H
 #define Personaje_H
 #include <iostream> 

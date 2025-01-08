@@ -1,4 +1,6 @@
+//
 // Creado por Leonardo Martinez Peña
+//
 #include "Mago.h"
 #include <iostream> 
 using namespace std;
