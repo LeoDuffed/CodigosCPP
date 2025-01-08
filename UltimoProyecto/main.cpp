@@ -5,6 +5,7 @@
 #include "Personaje.h"
 #include "Guerrero.h"
 #include "Arquero.h"
+#include "Mago.h"
 #include <iostream>
 using namespace std;
 
@@ -41,6 +42,16 @@ int main() {
 
     cout << "\nHaciendo que el arquero haga un disparo preciso..." << endl;
     miArquero.DisparoPreciso();
+
+    Mago miMago("Valtazar", 100, 5, 23, 20, 10, 8, 40, "Volver de la muerte", 3, "De lo muertos", 3);
+    cout << "\nMago 1" << endl;
+    miMago.toString();
+
+    cout << "\nHaciendo que el mago lanze echizo..." << endl;
+    miMago.echizado();
+
+    cout << "\nHaciendo que el mago se teletransporte..." << endl;
+    miMago.teletreansportado();
 
     return 0;
 }

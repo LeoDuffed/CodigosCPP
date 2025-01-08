@@ -31,7 +31,6 @@ class Guerrero : public Personaje{
         void intimidar();
         void embestir();
 
-
 };
 
 #endif
