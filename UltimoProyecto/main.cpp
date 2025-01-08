@@ -8,17 +8,18 @@
 #include "Sacerdote.h"
 #include "Mago.h"
 #include "Picaro.h"
+#include "Caballero.h"
 #include <iostream>
 using namespace std;
 
 int main() {
 
     Personaje miPersonaje("Rick", 100,1, 20, 5, 10, 10, 1 ); // Peronaje uno
-    cout << "\nPersonaje 1" << endl;
+    cout << "\nPersonaje" << endl;
     miPersonaje.toString();
 
     Guerrero miGuerrero("Thor", 100, 5, 20, 15, 10, 8, 5, 30, 5, 10);// Guerrero 1 
-    cout << "\nGuerrero 1" << endl;
+    cout << "\nGuerrero" << endl;
     miGuerrero.toString();
 
     // Nuevos atributos para el guerrero
@@ -36,7 +37,7 @@ int main() {
     miGuerrero.embestir();
 
     Arquero miArquero("Ojo verde",100,1, 20, 5, 10, 10, 1, 80, 3, 90, 30); // Arquero uno
-    cout << "\nArquero 1" << endl;
+    cout << "\nArquero" << endl;
     miArquero.toString();
 
     // Metodo flechaVenenosa de la clse Arquero
@@ -48,7 +49,7 @@ int main() {
     miArquero.DisparoPreciso();
 
     Mago miMago("Valtazar", 100, 5, 23, 20, 10, 8, 40, "Volver de la muerte", 3, "De lo muertos", 3); // Mago uno
-    cout << "\nMago 1" << endl;
+    cout << "\nMago" << endl;
     miMago.toString();
 
     // Metodo echizado de la clase Mago
@@ -60,7 +61,7 @@ int main() {
     miMago.teletransportado();
 
     Sacerdote miSacerdote("Popope", 100, 5, 23, 20, 10, 8, 40, 20, 90, 100); // Sacerdote uno
-    cout << "\nSacerdote 1" << endl;
+    cout << "\nSacerdote" << endl;
     miSacerdote.toString();
 
     // Metodo curarEquipo de la clase Sacerdote
@@ -72,7 +73,7 @@ int main() {
     miSacerdote.protejerEquipo();
 
     Picaro miPicaro("Julslol", 100,1, 20, 5, 10, 10, 1, 50, 30, 4); // Picaro uno
-    cout << "\nPicaro 1" << endl;
+    cout << "\nPicaro" << endl;
     miPicaro.toString();
 
     // Metodo danioCritico de la clase Picaro
@@ -82,6 +83,18 @@ int main() {
     // Metodo numeroVolteretas de la clase Picaro
     cout << "\nHaciendo que el picaro haga volteretas..." << endl;
     miPicaro.numeroVolteretas();
+
+    Caballero miCaballero("Duffed", 100,21, 20, 5, 10, 10, 1, 70, 80, 50); // Caballero uno
+    cout << "\nCaballero: " << endl;
+    miCaballero.toString();
+
+    // Metodo danioCarga de la clase Caballero
+    cout << "\nHaciendo que el caballero haga una carga..." << endl;
+    miCaballero.danioCarga();
+
+    // Metodo intimidacion de la clase Caballero
+    cout << "\nHaciendo que el cabalero intimide..." << endl;
+    miCaballero.intimidacion();
 
     return 0;
 }

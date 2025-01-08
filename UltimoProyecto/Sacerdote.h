@@ -4,7 +4,7 @@
 #ifndef Sacerdote_H
 #define Sacerdote_H
 #include "Mago.h"
-#include <iostream> 
+#include <iostream>
 using namespace std;
 
 class Sacerdote : public Personaje{
