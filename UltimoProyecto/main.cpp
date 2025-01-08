@@ -7,6 +7,7 @@
 #include "Arquero.h"
 #include "Sacerdote.h"
 #include "Mago.h"
+#include "Picaro.h"
 #include <iostream>
 using namespace std;
 
@@ -69,6 +70,18 @@ int main() {
     // Metodo protejerEquipo de la clase Sacerdote
     cout << "\nHaciendo que el mago proteja al equipo..." << endl;
     miSacerdote.protejerEquipo();
+
+    Picaro miPicaro("Julslol", 100,1, 20, 5, 10, 10, 1, 50, 30, 4); // Picaro uno
+    cout << "\nPicaro 1" << endl;
+    miPicaro.toString();
+
+    // Metodo danioCritico de la clase Picaro
+    cout << "\nHaciendo que el picaro haga daño critico..." << endl;
+    miPicaro.danioCritico();
+
+    // Metodo numeroVolteretas de la clase Picaro
+    cout << "\nHaciendo que el picaro haga volteretas..." << endl;
+    miPicaro.numeroVolteretas();
 
     return 0;
 }
