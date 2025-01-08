@@ -33,25 +33,29 @@ int main() {
     cout << "\nHaciendo que el guerrero embista..." << endl;
     miGuerrero.embestir();
 
-    Arquero miArquero("Ojo verde",100,1, 20, 5, 10, 10, 1, 80, 3, 90, 30); // Arquerio uno
+    Arquero miArquero("Ojo verde",100,1, 20, 5, 10, 10, 1, 80, 3, 90, 30); // Arquero uno
     cout << "\nArquero 1" << endl;
     miArquero.toString();
 
+    // Metodo flechaVenenosa de la clse Arquero
     cout << "\nHaciendo que el archero lanze una flecha venenosa..." << endl;
     miArquero.flechaVenenosa();
 
+    // Metodo disparoPreciso de la clase Arquero
     cout << "\nHaciendo que el arquero haga un disparo preciso..." << endl;
     miArquero.DisparoPreciso();
 
-    Mago miMago("Valtazar", 100, 5, 23, 20, 10, 8, 40, "Volver de la muerte", 3, "De lo muertos", 3);
+    Mago miMago("Valtazar", 100, 5, 23, 20, 10, 8, 40, "Volver de la muerte", 3, "De lo muertos", 3); // Mago uno
     cout << "\nMago 1" << endl;
     miMago.toString();
 
+    // Metodo echizado de la clase Mago
     cout << "\nHaciendo que el mago lanze echizo..." << endl;
     miMago.echizado();
 
+    // Metodo teletransportado de la clase Mago
     cout << "\nHaciendo que el mago se teletransporte..." << endl;
-    miMago.teletreansportado();
+    miMago.teletransportado();
 
     return 0;
 }

@@ -59,6 +59,6 @@ void Mago :: toString(){
 void Mago :: echizado(){
     cout << nombre << " ha hecho el echizo " << maldicion << endl;
 }
-void Mago :: teletreansportado(){
+void Mago :: teletransportado(){
     cout << nombre << " se ha teletransportado " << teletransportarse << " chunks" << endl;
 }

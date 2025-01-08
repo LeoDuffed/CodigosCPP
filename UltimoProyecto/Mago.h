@@ -29,7 +29,7 @@ class Mago : public Personaje{
 
         void toString();
         void echizado();
-        void teletreansportado();
+        void teletransportado();
 
 };
 
