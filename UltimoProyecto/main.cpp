@@ -5,6 +5,7 @@
 #include "Personaje.h"
 #include "Guerrero.h"
 #include "Arquero.h"
+#include "Sacerdote.h"
 #include "Mago.h"
 #include <iostream>
 using namespace std;
@@ -56,6 +57,18 @@ int main() {
     // Metodo teletransportado de la clase Mago
     cout << "\nHaciendo que el mago se teletransporte..." << endl;
     miMago.teletransportado();
+
+    Sacerdote miSacerdote("Popope", 100, 5, 23, 20, 10, 8, 40, 20, 90, 100); // Sacerdote uno
+    cout << "\nSacerdote 1" << endl;
+    miSacerdote.toString();
+
+    // Metodo curarEquipo de la clase Sacerdote
+    cout << "\nHaciendo que el mago cure al equipo..." << endl;
+    miSacerdote.curarEquipo();
+
+    // Metodo protejerEquipo de la clase Sacerdote
+    cout << "\nHaciendo que el mago proteja al equipo..." << endl;
+    miSacerdote.protejerEquipo();
 
     return 0;
 }
