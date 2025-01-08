@@ -1,3 +1,4 @@
+// Creado por Leonardo Martinez Peña
 #ifndef Mago_H
 #define Mago_H
 #include <iostream>
