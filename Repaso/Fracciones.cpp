@@ -65,7 +65,25 @@ void Fracciones :: suma(int num, int den){
     int newNum = a + b;
 
     Fracciones resultado(newNum, newDen);
-    cout << "Resultado de la suma: " << endl;
+    cout << "\nResultado de la suma: " << endl;
+    resultado.simplificar();
+}
+void Fracciones :: resta(int num, int den){
+    int newDen = denominador * den;
+    int a = numerador * den;
+    int b = num * denominador;
+    int newNum = a - b;
+
+    Fracciones resultado(newNum, newDen);
+    cout << "\nResultado de la resta: " << endl;
+    resultado.simplificar();
+}
+void Fracciones :: mult(int num, int den){
+    int newNum = numerador * num;
+    int newDen = denominador * den;
+
+    Fracciones resultado(newNum, newDen);
+    cout << "\nResultado de la multiplicacion: " << endl;
     resultado.simplificar();
 }
 

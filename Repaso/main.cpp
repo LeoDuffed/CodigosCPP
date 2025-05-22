@@ -34,7 +34,8 @@ int main(){
     
     // Operaciones
     f1.suma(f2.getNumerador(), f2.getDenominador());
-
+    f1.resta(f2.getNumerador(), f2.getDenominador());
+    f1.mult(f2.getNumerador(), f2.getDenominador());
 
     return 0;
 
