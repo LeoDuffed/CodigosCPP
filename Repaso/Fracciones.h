@@ -27,7 +27,7 @@ class Fracciones{
     int mcd(int numerador, int denominador);
 
     // Funciones Operaciones
-    int suma();
+    void suma(int numeradorDos, int denominadorDos);
     int resta();
     int mult();
 

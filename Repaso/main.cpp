@@ -5,7 +5,6 @@ using namespace std;
 int main(){
 
     Fracciones f1;
-
     int num, den;
     // Para el numerador
     while (!f1.setNumerador((cout << "Ingresa numerador: ", cin >> num, num))){
@@ -16,8 +15,25 @@ int main(){
         cout << "Intenta de nuevo" << endl;
     }
     // Mouestra el denominador y numerador
+    cout << "Fraccion 1: " << endl;
     f1.simplificar();
-    f1.mostrarFraccion();
+
+    Fracciones f2;
+    int num2, den2;
+    // Para el numerador
+    while (!f2.setNumerador((cout << "Ingresa numerador: ", cin >> num2, num2))){
+        cout << "Intenta de nuevo" << endl;
+    }
+    // Para el denominador
+    while(!f2.setDenominador((cout << "Ingresa denominador: ", cin >> den2, den2))){
+        cout << "Intenta de nuevo" << endl;
+    }
+    // Mouestra el denominador y numerador
+    cout << "Fraccion 2: " << endl;
+    f2.simplificar();
+    
+    // Operaciones
+    f1.suma(f2.getNumerador(), f2.getDenominador());
 
 
     return 0;

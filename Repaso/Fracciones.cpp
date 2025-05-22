@@ -39,8 +39,7 @@ int Fracciones :: getDenominador(){
 // Funciones
 void Fracciones :: mostrarFraccion(){
     cout << "Fraccion reducida: " << endl;
-    cout << "Nuerador: " << numerador << endl;
-    cout << "Denominador: " << denominador << endl;
+    cout << numerador << " / " << denominador << endl;
 }
 int Fracciones :: mcd(int a, int b) { // Me fusile esta funcion del net
     while (b != 0) {
@@ -55,6 +54,19 @@ void Fracciones :: simplificar(){
     numerador /= divisor;
     denominador /= divisor;
 
+    Fracciones frac(numerador, denominador);
+    frac.mostrarFraccion();
+
+}
+void Fracciones :: suma(int num, int den){
+    int newDen = denominador * den;
+    int a = numerador * den;
+    int b = num * denominador;
+    int newNum = a + b;
+
+    Fracciones resultado(newNum, newDen);
+    cout << "Resultado de la suma: " << endl;
+    resultado.simplificar();
 }
 
 

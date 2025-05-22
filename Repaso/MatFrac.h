@@ -6,7 +6,7 @@ using namespace std;
 class MatFrac{
     MatFrac();
     ~MatFrac(){}
-    MatFrac(int )
+    MatFrac(int row, int column);
 };
 
 #endif
