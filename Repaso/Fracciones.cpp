@@ -56,7 +56,6 @@ void Fracciones :: simplificar(){
 
     Fracciones frac(numerador, denominador);
     frac.mostrarFraccion();
-
 }
 void Fracciones :: suma(int num, int den){
     int newDen = denominador * den;

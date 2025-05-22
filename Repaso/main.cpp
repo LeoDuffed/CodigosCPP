@@ -15,7 +15,7 @@ int main(){
         cout << "Intenta de nuevo" << endl;
     }
     // Mouestra el denominador y numerador
-    cout << "Fraccion 1: " << endl;
+    cout << "\nFraccion 1: " << endl;
     f1.simplificar();
 
     Fracciones f2;
@@ -29,7 +29,7 @@ int main(){
         cout << "Intenta de nuevo" << endl;
     }
     // Mouestra el denominador y numerador
-    cout << "Fraccion 2: " << endl;
+    cout << "\nFraccion 2: " << endl;
     f2.simplificar();
     
     // Operaciones
