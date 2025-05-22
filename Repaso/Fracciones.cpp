@@ -42,7 +42,7 @@ void Fracciones :: mostrarFraccion(){
     cout << "Nuerador: " << numerador << endl;
     cout << "Denominador: " << denominador << endl;
 }
-int Fracciones :: mcd(int a, int b) { // Me fusile esa funcion del net
+int Fracciones :: mcd(int a, int b) { // Me fusile esta funcion del net
     while (b != 0) {
         int temp = b;
         b = a % b;

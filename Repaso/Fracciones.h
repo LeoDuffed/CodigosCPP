@@ -21,11 +21,15 @@ class Fracciones{
     int getNumerador();
     int getDenominador();
 
-
     //Funciones y Metodos
     void mostrarFraccion();
     void simplificar();
     int mcd(int numerador, int denominador);
+
+    // Funciones Operaciones
+    int suma();
+    int resta();
+    int mult();
 
 
 };
