@@ -51,11 +51,19 @@ int Fracciones :: mcd(int a, int b) { // Me fusile esta funcion del net
 }
 void Fracciones :: simplificar(){
     int divisor = mcd(numerador, denominador);
-    numerador /= divisor;
-    denominador /= divisor;
 
-    Fracciones frac(numerador, denominador);
-    frac.mostrarFraccion();
+    if(numerador == 0){
+        cout << "El resulatado es: 0" << endl;
+    } else {
+        numerador /= divisor;
+        denominador /= divisor;
+        if(numerador == denominador){
+            cout << "El resultado es: " << numerador << endl;
+        } else {
+            Fracciones frac(numerador, denominador);
+            frac.mostrarFraccion();
+        }
+    }
 }
 void Fracciones :: suma(int num, int den){
     int newDen = denominador * den;
