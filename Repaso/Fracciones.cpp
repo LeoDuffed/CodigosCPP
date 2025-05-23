@@ -59,6 +59,8 @@ void Fracciones :: simplificar(){
         denominador /= divisor;
         if(numerador == denominador){
             cout << "El resultado es: " << numerador << endl;
+        } else if (denominador == 1){
+            cout << "El resultado es: " << numerador << endl;
         } else {
             Fracciones frac(numerador, denominador);
             frac.mostrarFraccion();
