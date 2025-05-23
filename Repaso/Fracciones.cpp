@@ -93,6 +93,11 @@ void Fracciones :: mult(int num, int den){
     cout << "\nResultado de la multiplicacion: " << endl;
     resultado.simplificar();
 }
+void Fracciones :: div(int num, int den){
+    int newNum = denominador * num;
+    int newDen = numerador * den;
 
-
-
+    Fracciones resultado(newNum, newDen);
+    cout << "El resultado de la divicion es: " << endl;
+    resultado.simplificar();
+}

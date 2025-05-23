@@ -30,6 +30,7 @@ class Fracciones{
     void suma(int numerador, int denominador);
     void resta(int numerador, int denominador);
     void mult(int numerador, int denominador);
+    void div(int numerador, int denominador);
 
 
 };
