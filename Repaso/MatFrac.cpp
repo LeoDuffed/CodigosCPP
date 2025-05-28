@@ -44,7 +44,6 @@ bool MatFrac :: leeArchivos(string nombre){
     unsigned int nRow, nCol;
     file.open(nombre); // Lo abrimos
 
-    cout << nRow << " , " << nCol << endl;
 
     if(!file.is_open()){
         return false;
@@ -53,6 +52,9 @@ bool MatFrac :: leeArchivos(string nombre){
         file.close();
         return false;
     }
+
+    cout << nRow << " , " << nCol << endl;
+    
     if(nRow > MaxRow && nCol > MaxCol){
         file.close();
         return false;
