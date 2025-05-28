@@ -1,3 +1,4 @@
+#include "MatFrac.h"
 #include "Fracciones.h"
 #include <iostream>
 using namespace std;

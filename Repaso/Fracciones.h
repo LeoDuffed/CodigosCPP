@@ -1,5 +1,6 @@
 #ifndef FRACCIONES_H
 #define FRACCIONES_H
+#pragma once // Para que solo lo comile una vez
 #include <iostream> 
 using namespace std;
 
