@@ -67,6 +67,8 @@ void Fracciones :: simplificar(){
         }
     }
 }
+
+// Operaciones
 void Fracciones :: suma(int num, int den){
     int newDen = denominador * den;
     int a = numerador * den;
