@@ -1,15 +1,17 @@
 #ifndef FRACCIONES_H
 #define FRACCIONES_H
-#pragma once // Para que solo lo comile una vez
+#pragma once // Para que solo lo compile una vez
 #include <iostream> 
 using namespace std;
 
 class Fracciones{
     private:
+    // Variables
     int numerador;
     int denominador;
 
     public:
+    // Constructores
     Fracciones();
     ~Fracciones(){}
     Fracciones(int numerador , int denominador);
@@ -32,7 +34,6 @@ class Fracciones{
     void resta(int numerador, int denominador);
     void mult(int numerador, int denominador);
     void div(int numerador, int denominador);
-
 
 };
 

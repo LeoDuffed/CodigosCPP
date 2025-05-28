@@ -5,13 +5,15 @@
 #define MaxRow 10
 #define MaxCol 10
 
-#include <iostream>
 #include "Fracciones.h"
+#include <iostream>
+#include <fstream> // Libreria para cargar archivos
 using namespace std;
 
 class MatFrac{
     
     private:
+    // Variables
     Fracciones matriz; 
     unsigned int row;
     unsigned int col;
@@ -32,6 +34,8 @@ class MatFrac{
     unsigned int getRow();
     unsigned int getCol();
 
+    // Funciones
+    bool leeArchivos(string fileName);
 
 };
 

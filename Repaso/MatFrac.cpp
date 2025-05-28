@@ -42,3 +42,10 @@ unsigned int MatFrac :: getRow(){
 unsigned int MatFrac :: getCol(){
     return col;
 }
+
+// Funciones
+bool MatFrac :: leeArchivos(string nombre){
+    ifstream file(nombre);
+
+    return false;
+}
