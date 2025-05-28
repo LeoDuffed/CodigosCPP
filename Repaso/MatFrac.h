@@ -14,7 +14,7 @@ class MatFrac{
     
     private:
     // Variables
-    Fracciones matriz; 
+    Fracciones matriz[MaxRow][MaxCol]; 
     unsigned int row;
     unsigned int col;
 
@@ -22,15 +22,14 @@ class MatFrac{
     // Constructores
     MatFrac();
     ~MatFrac(){}
-    MatFrac(Fracciones matriz, unsigned int row, unsigned int col);
+    MatFrac(unsigned int row, unsigned int col, Fracciones valores[MaxRow][MaxCol]);
 
     //Setters
-    void setMatriz(Fracciones matriz);
     void setRow(unsigned int row);
     void setCol(unsigned int col);
 
     //Getter
-    Fracciones getMatriz();
+    Fracciones getElemento(unsigned int i, unsigned int j);
     unsigned int getRow();
     unsigned int getCol();
 

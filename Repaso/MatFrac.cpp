@@ -2,21 +2,16 @@
 
 // Constructores
 MatFrac :: MatFrac(){
-    Fracciones matriz[row][col];
     unsigned int row = 0;
     unsigned int col = 0;
 }
 
-MatFrac :: MatFrac(Fracciones matriz, unsigned int row, unsigned int col){
-    this -> matriz = matriz;
+MatFrac :: MatFrac(unsigned int row, unsigned int col, Fracciones valores[MaxRow][MaxCol]){
     this -> row = row;
     this -> col = col;
 }
 
 // Setter
-void MatFrac :: setMatriz(Fracciones matriz){
-    this -> matriz = matriz;
-}
 void MatFrac :: setRow(unsigned int row){
     if(row >10){
         this -> row = MaxRow;
@@ -33,8 +28,8 @@ void MatFrac :: setCol(unsigned int col){
 }
 
 // Getter
-Fracciones MatFrac :: getMatriz(){
-    return matriz;
+Fracciones MatFrac :: getElemento(unsigned int i, unsigned int j){
+    return matriz[i][j];
 }
 unsigned int MatFrac :: getRow(){
     return row;
@@ -45,7 +40,41 @@ unsigned int MatFrac :: getCol(){
 
 // Funciones
 bool MatFrac :: leeArchivos(string nombre){
-    ifstream file(nombre);
+    ifstream file; // Lo cargamos
+    unsigned int nRow, nCol;
+    file.open(nombre); // Lo abrimos
 
-    return false;
+    cout << nRow << " , " << nCol << endl;
+
+    if(!file.is_open()){
+        return false;
+    } 
+    if(!(file >> nRow) || !(file >> nCol)){
+        file.close();
+        return false;
+    }
+    if(nRow > MaxRow && nCol > MaxCol){
+        file.close();
+        return false;
+    }
+
+    for(unsigned int i = 0; i < nRow; i++){
+        for(unsigned int j = 0; j < nCol; j++){
+            int n, d;
+
+            if(!(file >> n) || !(file >> d)){
+                file.close();
+                return false;
+            }
+
+            Fracciones tmp(n,d);
+            matriz[i][j] = tmp;
+        }
+    }
+
+    row = nRow;
+    col = nCol;
+
+    file.close(); 
+    return true;
 }
