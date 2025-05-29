@@ -5,7 +5,8 @@ using namespace std;
 
 int main(){
 
-    /*
+    // Fracciones 
+
     // Fraccion 1
     Fracciones f1;
     int num, den;
@@ -41,8 +42,9 @@ int main(){
     f1.resta(f2.getNumerador(), f2.getDenominador());
     f1.mult(f2.getNumerador(), f2.getDenominador());
     f1.div(f2.getNumerador(), f2.getDenominador());
-    */
 
+    // MatFrac
+    
     MatFrac m1, m2;
 
     if(!m1.leeArchivos("matrizUno.txt")){
