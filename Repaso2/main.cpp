@@ -4,7 +4,6 @@
 int main(){
 
     int xUno,yUno,zUno;
-
     Vector v1;
     std :: cout << "Vector 1: " << std :: endl;
     std :: cout << "Ingresa el valor de 'x': ";
@@ -16,11 +15,9 @@ int main(){
     std :: cout << "Ingresa el valor de 'z': ";
     std :: cin >> zUno;
     v1.setZ(zUno);
-
     v1.MostrarVec();
 
     int xDos,yDos,zDos;
-
     Vector v2;
     std :: cout << "Vector 2: " << std :: endl;
     std :: cout << "Ingresa el valor de 'x': ";
@@ -32,13 +29,12 @@ int main(){
     std :: cout << "Ingresa el valor de 'z': ";
     std :: cin >> zDos;
     v2.setZ(zDos);
-
     v2.MostrarVec();
 
     Vector resultadoSuma = v1.suma(v2.getX(),v2.getY(),v2.getZ());
     std :: cout << "\n\nResultado SUMA: " << std :: endl;
     resultadoSuma.MostrarVec();
-    
+
     Vector resultadoResta = v1.resta(v2.getX(),v2.getY(),v2.getZ());
     std :: cout << "\n\nResultado RESTA: " << std :: endl;
     resultadoResta.MostrarVec();
