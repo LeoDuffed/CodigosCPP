@@ -55,6 +55,21 @@ int main(){
         return 0;
     }
 
+    cout << "\nMatriz 1" << endl;
+    m1.Mostrar();
+    cout << " + " << endl;
+    cout << "Matriz 2" << endl;
+    m2.Mostrar();
+    cout << " = " << endl;
+
+    MatFrac resulado = m1.suma(m2);
+    resulado.Mostrar();
+
+    string newArchivo;
+    cout << "Nombre del archivo: ";
+    cin >> newArchivo;
+    resulado.guardarEnArchivo(newArchivo);
+    cout << "Archivo guardado" << endl;
 
     return 0;
 

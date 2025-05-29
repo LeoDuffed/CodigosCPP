@@ -35,7 +35,7 @@ class MatFrac{
 
     // Funciones
     bool leeArchivos(string fileName);
-    MatFrac suma(MatFrac& otra);
+    MatFrac suma(MatFrac otra);
     void Mostrar();
     void guardarEnArchivo(string fileName);
 

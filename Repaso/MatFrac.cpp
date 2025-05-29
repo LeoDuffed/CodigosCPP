@@ -60,13 +60,9 @@ bool MatFrac :: leeArchivos(string nombre){
         return false;
     }
 
-    cout << "Sigue funcionando" << endl;
-
     for(unsigned int i = 0; i < nRow; i++){
         for(unsigned int j = 0; j < nCol; j++){
             int n, d;
-
-            cout << "Sigue funcionando" << endl;
 
             if(!(file >> n) || !(file >> d)){                
                 file.close();
@@ -87,10 +83,39 @@ bool MatFrac :: leeArchivos(string nombre){
 void MatFrac :: Mostrar(){
     for(unsigned int i = 0; i < row; i++){
         for(unsigned int j = 0; j < col; j++){
-            cout << matriz[i][j].getNumerador() << " / " << matriz[i][j].getDenominador();
+            cout << "[" << matriz[i][j].getNumerador() << " / " << matriz[i][j].getDenominador() << "]  ";
         }
         cout << endl;
     }
+}
+MatFrac MatFrac :: suma(MatFrac matriz2){
+    MatFrac resultado;
+
+    if(row != matriz2.row || col != matriz2.col){
+        resultado.row = 0;
+        resultado.col = 0;
+        return resultado;
+    }
+
+    resultado.row = row;
+    resultado.col = col;
+
+    for(unsigned int i = 0; i < row; i++){
+        for(unsigned int j = 0; j < col; j++){
+            int num1 = matriz[i][j].getNumerador();
+            int den1 = matriz[i][j].getDenominador();
+
+            int num2 = matriz2.matriz[i][j].getNumerador();
+            int den2 = matriz2.matriz[i][j].getDenominador();
+
+            int newNum = num1 * den2 + num2 * den1;
+            int newDen = den1 * den2;
+
+            Fracciones suma(newNum, newDen);
+            resultado.matriz[i][j] = suma;
+        }
+    }
+    return resultado;
 }
 void MatFrac :: guardarEnArchivo(string nombre){
     ofstream file(nombre);
@@ -103,7 +128,7 @@ void MatFrac :: guardarEnArchivo(string nombre){
     file << row << " " << col << endl;
     for(unsigned int i = 0; i < row; i++){
         for(unsigned int j = 0; j < col; j++){
-            file << matriz[i][j].getNumerador() << " " << matriz[i][j].getDenominador() << "";
+            file << matriz[i][j].getNumerador() << " " << matriz[i][j].getDenominador() << "  ";
         }
         file << endl;
     }
