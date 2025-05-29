@@ -43,8 +43,14 @@ int main(){
     f1.div(f2.getNumerador(), f2.getDenominador());
     */
 
-    MatFrac m;
-    if(!m.leeArchivos("matriz.txt")){
+    MatFrac m1, m2;
+
+    if(!m1.leeArchivos("matrizUno.txt")){
+        cout << "No se pudo leer el archivo" << endl;
+        return 0;
+    }
+
+    if(!m2.leeArchivos("matrizDos.txt")){
         cout << "No se pudo leer el archivo" << endl;
         return 0;
     }

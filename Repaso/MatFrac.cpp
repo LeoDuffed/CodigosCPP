@@ -84,3 +84,28 @@ bool MatFrac :: leeArchivos(string nombre){
     file.close(); 
     return true;
 }
+void MatFrac :: Mostrar(){
+    for(unsigned int i = 0; i < row; i++){
+        for(unsigned int j = 0; j < col; j++){
+            cout << matriz[i][j].getNumerador() << " / " << matriz[i][j].getDenominador();
+        }
+        cout << endl;
+    }
+}
+void MatFrac :: guardarEnArchivo(string nombre){
+    ofstream file(nombre);
+
+    if(!file.is_open()){
+        cout << "No se puedo habrir el archivo" << endl;
+        return;
+    }
+
+    file << row << " " << col << endl;
+    for(unsigned int i = 0; i < row; i++){
+        for(unsigned int j = 0; j < col; j++){
+            file << matriz[i][j].getNumerador() << " " << matriz[i][j].getDenominador() << "";
+        }
+        file << endl;
+    }
+    file.close();
+}
