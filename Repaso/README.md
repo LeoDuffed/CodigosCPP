@@ -49,7 +49,7 @@ Fraccion reducida:
 ...
 ```
 
-## 📥 Formato de Archivos de Entrada
+## 📥 Formato de Archivos de Entrada para la clase MatFrac
 
 Cada archivo de matriz debe tener el siguiente formato:
 
