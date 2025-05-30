@@ -18,7 +18,6 @@ void ArregloVectores :: agregarVec(Vector newVec){
         std :: cout << "El arreglo ya esta lleno" << std :: endl;
     }
 }
-
 Vector ArregloVectores :: sumaVectores(){
     Vector sumTotal;
 
