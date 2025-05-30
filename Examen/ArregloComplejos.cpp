@@ -23,7 +23,12 @@ bool ArregloComplejos :: agregar(NumComplejo newNumComp){
 }
 // Funcion de resta total de lo numeros del arreglo
 NumComplejo  ArregloComplejos :: restaTotal(){
-    NumComplejo restaTotal;
+
+    if (nextSpace == 0){
+        return NumComplejo();
+    }
+
+    NumComplejo restaTotal = arreglo[0];
 
     for(int i = 0; i < nextSpace; i++){
         restaTotal = restaTotal.resta(arreglo[i].getA(), arreglo[i].getB());
