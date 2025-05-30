@@ -10,6 +10,7 @@ ArregloComplejos :: ArregloComplejos(int nextSpace){
 }
 
 // Funciones y Metodos
+// Funcion para ir agregando los numeros complejos al arreglo
 bool ArregloComplejos :: agregar(NumComplejo newNumComp){
     if(nextSpace < 6){
         arreglo[nextSpace] = newNumComp;
@@ -20,6 +21,7 @@ bool ArregloComplejos :: agregar(NumComplejo newNumComp){
     }
     return true;
 }
+// Funcion de resta total de lo numeros del arreglo
 NumComplejo  ArregloComplejos :: restaTotal(){
     NumComplejo restaTotal;
 

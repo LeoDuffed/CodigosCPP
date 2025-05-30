@@ -28,9 +28,15 @@ int NumComplejo :: getB(){
 }
 
 // Funciones
+// Funcion para mostrar los numeros complejos
 void NumComplejo :: imprimir(){
-    std :: cout << getA() << " + " << getB() << "i" << std :: endl; 
+    if(getB() < 0){
+    std :: cout << getA() << " - " << getB() * -1 << "i" << std :: endl; 
+    } else {
+        std :: cout << getA() << " + " << getB() << "i" << std :: endl; 
+    }
 }
+// Funcion de operacion de suma
 NumComplejo NumComplejo :: suma(int a2, int b2){
     int newA = a + a2;
     int newB = b + b2;
@@ -38,6 +44,7 @@ NumComplejo NumComplejo :: suma(int a2, int b2){
     return NumComplejo(newA, newB);
     
 }
+// Funcion de operacion de resta
 NumComplejo NumComplejo :: resta(int a2, int b2){
     int newA = a - a2;
     int newB = b - b2;
