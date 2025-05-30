@@ -3,6 +3,8 @@
 #include <iostream> 
 #include "Vector.h"
 
+#define MAX_ELEME 6
+
 /*
 Clase ArregloVectores
 Esta clase contendrá los siguientes elementos:
@@ -13,7 +15,7 @@ Esta clase contendrá los siguientes elementos:
 
 class ArregloVectores{
     private:
-    Vector arreglo[6];
+    Vector arreglo[MAX_ELEME];
     int vecSave;
 
     public:
