@@ -38,7 +38,7 @@ int Vector :: getZ(){
 
 // Funciones y Metodos
 void Vector :: MostrarVec(){
-    std :: cout << "[ " << getX() << " , " << getY() << " , " << getZ() << " ]" << std :: endl;
+    std :: cout << "[ " << x << " , " << y << " , " << z << " ]" << std :: endl;
 }
 Vector Vector :: suma(int xDos, int yDos, int zDos){
     int newX = x + xDos;
