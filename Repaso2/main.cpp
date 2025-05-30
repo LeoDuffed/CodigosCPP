@@ -1,4 +1,5 @@
 #include "Vector.h"
+#include "ArregloVectores.h"
 #include <iostream> 
 
 int main(){
@@ -39,5 +40,17 @@ int main(){
     std :: cout << "\n\nResultado RESTA: " << std :: endl;
     resultadoResta.MostrarVec();
  
+    ArregloVectores vecs;
+
+    vecs.agregarVec(v1);
+    vecs.agregarVec(v2);
+
+    std::cout << "\nVectores en el arreglo:" << std::endl;
+    vecs.MostrarArreglo();
+
+    std :: cout << "\nResultado SUMA: " << std :: endl;
+    Vector sumaTotal = vecs.sumaVectores();
+    sumaTotal.MostrarVec();
+
 
 }

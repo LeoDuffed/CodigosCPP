@@ -3,30 +3,38 @@
 
 // Constructores
 ArregloVectores :: ArregloVectores(){
-    Vector arreglo[6];
-    int vecSave = 0;
+    this -> vecSave = 0;
 }
-ArregloVectores :: ArregloVectores(Vector arreglo, int vecSave){
-    this -> arreglo = arreglo;
+ArregloVectores :: ArregloVectores(int vecSave){
     this -> vecSave = vecSave;
-}
-
-// Setter
-void ArregloVectores :: setArreglo(Vector arreglo){
-    this -> arreglo = arreglo;
-}
-void ArregloVectores :: setVecSave(int vecSave){
-    this -> vecSave = vecSave;
-}
-
-// Getter
-Vector ArregloVectores :: getArreglo(){
-    return arreglo;
-}
-int ArregloVectores :: getVecSave(){
-    return vecSave;
 }
 
 // Funciones
+void ArregloVectores :: agregarVec(Vector newVec){
+    if (vecSave < 6){
+        arreglo[vecSave] = newVec;
+        vecSave++;
+    } else {
+        std :: cout << "El arreglo ya esta lleno" << std :: endl;
+    }
+}
 
+Vector ArregloVectores :: sumaVectores(){
+    Vector sumTotal;
+
+    for(int i = 0; i < vecSave; i++){
+        sumTotal = sumTotal.suma(
+                arreglo[i].getX(), 
+                arreglo[i].getY(),
+                arreglo[i].getZ()
+                );
+    }
+    return sumTotal;
+}
+void ArregloVectores :: MostrarArreglo(){
+    for(int i = 0; i < vecSave; i++){
+        std :: cout << "Vector " << i + 1 << " : " << std :: endl;
+        arreglo[i].MostrarVec();
+    }
+}
 

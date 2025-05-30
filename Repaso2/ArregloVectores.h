@@ -13,24 +13,19 @@ Esta clase contendrá los siguientes elementos:
 
 class ArregloVectores{
     private:
-    Vector arreglo;
+    Vector arreglo[6];
     int vecSave;
 
     public:
     // Constructores
     ArregloVectores();
     ~ArregloVectores(){}
-    ArregloVectores(Vector arreglo, int vecSave);
-
-    // Setters
-    void setArreglo(Vector arreglo);
-    void setVecSave(int vecSave);
-
-    // Getter
-    Vector getArreglo();
-    int getVecSave();
+    ArregloVectores(int vecSave);
 
     // Funciones
+    void agregarVec(Vector newVec);
+    Vector sumaVectores();
+    void MostrarArreglo();
 
 };
 
