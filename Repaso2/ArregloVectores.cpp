@@ -11,7 +11,7 @@ ArregloVectores :: ArregloVectores(int vecSave){
 
 // Funciones
 void ArregloVectores :: agregarVec(Vector newVec){
-    if (vecSave < 6){
+    if (vecSave < MAX_ELEME){
         arreglo[vecSave] = newVec;
         vecSave++;
     } else {
