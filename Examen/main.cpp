@@ -13,7 +13,7 @@ int main(){
     }
     }
     NumComplejo restaTotal = arreglo.restaTotal();
-    std::cout << "La resta total de los complejos en el arreglo es: ";
+    std::cout << "\nLa resta total de los complejos en el arreglo es: ";
     restaTotal.imprimir();
     return 0;
 
