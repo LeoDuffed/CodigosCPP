@@ -58,21 +58,6 @@ Peliculas :: Peliculas(){ // Constructor
     lista -> longitud = 0;
     lista -> pelicula = nullptr;
 }
-/*
-Peliculas :: ~Peliculas(){ // Destructor
-    Pelicula* actual = lista -> pelicula;
-
-    while(actual != nullptr){
-        Pelicula* siguiente = actual -> sig;
-        delete actual -> duracion;
-        delete actual;
-        actual = siguiente;
-    }
-    delete lista;
-}
-    */
-
-
 
 int Peliculas :: AgregarPelicula (std :: string nombre, std :: string genero1, std :: string genero2, std :: string genero3, int hora, int min){
 
