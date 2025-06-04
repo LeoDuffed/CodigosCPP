@@ -7,12 +7,14 @@
 class Serie : public Video {
 private:
     Episodio* episodios;
-    int totalEpisodios;
-    int capacidad;
+    int capitulos;
+    int maxEpisodios;
 
 public:
-    Serie(std::string id, std::string nombre, float duracion, std::string genero);
+    // Constructor y Destructor
+    Serie(int id, std::string nombre, int hora, int min, std::string genero);
     ~Serie();
+    // Metodos 
     void agregarEpisodio(std::string titulo, int temporada, float calif);
     void mostrar() const override;
 };

@@ -4,18 +4,23 @@
 
 class Video {
 protected:
-    std::string id;
+    int id;
     std::string nombre;
-    float duracion;
+    int hora;
+    int min;
     std::string genero;
-    float calificacion;
+    int calif;
 
 public:
-    Video(std::string id, std::string nombre, float duracion, std::string genero, float calif);
-    virtual void mostrar() const = 0; // método puro
-    float getCalificacion() const;
-    std::string getGenero() const;
+    // Contructor y Destructor
+    Video(int id, std::string nombre, int hora,int min, std::string genero, int calif);
     virtual ~Video() {}
+    // Getter
+    int getCalificacion() const;
+    std::string getGenero() const;
+    // Funciones
+    virtual void mostrar() const = 0;
+    
 };
 
 #endif

@@ -5,7 +5,8 @@
 
 class Pelicula : public Video {
 public:
-    Pelicula(std::string id, std::string nombre, float duracion, std::string genero, float calif);
+    Pelicula(int id, std::string nombre, int hora, int min, std::string genero, int calif);
+    
     void mostrar() const override;
 
     bool operator>(const Pelicula& otra) const; // ejemplo de sobrecarga

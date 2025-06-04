@@ -5,11 +5,11 @@ int main() {
     SistemaStreaming sistema;
 
     // Agregamos películas
-    sistema.agregarVideo(new Pelicula("P001", "Inception", 148, "ciencia ficcion", 4.8));
-    sistema.agregarVideo(new Pelicula("P002", "Titanic", 195, "drama", 4.9));
+    sistema.agregarVideo(new Pelicula(1, "Inception", 1, 48, "ciencia ficcion", 5));
+    sistema.agregarVideo(new Pelicula(2, "Titanic", 3,18, "drama", 4));
 
     // Agregamos serie
-    Serie* s1 = new Serie("S001", "Stranger Things", 45, "misterio");
+    Serie* s1 = new Serie(1, "Stranger Things", 0, 45, "misterio");
     s1->agregarEpisodio("Capítulo 1", 1, 4.5);
     s1->agregarEpisodio("Capítulo 2", 1, 4.7);
     sistema.agregarVideo(s1);

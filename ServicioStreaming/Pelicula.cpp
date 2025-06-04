@@ -1,15 +1,15 @@
 #include "Pelicula.h"
 #include <iostream>
 
-Pelicula::Pelicula(std::string id, std::string nombre, float duracion, std::string genero, float calif)
-    : Video(id, nombre, duracion, genero, calif) {}
+Pelicula::Pelicula(int id, std::string nombre, int hora, int min, std::string genero, int calif)
+    : Video(id, nombre, hora, min, genero, calif) {}
 
 void Pelicula::mostrar() const {
-    std::cout << "🎬 Pelicula: " << nombre << " | Genero: " << genero
-              << " | Duracion: " << duracion << " mins"
-              << " | Calificación: " << calificacion << "/5\n";
+    std::cout << "Pelicula: " << nombre << " | Genero: " << genero
+              << " | Duracion: " << hora << " : " << min 
+              << " | Calificación: " << calif << "/5\n";
 }
 
 bool Pelicula::operator>(const Pelicula& otra) const {
-    return calificacion > otra.calificacion;
+    return calif > otra.calif;
 }
