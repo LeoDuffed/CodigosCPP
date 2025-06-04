@@ -15,7 +15,7 @@ public:
     Serie(int id, std::string nombre, int hora, int min, std::string genero);
     ~Serie();
     // Metodos 
-    void agregarEpisodio(std::string titulo, int temporada, float calif);
+    void agregarEpisodio(std::string titulo, int temporada, int calif);
     void mostrar() const override;
 };
 

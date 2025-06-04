@@ -5,7 +5,7 @@ Pelicula::Pelicula(int id, std::string nombre, int hora, int min, std::string ge
     : Video(id, nombre, hora, min, genero, calif) {}
 
 void Pelicula::mostrar() const {
-    std::cout << "Pelicula: " << nombre << " | Genero: " << genero
+    std::cout << "\n\nPelicula: " << nombre << " | Genero: " << genero
               << " | Duracion: " << hora << " : " << min 
               << " | Calificación: " << calif << "/5\n";
 }
