@@ -30,3 +30,11 @@ void SistemaStreaming::mostrarPorGenero(std::string genero) const {
         if (videos[i]->getGenero() == genero)
             videos[i]->mostrar();
 }
+
+void SistemaStreaming :: mostrarPorCalif(int calif) const{
+    for(int i = 0; i < total; i++){
+        if(videos[i] -> getCalificacion() == calif){
+            videos[i] -> mostrar();
+        }
+    }
+} 

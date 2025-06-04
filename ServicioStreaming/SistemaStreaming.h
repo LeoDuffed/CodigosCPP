@@ -17,6 +17,7 @@ public:
     void mostrarPeliculas() const;
     void mostrarSeries() const;
     void mostrarPorGenero(std::string genero) const;
+    void mostrarPorCalif(int calif) const;
 };
 
 #endif

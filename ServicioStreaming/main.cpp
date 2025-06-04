@@ -110,6 +110,7 @@ int main() {
     std :: cout << "1. Mostrar Peliculas" << std :: endl;
     std :: cout << "2. Mostrar Series" << std :: endl;
     std :: cout << "3. Buscar por genero" << std :: endl;
+    std :: cout << "4. Buscar por calificacion" << std :: endl;
     std :: cout << "4. Mostrar Todo" << std :: endl;
     std :: cout << "0. Salir" << std :: endl;
     std :: cout << "Elige opcion: ";
@@ -117,6 +118,7 @@ int main() {
     std :: cin >> opp;
 
     std :: string gen;
+    int cali;
     switch(opp)
     {
     case 1:
@@ -130,7 +132,12 @@ int main() {
         std :: cin >> gen;
         sistema.mostrarPorGenero(gen);
         break;
-    case 4:
+    case 4: 
+        std :: cout << "Ingresa la calificacion que buscar: ";
+        std :: cin >> cali;
+        sistema.mostrarPorCalif(cali);
+        break;
+    case 5:
         sistema.mostrarTodos();
     default:
         break;
