@@ -161,6 +161,10 @@ int main() {
         break;
     case 4:
         sistema.mostrarTodos();
+        break;
+    case 0: 
+        std :: cout << "\n\nGracias por usar el programa" << std :: endl;
+        break;
     default:
         break;
     }
