@@ -12,7 +12,7 @@ private:
 
 public:
     // Constructor y Destructor
-    Serie(int id, std::string nombre, int hora, int min, std::string genero);
+    Serie(int id, std::string nombre, int hora, int min, std::string genero, int calif);
     ~Serie();
     // Metodos 
     void agregarEpisodio(std::string titulo, int temporada, int calif);

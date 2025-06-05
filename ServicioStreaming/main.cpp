@@ -30,103 +30,103 @@ int main() {
 
 
     // Agregamos serie
-    Serie* s1 = new Serie(1, "Stranger Things", 0, 45, "misterio");
+    Serie* s1 = new Serie(1, "Stranger Things", 0, 45, "misterio",5);
     s1->agregarEpisodio("Capítulo 1", 1, 4);
     s1->agregarEpisodio("Capítulo 2", 1, 5);
     sistema.agregarVideo(s1);
 
-    Serie* s2 = new Serie(102, "The Mandalorian", 0, 45, "accion");
+    Serie* s2 = new Serie(102, "The Mandalorian", 0, 45, "accion",4);
     s2->agregarEpisodio("Episodio 1 - The Mandalorian", 1, 4);
     s2->agregarEpisodio("Episodio 2 - The Mandalorian", 1, 5);
     s2->agregarEpisodio("Episodio 3 - The Mandalorian", 1, 4);
     s2->agregarEpisodio("Episodio 4 - The Mandalorian", 1, 5);
     sistema.agregarVideo(s2);
 
-    Serie* s3 = new Serie(103, "Breaking Bad", 0, 45, "drama");
+    Serie* s3 = new Serie(103, "Breaking Bad", 0, 45, "drama",4);
     s3->agregarEpisodio("Episodio 1 - Breaking Bad", 1, 4);
     s3->agregarEpisodio("Episodio 2 - Breaking Bad", 1, 5);
     s3->agregarEpisodio("Episodio 3 - Breaking Bad", 1, 4);
     s3->agregarEpisodio("Episodio 4 - Breaking Bad", 1, 5);
     sistema.agregarVideo(s3);
 
-    Serie* s4 = new Serie(104, "The Witcher", 0, 45, "fantasia");
+    Serie* s4 = new Serie(104, "The Witcher", 0, 45, "fantasia",4);
     s4->agregarEpisodio("Episodio 1 - The Witcher", 1, 4);
     s4->agregarEpisodio("Episodio 2 - The Witcher", 1, 5);
     s4->agregarEpisodio("Episodio 3 - The Witcher", 1, 4);
     s4->agregarEpisodio("Episodio 4 - The Witcher", 1, 5);
     sistema.agregarVideo(s4);
 
-    Serie* s5 = new Serie(105, "Loki", 0, 45, "ciencia ficcion");
+    Serie* s5 = new Serie(105, "Loki", 0, 45, "ciencia ficcion",5);
     s5->agregarEpisodio("Episodio 1 - Loki", 1, 4);
     s5->agregarEpisodio("Episodio 2 - Loki", 1, 5);
     s5->agregarEpisodio("Episodio 3 - Loki", 1, 4);
     s5->agregarEpisodio("Episodio 4 - Loki", 1, 5);
     sistema.agregarVideo(s5);
 
-    Serie* s6 = new Serie(106, "WandaVision", 0, 45, "fantasia");
+    Serie* s6 = new Serie(106, "WandaVision", 0, 45, "fantasia",5);
     s6->agregarEpisodio("Episodio 1 - WandaVision", 1, 4);
     s6->agregarEpisodio("Episodio 2 - WandaVision", 1, 5);
     s6->agregarEpisodio("Episodio 3 - WandaVision", 1, 4);
     s6->agregarEpisodio("Episodio 4 - WandaVision", 1, 5);
     sistema.agregarVideo(s6);
 
-    Serie* s7 = new Serie(107, "Game of Thrones", 0, 45, "drama");
+    Serie* s7 = new Serie(107, "Game of Thrones", 0, 45, "drama",4);
     s7->agregarEpisodio("Episodio 1 - Game of Thrones", 1, 4);
     s7->agregarEpisodio("Episodio 2 - Game of Thrones", 1, 5);
     s7->agregarEpisodio("Episodio 3 - Game of Thrones", 1, 4);
     s7->agregarEpisodio("Episodio 4 - Game of Thrones", 1, 5);
     sistema.agregarVideo(s7);
 
-    Serie* s8 = new Serie(108, "The Office", 0, 45, "comedia");
+    Serie* s8 = new Serie(108, "The Office", 0, 45, "comedia",3);
     s8->agregarEpisodio("Episodio 1 - The Office", 1, 4);
     s8->agregarEpisodio("Episodio 2 - The Office", 1, 5);
     s8->agregarEpisodio("Episodio 3 - The Office", 1, 4);
     s8->agregarEpisodio("Episodio 4 - The Office", 1, 5);
     sistema.agregarVideo(s8);
 
-    Serie* s9 = new Serie(109, "Friends", 0, 45, "comedia");
+    Serie* s9 = new Serie(109, "Friends", 0, 45, "comedia",5);
     s9->agregarEpisodio("Episodio 1 - Friends", 1, 4);
     s9->agregarEpisodio("Episodio 2 - Friends", 1, 5);
     s9->agregarEpisodio("Episodio 3 - Friends", 1, 4);
     s9->agregarEpisodio("Episodio 4 - Friends", 1, 5);
     sistema.agregarVideo(s9);
 
-    Serie* s10 = new Serie(110, "Sherlock", 0, 45, "misterio");
+    Serie* s10 = new Serie(110, "Sherlock", 0, 45, "misterio",4);
     s10->agregarEpisodio("Episodio 1 - Sherlock", 1, 4);
     s10->agregarEpisodio("Episodio 2 - Sherlock", 1, 5);
     s10->agregarEpisodio("Episodio 3 - Sherlock", 1, 4);
     s10->agregarEpisodio("Episodio 4 - Sherlock", 1, 5);
     sistema.agregarVideo(s10);
 
-    Serie* s11 = new Serie(111, "Dark", 0, 45, "misterio");
+    Serie* s11 = new Serie(111, "Dark", 0, 45, "misterio",4);
     s11->agregarEpisodio("Episodio 1 - Dark", 1, 4);
     s11->agregarEpisodio("Episodio 2 - Dark", 1, 5);
     s11->agregarEpisodio("Episodio 3 - Dark", 1, 4);
     s11->agregarEpisodio("Episodio 4 - Dark", 1, 5);
     sistema.agregarVideo(s11);
 
-    Serie* s12 = new Serie(112, "Black Mirror", 0, 45, "ciencia ficcion");
+    Serie* s12 = new Serie(112, "Black Mirror", 0, 45, "ciencia ficcion",3);
     s12->agregarEpisodio("Episodio 1 - Black Mirror", 1, 4);
     s12->agregarEpisodio("Episodio 2 - Black Mirror", 1, 5);
     s12->agregarEpisodio("Episodio 3 - Black Mirror", 1, 4);
     s12->agregarEpisodio("Episodio 4 - Black Mirror", 1, 5);
     sistema.agregarVideo(s12);
 
-    Serie* s13 = new Serie(113, "Arcane", 0, 45, "animacion");
+    Serie* s13 = new Serie(113, "Arcane", 0, 45, "animacion",5);
     s13->agregarEpisodio("Episodio 1 - Arcane", 1, 4);
     s13->agregarEpisodio("Episodio 2 - Arcane", 1, 5);
     s13->agregarEpisodio("Episodio 3 - Arcane", 1, 4);
     s13->agregarEpisodio("Episodio 4 - Arcane", 1, 5);
     sistema.agregarVideo(s13);
 
-    Serie* s14 = new Serie(114, "The Boys", 0, 45, "accion");
+    Serie* s14 = new Serie(114, "The Boys", 0, 45, "accion",4);
     s14->agregarEpisodio("Episodio 1 - The Boys", 1, 4);
     s14->agregarEpisodio("Episodio 2 - The Boys", 1, 5);
     s14->agregarEpisodio("Episodio 3 - The Boys", 1, 4);
     s14->agregarEpisodio("Episodio 4 - The Boys", 1, 5);
     sistema.agregarVideo(s14);
 
-    Serie* s15 = new Serie(115, "The Crown", 0, 45, "drama");
+    Serie* s15 = new Serie(115, "The Crown", 0, 45, "drama",4);
     s15->agregarEpisodio("Episodio 1 - The Crown", 1, 4);
     s15->agregarEpisodio("Episodio 2 - The Crown", 1, 5);
     s15->agregarEpisodio("Episodio 3 - The Crown", 1, 4);

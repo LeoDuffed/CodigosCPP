@@ -6,7 +6,7 @@
 struct Episodio {
     std::string titulo;
     int temporada;
-    int calif;
+    int calificacion;
 };
 
 #endif

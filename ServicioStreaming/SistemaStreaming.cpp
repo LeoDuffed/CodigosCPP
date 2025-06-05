@@ -5,24 +5,31 @@
 SistemaStreaming::SistemaStreaming() : total(0) {}
 
 void SistemaStreaming::agregarVideo(Video* v) {
-    if (total < 100) videos[total++] = v;
+    if (total < 100) {
+        videos[total++] = v;
+    }
 }
 
 void SistemaStreaming::mostrarTodos() const {
-    for (int i = 0; i < total; ++i)
+    for (int i = 0; i < total; ++i){
         videos[i]->mostrar();
+    }
 }
 
 void SistemaStreaming::mostrarPeliculas() const {
-    for (int i = 0; i < total; ++i)
-        if (dynamic_cast<Pelicula*>(videos[i]))
+    for (int i = 0; i < total; ++i){
+        if (dynamic_cast<Pelicula*>(videos[i])){
             videos[i]->mostrar();
+        }
+    }
 }
 
 void SistemaStreaming::mostrarSeries() const {
-    for (int i = 0; i < total; ++i)
-        if (dynamic_cast<Serie*>(videos[i]))
+    for (int i = 0; i < total; ++i){
+        if (dynamic_cast<Serie*>(videos[i])){
             videos[i]->mostrar();
+        }
+    }
 }
 
 void SistemaStreaming :: mostrarPorCalif(int calif) const{
