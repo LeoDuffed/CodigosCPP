@@ -20,7 +20,7 @@ std :: string Serie :: getNombre() const{
     return nombre;
 }
 
-void Serie :: agregarEpisodio(std :: string titulo, int temporada, int calificacion){
+void Serie :: addEpisod(std :: string titulo, int temporada, int calificacion){
     // Este metodo esta hecho para agregar los episodios de cada serie
 
     if(numCap >= maxCap){
