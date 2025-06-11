@@ -190,7 +190,7 @@ int main(){
             }
             case 5:{
                 /*
-                    Ocupe cin.ignore para ignorar caracteres en el flujo de entrada
+                    Ocupe cin.ignore para ignorar caracteres en el flujo de entrada,
                     es util para limpiar el bufer de entrada, en especial despues de
                     leer datos con cin.
                 */
