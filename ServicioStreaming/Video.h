@@ -25,7 +25,7 @@ class Video{
         virtual ~Video(){} 
         void setCalificacion(int calificacion); // Para asignar una nueva calificacion
         /*
-            La palabra recervada const, en este contexto, sirve para indicar
+            La palabra recervada "const", en este contexto, sirve para indicar
             que una funcion no midificara el objeto o los argumentos que recibe.
             Esto ayuda a la seguridad del codigo.
         */
