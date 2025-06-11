@@ -6,7 +6,7 @@
 // Esta funcion que recibe por referencia un objeto de tipo StreamHub
 void cargarDatos(StreamHub& sistem){ 
     // Codigo para cargar datos de Peliculas
-    std :: ifstream archivoPeliculas("movies.csv"); // 
+    std :: ifstream archivoPeliculas("db/movies.csv"); 
     // Va a almacenar cada linea del archivo leido con 'getline'
     std :: string allPeliculas;
 
@@ -38,7 +38,7 @@ void cargarDatos(StreamHub& sistem){
     archivoPeliculas.close();
 
     // Codigo para cargar datos de Series
-    std :: ifstream archivoSeries("Series.csv");
+    std :: ifstream archivoSeries("db/Series.csv");
     std :: string allSeries;
 
     int MAX_SERIES = 50;
