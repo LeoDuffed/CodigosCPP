@@ -38,8 +38,62 @@ void cargarDatos(StreamHub& sistem){
     // Codigo para cargar Series
     std :: ifstream archivoSeries("db/series.csv");
     std :: string allSeries;
-    
+    getline(archivoSeries, allSeries);
 
+    const int MAX_SERIES = 50; // Maximo 50 series 
+    Serie* seriesCargadas[MAX_SERIES];// Creamos un arreglo de la clase Serie con 50 espacios
+    int seriesTotal = 0;
+
+    /*
+        Los datos se leen en std, por eso el nombre de mis variables que tienen valores int
+        llevan el Str al final, para luego cambiarlos a int.
+    */ 
+    while(getline(archivoSeries, allSeries)){
+        std :: stringstream ss(allSeries);
+        std :: string idStr, nombre, horaStr, minStr, genero, calificacionStr;
+        std :: string tituloCap, tempStr, calificacionCapStr;
+
+        getline(ss, idStr, ',');
+        getline(ss, nombre, ',');
+        getline(ss, horaStr, ',');
+        getline(ss, minStr, ',');
+        getline(ss, genero, ',');
+        getline(ss, calificacionStr, ',');
+        getline(ss, tituloCap, ',');
+        getline(ss, tempStr, ',');
+        getline(ss, calificacionCapStr, ',');
+
+        int id = stoi(idStr);
+        int hora = stoi(horaStr);
+        int min = stoi(minStr);
+        int calificacion = stoi(calificacionStr);
+        int temporada = stoi(tempStr);
+        int calificacionCap = stoi(calificacionCapStr);
+
+        Serie* authSerie = nullptr;
+
+        // Para ver si ya cargamos una serie con el mismo nombre
+        for(int i = 0; i < seriesTotal; i++){
+            if(seriesCargadas[i] -> getNombre() == nombre){
+                authSerie = seriesCargadas[i];
+                break;
+            }
+        }
+
+        // Si no existia, la cargamos 
+        if(!authSerie){
+            authSerie = new Serie(id, nombre, hora, min, genero, calificacion);
+            seriesCargadas[seriesTotal++] = authSerie;
+            sistem.addVideos(authSerie);
+        }
+
+        authSerie -> addEpisod(tituloCap, temporada, calificacionCap); // Agregamos los episodios
+        
+    }
+
+    archivoSeries.close();
+
+    std :: cout << "Se han cargado las series con exito :))" <<  std :: endl;
 }
 
 // Main
