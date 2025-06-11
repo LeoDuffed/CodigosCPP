@@ -23,23 +23,22 @@ Episodio Serie :: getEpisodio(int index)const{
     if(index >= 0 && index < numCap){
         return capSeries[index];
     }
-    // Regresa un episodio vacio si el indice no da nada
+    // Regresa un episodio vacio si el indice no da nada, para que no crashee
     return {"", 0, 0};
 }
 
 void Serie :: addEpisod(std :: string titulo, int temporada, int calificacion){
     // Este metodo esta hecho para agregar los episodios de cada serie
 
-    if(numCap >= maxCap){
+    if(numCap >= maxCap){ // Verificamos si todavia no se llega al limite
         return;
     }
+
+    /* 
+        Se agrega el nuevo episodio al arreglo en la posicion numCap 
+        y se incrementa para elsiguiente apisodio que se quiera agregar
+    */
     capSeries[numCap++] = {titulo, temporada, calificacion};
-
-    float suma = 0;
-
-    for(int i = 0; i < numCap; i++){
-        suma += capSeries[i].calificacion;
-    }
 }
 void Serie :: mostrarVideos() const{
     std :: cout << "\n\nSerie: " << nombre << std :: endl;

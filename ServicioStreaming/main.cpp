@@ -98,6 +98,7 @@ void cargarDatos(StreamHub& sistem){
     std :: cout << "\n\nDatos cargados con exito!!" << std :: endl;
 }
 
+// Main
 int main(){
     StreamHub sistema;
 
@@ -128,6 +129,7 @@ int main(){
                 std :: string genero;
                 std :: cout << "\n\nIngresa calificación (-1 si no aplica): ";
                 std :: cin >> calif;
+                // Mostramos los generos que hay 
                 std::cout << "\nGéneros disponibles:\n";
                 std::cout << " - accion\n";
                 std::cout << " - animacion\n";
@@ -143,12 +145,16 @@ int main(){
                 std::cout << " - romance\n";
                 std :: cout << "\nIngresa género (deja vacío si no aplica): ";
                 std :: cin.ignore();
+                /*
+                    Se usa getline() para leer una linea completa de texto en un 
+                    flujo de entrada, incluyendo espacios y otros caracteres.
+                    Se almacena en una cadena str.
+                */
                 getline(std :: cin, genero);
 
                 for (int i = 0; i < 100; ++i) {
                     if (sistema.getVideo(i)) {
-                        if ((calif == -1 || sistema.getVideo(i) -> getCalificacion() == calif) &&
-                            (genero.empty() || sistema.getVideo(i) -> getGenero() == genero)) {
+                        if ((calif == -1 || sistema.getVideo(i) -> getCalificacion() == calif) && (genero.empty() || sistema.getVideo(i) -> getGenero() == genero)) {
                             sistema.getVideo(i) -> mostrarVideos();
                         }
                     }
@@ -157,23 +163,30 @@ int main(){
             }
             case 3:{
                 int calificacion;
-                std :: cout << "\n\nQue calificacion buscas: ";
+                std :: cout << "\n\nSeries" << std :: endl; 
+                std :: cout << "Que calificacion buscas: ";
                 std :: cin >> calificacion;
                 sistema.mostrarSeriesPorCalif(calificacion); 
                 break;
             }
             case 4:{
                 int calificacion;
-                std :: cout << "\n\nQue calificacion buscas: ";
+                std :: cout << "\n\nPeliculas" << std :: endl;
+                std :: cout << "Que calificacion buscas: ";
                 std :: cin >> calificacion;
                 sistema.mostrarMoviesPorCalif(calificacion); 
                 break;
             }
             case 5:{
+                /*
+                    Ocupe cin.ignore para ignorar caracteres en el flujo de entrada
+                    es util para limpiar el bufer de entrada, en especial despues de
+                    leer datos con cin.
+                */
                 std :: cin.ignore();
                 std :: string nomSerie;
                 int calif;
-
+                // Mostramos las series disponibles
                 std::cout << "\nSeries disponibles:\n";
                 std::cout << " - Peaky Blinders\n";
                 std::cout << " - Mindhunter\n";
