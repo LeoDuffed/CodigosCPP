@@ -13,6 +13,10 @@ void cargarDatos(StreamHub& sistem){
         std :: stringstream ss(allMovies);
         std :: string idStr, nombre, horaStr, minStr, genero, calificacionStr;
 
+        /*
+            leemos la linea que ya tiene guardada ss, y por linea lee hasta 
+            la coma, para ir dandole los valores a cada variable.
+        */ 
         getline(ss, idStr, ',');
         getline(ss, nombre, ',');
         getline(ss, horaStr, ',');
