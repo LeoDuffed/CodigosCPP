@@ -86,14 +86,11 @@ void cargarDatos(StreamHub& sistem){
             seriesCargadas[seriesTotal++] = authSerie;
             sistem.addVideos(authSerie);
         }
-
         authSerie -> addEpisod(tituloCap, temporada, calificacionCap); // Agregamos los episodios
-        
     }
-
     archivoSeries.close();
 
-    std :: cout << "Se han cargado las series con exito :))" <<  std :: endl;
+    std :: cout << "\n\nSe han cargado las series con exito :))" <<  std :: endl;
 }
 
 // Main
