@@ -19,6 +19,13 @@ Serie :: ~Serie(){
 std :: string Serie :: getNombre() const{
     return nombre;
 }
+Episodio Serie :: getEpisodio(int index)const{
+    if(index >= 0 && index < numCap){
+        return capSeries[index];
+    }
+    // Regresa un episodio vacio si el indice no da nada
+    return {"", 0, 0};
+}
 
 void Serie :: addEpisod(std :: string titulo, int temporada, int calificacion){
     // Este metodo esta hecho para agregar los episodios de cada serie

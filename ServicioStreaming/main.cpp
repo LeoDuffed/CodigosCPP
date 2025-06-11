@@ -112,7 +112,8 @@ int main(){
         std :: cout << "2. Mostrar videos por calificación o género "<< std :: endl;
         std :: cout << "3. Mostrar series con cierta calificación" << std :: endl;
         std :: cout << "4. Mostrar películas con cierta calificación" << std :: endl;
-        std :: cout << "5. Calificar un video" << std :: endl;
+        std :: cout << "5. Mostrar los episodios de una determinada serie con una calificacion determinada" << std :: endl;
+        std :: cout << "6. Calificar un video" << std :: endl;
         std :: cout << "0. Salir" << std :: endl;
         std :: cout << "Elige opción: ";
         std :: cin >> eleccion;
@@ -122,13 +123,25 @@ int main(){
                 cargarDatos(sistema);
                 break;
             }
-
-            case 2: {
+            case 2:{
                 int calif;
                 std :: string genero;
                 std :: cout << "\n\nIngresa calificación (-1 si no aplica): ";
                 std :: cin >> calif;
-                std :: cout << "Ingresa género (deja vacío si no aplica): ";
+                std::cout << "\nGéneros disponibles:\n";
+                std::cout << " - accion\n";
+                std::cout << " - animacion\n";
+                std::cout << " - aventura\n";
+                std::cout << " - biografia\n";
+                std::cout << " - ciencia ficcion\n";
+                std::cout << " - comedia\n";
+                std::cout << " - drama\n";
+                std::cout << " - fantasia\n";
+                std::cout << " - guerra\n";
+                std::cout << " - misterio\n";
+                std::cout << " - musical\n";
+                std::cout << " - romance\n";
+                std :: cout << "\nIngresa género (deja vacío si no aplica): ";
                 std :: cin.ignore();
                 getline(std :: cin, genero);
 
@@ -142,24 +155,61 @@ int main(){
                 }
                 break;
             }
-
-            case 3: {
+            case 3:{
                 int calificacion;
                 std :: cout << "\n\nQue calificacion buscas: ";
                 std :: cin >> calificacion;
                 sistema.mostrarSeriesPorCalif(calificacion); 
                 break;
             }
-
-            case 4: {
+            case 4:{
                 int calificacion;
                 std :: cout << "\n\nQue calificacion buscas: ";
                 std :: cin >> calificacion;
                 sistema.mostrarMoviesPorCalif(calificacion); 
                 break;
             }
+            case 5:{
+                std :: cin.ignore();
+                std :: string nomSerie;
+                int calif;
 
-            case 5: {
+                std::cout << "\nSeries disponibles:\n";
+                std::cout << " - Peaky Blinders\n";
+                std::cout << " - Mindhunter\n";
+                std::cout << " - Better Call Saul\n";
+                std::cout << " - Mr. Robot\n";
+                std::cout << " - Narcos\n";
+                std::cout << " - Ozark\n";
+                std::cout << " - The Haunting of Hill House\n";
+                std::cout << " - The Umbrella Academy\n";
+                std::cout << " - BoJack Horseman\n";
+                std::cout << " - The Last Kingdom\n";
+                std::cout << " - Hannibal\n";
+                std::cout << " - Brooklyn Nine-Nine\n";
+                std::cout << " - The Expanse\n";
+                std::cout << " - The Good Place\n";
+                std::cout << " - Fargo\n";
+                std::cout << " - Succession\n";
+                std::cout << " - Severance\n";
+                std::cout << " - The Bear\n";
+                std::cout << " - Barry\n";
+                std::cout << " - Ted Lasso\n";
+                std::cout << " - Foundation\n";
+                std::cout << " - Invincible\n";
+                std::cout << " - Reacher\n";
+                std::cout << " - Vikings\n";
+                std::cout << " - Resident Alien\n";
+                std :: cout << "\nIngresa el nombre de la serie: ";
+                std :: getline(std :: cin, nomSerie);
+
+                std :: cout << "\nIngresa la calificacion que buscas: ";
+                std :: cin >> calif;
+
+                sistema.buscarCapPorCalif(nomSerie, calif);
+                break;
+            }
+            case 6:{
                 std :: cin.ignore(); 
                 std :: string titulo;
                 int newCalif;
@@ -188,18 +238,15 @@ int main(){
                         break;
                     }
                 }
-
                 if (!encontrado) {
                     std :: cout << "\n\nNo se encontró ningún video con ese título :(.\n";
                 }
                 break;
             }
-
             case 0: {
                 std :: cout << "\n\nGracias por usar el programa. :) " << std :: endl;
                 break;
             }
-
             default: {
                 std :: cout << "\n\nOpción no válida." << std :: endl;
                 break;

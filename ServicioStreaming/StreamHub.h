@@ -16,7 +16,7 @@ class StreamHub{
         void mostrarTodo() const;
         void mostrarMoviesPorCalif(int calificacion) const;
         void mostrarSeriesPorCalif(int calificacion) const;
-        void mostrarCapPorCalif(int calificacion) const;
+        void buscarCapPorCalif(const std :: string& nomSerie, int calificacion) const;
 };
 
 #endif

@@ -12,6 +12,7 @@ class Serie : public Video{
         Serie(int id, std :: string nombre, int hora, int min, std :: string genero, int calificacion);
         ~Serie();
         std :: string getNombre() const;
+        Episodio getEpisodio(int index) const;
         void addEpisod(std :: string titulo, int temp, int calificacion);
         void mostrarVideos() const override;
 };
