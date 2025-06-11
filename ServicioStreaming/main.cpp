@@ -4,13 +4,41 @@
 
 // Esta funcion que recibe por referencia un objeto de tipo StreamHub
 void cargarDatos(StreamHub& sistem){ 
+    
+    // Codigo para cargar las Peliculas
     std :: ifstream archivoMovies("db/movies.csv");
     std :: string allMovies;
 
     while(getline(archivoMovies, allMovies)){
         std :: stringstream ss(allMovies);
         std :: string idStr, nombre, horaStr, minStr, genero, calificacionStr;
+
+        getline(ss, idStr, ',');
+        getline(ss, nombre, ',');
+        getline(ss, horaStr, ',');
+        getline(ss, minStr, ',');
+        getline(ss, genero, ',');
+        getline(ss, calificacionStr, ',');
+
+        /*
+            La funcion "stoi" es una abreviatura de "cadena a entero"
+            y sirve para convertir una cadena de caracteres (string) 
+            a un valor entero (int).
+        */
+        int id = std :: stoi(idStr);
+        int hora = std :: stoi(horaStr);
+        int min = std :: stoi(minStr);
+        int calificacion = std :: stoi(calificacionStr);
+
+        // Vamos agegando las peliculas que vamos sacando del .csv
+        sistem.addVideos(new Movies(id, nombre, hora, min, genero, calificacion));
     }
+    archivoMovies.close();
+
+    // Codigo para cargar Series
+    std :: ifstream archivoSeries("db/series.csv");
+    std :: string allSeries;
+    
 
 }
 
