@@ -12,9 +12,10 @@ class Serie : public Video{
         Serie(int id, std :: string nombre, int hora, int min, std :: string genero, int calificacion);
         ~Serie();
         std :: string getNombre() const;
+        int getNumCap() const;
         Episodio getEpisodio(int index) const;
         void addEpisod(std :: string titulo, int temp, int calificacion);
-        void addEpisod(const Episodio& cap);
+        void addEpisod(const Episodio& cap); // Funcion con sobrecarga 
         void mostrarVideos() const override;
 };
 

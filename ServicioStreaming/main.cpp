@@ -90,6 +90,16 @@ void cargarDatos(StreamHub& sistem){
     }
     archivoSeries.close();
 
+    // Codigo para usar la funcion sobrecargada
+
+    Serie* s = new Serie(126, "The Big Bang Theory", 0, 17, "comedia", 5);
+    Episodio cap1 = {"Capítulo 1", 2, 5};
+    Episodio cap2 = {"Capítulo 2", 2, 5};
+    s->addEpisod(cap1);
+    s->addEpisod(cap2);
+
+    sistem.addVideos(s);
+
     std :: cout << "\n\nSe han cargado las series con exito :))" <<  std :: endl;
 }
 

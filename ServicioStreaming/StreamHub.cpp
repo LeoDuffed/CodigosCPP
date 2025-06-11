@@ -1,6 +1,8 @@
 #include "StreamHub.h"
 
-StreamHub :: StreamHub() : total(0){}
+StreamHub :: StreamHub(){
+    total = 0;
+}
 
 Video* StreamHub :: getVideo(int index) const{
     if(index >= 0 && index < total){

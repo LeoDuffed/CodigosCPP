@@ -1,7 +1,9 @@
 #include "Serie.h"
 
 Serie :: Serie(int id, std :: string nombre, int hora, int min, std :: string genero, int calificacion) :
-Video(id, nombre, hora, min, genero, calificacion), numCap(0), maxCap(10){
+Video(id, nombre, hora, min, genero, calificacion){
+    numCap = 0;
+    maxCap = 10;
     /* 
         Pedimos memoria dinamica para crear un arreglo de 
         maxCap de elementos de tipo Episodio.
@@ -33,14 +35,13 @@ void Serie :: addEpisod(std :: string titulo, int temporada, int calificacion){
     if(numCap >= maxCap){ // Verificamos si todavia no se llega al limite
         return;
     }
-
     /* 
         Se agrega el nuevo episodio al arreglo en la posicion numCap 
         y se incrementa para elsiguiente apisodio que se quiera agregar
     */
     capSeries[numCap++] = {titulo, temporada, calificacion};
 }
-void Serie :: addEpisod(const Episodio& cap){
+void Serie :: addEpisod(const Episodio& cap){ // Funcion sobrecargada
     if(numCap >= maxCap){
         return;
     }
@@ -53,4 +54,7 @@ void Serie :: mostrarVideos() const{
     for(int i = 0; i < numCap; i++){
         std :: cout << "    -T" << capSeries[i].temoporada << ": " << capSeries[i].titulo << " (" << capSeries[i].calificacion << "/5)" << std :: endl;
     }
+}
+int Serie :: getNumCap() const{
+    return numCap;
 }

@@ -6,7 +6,7 @@
 
 class StreamHub{
     private: 
-        Video* videos[50];
+        Video* videos[100];
         int total;
     public: 
         StreamHub();
