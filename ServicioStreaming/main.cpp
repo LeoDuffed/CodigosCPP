@@ -29,7 +29,8 @@ void cargarDatos(StreamHub& sistem){
             int min = stoi(espacios[3]);
             std :: string genero = espacios[4];
             int calificacion = stoi(espacios[5]);
-
+            
+            // Crear un nuevo objeto de tipo Movies con los valores obtenidos del archivo
             Movies* newMovie = new Movies(id, nombre, hora, min, genero, calificacion);
             sistem.addVideos(newMovie);
         }
@@ -233,6 +234,11 @@ int main(){
                 bool encontrado = false;
 
                 for (int i = 0; i < 100; ++i) {
+                    /*
+                        Se obtiene el video en la posición i 
+                        (puede ser una película o serie), ya 
+                        que Video es una clase abstracta
+                    */
                     Video* vid = sistema.getVideo(i);
                     if (vid && vid -> getNombre() == titulo) {
                         vid -> mostrarVideos();
