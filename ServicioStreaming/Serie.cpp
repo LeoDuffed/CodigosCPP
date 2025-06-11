@@ -40,6 +40,12 @@ void Serie :: addEpisod(std :: string titulo, int temporada, int calificacion){
     */
     capSeries[numCap++] = {titulo, temporada, calificacion};
 }
+void Serie :: addEpisod(const Episodio& cap){
+    if(numCap >= maxCap){
+        return;
+    }
+    capSeries[numCap++] = cap;
+}
 void Serie :: mostrarVideos() const{
     std :: cout << "\n\nSerie: " << nombre << std :: endl;
     std :: cout << "Genero: " << genero << std :: endl;
