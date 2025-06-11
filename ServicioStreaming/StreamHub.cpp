@@ -26,23 +26,16 @@ void StreamHub :: mostrarTodo() const{
     clase base a un puntero o una referencia de una clase 
     derivada, asegurando que la conversión sea válida
 */
-void StreamHub :: mostrarMovies() const{
+void StreamHub :: mostrarMoviesPorCalif(int calificacion) const{
     for(int i = 0; i < total; i++){
-        if(dynamic_cast<Movies*>(videos[i])){
+        if(dynamic_cast<Movies*>(videos[i]) && videos[i] -> getCalificacion() == calificacion){
             videos[i] -> mostrarVideos();
         }
     }
 }
-void StreamHub :: mostrarSeries() const{
+void StreamHub :: mostrarSeriesPorCalif(int calificacion) const{
     for(int i = 0; i < total; i++){
-        if(dynamic_cast<Serie*>(videos[i])){
-            videos[i] -> mostrarVideos();
-        }
-    }
-}
-void StreamHub :: mostrarPorCalif(int calificacion) const{
-    for(int i = 0; i < total; i++){
-        if(videos[i] -> getCalificacion() == calificacion){
+        if(dynamic_cast<Serie*>(videos[i]) && videos[i] -> getCalificacion() == calificacion){
             videos[i] -> mostrarVideos();
         }
     }

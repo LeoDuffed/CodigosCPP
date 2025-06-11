@@ -37,6 +37,7 @@ void Serie :: addEpisod(std :: string titulo, int temporada, int calificacion){
 void Serie :: mostrarVideos() const{
     std :: cout << "\n\nSerie: " << nombre << std :: endl;
     std :: cout << "Genero: " << genero << std :: endl;
+    std :: cout << "Calificacion de la serie: " << calificacion << std :: endl;
     for(int i = 0; i < numCap; i++){
         std :: cout << "    -T" << capSeries[i].temoporada << ": " << capSeries[i].titulo << " (" << capSeries[i].calificacion << "/5)" << std :: endl;
     }

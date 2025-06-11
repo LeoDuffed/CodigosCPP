@@ -14,9 +14,9 @@ class StreamHub{
         Video* getVideo(int index) const;
         void addVideos(Video* vid);
         void mostrarTodo() const;
-        void mostrarMovies() const;
-        void mostrarSeries() const;
-        void mostrarPorCalif(int calificacion) const;
+        void mostrarMoviesPorCalif(int calificacion) const;
+        void mostrarSeriesPorCalif(int calificacion) const;
+        void mostrarCapPorCalif(int calificacion) const;
 };
 
 #endif

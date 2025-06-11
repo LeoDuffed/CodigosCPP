@@ -22,13 +22,16 @@ void cargarDatos(StreamHub& sistem){
         }
 
         // Cargamos cada espacio del vector con la informacion de cada pelicula
-        if(espacios.size() > 6){
+        if(espacios.size() > 5){
             int id = stoi(espacios[0]);
             std :: string nombre = espacios[1];
             int hora = stoi(espacios[2]);
             int min = stoi(espacios[3]);
             std :: string genero = espacios[4];
             int calificacion = stoi(espacios[5]);
+
+            Movies* newMovie = new Movies(id, nombre, hora, min, genero, calificacion);
+            sistem.addVideos(newMovie);
         }
     }
 
@@ -92,22 +95,22 @@ void cargarDatos(StreamHub& sistem){
     }
     archivoSeries.close();
 
-    std :: cout << "Datos cargados con exito!!" << std :: endl;
+    std :: cout << "\n\nDatos cargados con exito!!" << std :: endl;
 }
 
 int main(){
     StreamHub sistema;
 
-    std :: cout << "Necesitas cargar los datos antes de usar el programa" << std :: endl;
+    std :: cout << "\n\nNecesitas cargar los datos antes de usar el programa" << std :: endl;
 
     int eleccion = -1;
     // Menu 
     while(eleccion != 0){
-        std :: cout << "\nBienvenido a servicio de streaming DUFF" << std :: endl;
+        std :: cout << "\n\n\nBienvenido a servicio de streaming DUFF" << std :: endl;
         std :: cout << "Menu:" << std :: endl;
         std :: cout << "1. Cargar archivo de datos" << std :: endl;
         std :: cout << "2. Mostrar videos por calificación o género "<< std :: endl;
-        std :: cout << "3. Mostrar episodios de serie con cierta calificación" << std :: endl;
+        std :: cout << "3. Mostrar series con cierta calificación" << std :: endl;
         std :: cout << "4. Mostrar películas con cierta calificación" << std :: endl;
         std :: cout << "5. Calificar un video" << std :: endl;
         std :: cout << "0. Salir" << std :: endl;
@@ -123,13 +126,12 @@ int main(){
             case 2: {
                 int calif;
                 std :: string genero;
-                std :: cout << "Ingresa calificación (-1 si no aplica): ";
+                std :: cout << "\n\nIngresa calificación (-1 si no aplica): ";
                 std :: cin >> calif;
                 std :: cout << "Ingresa género (deja vacío si no aplica): ";
                 std :: cin.ignore();
                 getline(std :: cin, genero);
 
-                std :: cout << "\nVideos encontrados:\n";
                 for (int i = 0; i < 100; ++i) {
                     if (sistema.getVideo(i)) {
                         if ((calif == -1 || sistema.getVideo(i) -> getCalificacion() == calif) &&
@@ -142,18 +144,18 @@ int main(){
             }
 
             case 3: {
-                int calif;
-                std :: cout << "Que calificacion buscas: ";
-                std :: cin >> calif;
-                sistema.mostrarSeries(); 
+                int calificacion;
+                std :: cout << "\n\nQue calificacion buscas: ";
+                std :: cin >> calificacion;
+                sistema.mostrarSeriesPorCalif(calificacion); 
                 break;
             }
 
             case 4: {
-                int calif;
-                std :: cout << "Que calificacion buscas: ";
-                std :: cin >> calif;
-                sistema.mostrarPorCalif(calif); 
+                int calificacion;
+                std :: cout << "\n\nQue calificacion buscas: ";
+                std :: cin >> calificacion;
+                sistema.mostrarMoviesPorCalif(calificacion); 
                 break;
             }
 
@@ -162,7 +164,7 @@ int main(){
                 std :: string titulo;
                 int newCalif;
 
-                std :: cout << "Ingresa el título: ";
+                std :: cout << "\n\nIngresa el título: ";
                 getline(std :: cin, titulo);
 
                 bool encontrado = false;
@@ -170,7 +172,6 @@ int main(){
                 for (int i = 0; i < 100; ++i) {
                     Video* vid = sistema.getVideo(i);
                     if (vid && vid -> getNombre() == titulo) {
-                        std :: cout << "Se encontro el video: ";
                         vid -> mostrarVideos();
 
                         std :: cout << "Que calificacion le das? (1 al 5): ";
@@ -180,7 +181,7 @@ int main(){
                             vid -> setCalificacion(newCalif);
                             std :: cout << "Nueva calificacion!!\n";
                         } else {
-                            std :: cout << "Calificación inválida. Debe estar entre 1 y 5.\n";
+                            std :: cout << "Calificación inválida.\n";
                         }
 
                         encontrado = true;
@@ -189,7 +190,7 @@ int main(){
                 }
 
                 if (!encontrado) {
-                    std :: cout << "No se encontró ningún video con ese título :(.\n";
+                    std :: cout << "\n\nNo se encontró ningún video con ese título :(.\n";
                 }
                 break;
             }
@@ -200,7 +201,7 @@ int main(){
             }
 
             default: {
-                std :: cout << "Opción no válida." << std :: endl;
+                std :: cout << "\n\nOpción no válida." << std :: endl;
                 break;
             }
         }
