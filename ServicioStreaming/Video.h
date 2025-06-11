@@ -2,6 +2,9 @@
 #define VIDEO_H
 #include <iostream>
 
+// Clase Padre, esta es la clase abstracta
+// Movies y Series heredan de esta
+
 class Video{
     
     protected:
@@ -14,8 +17,18 @@ class Video{
 
     public:
         Video(int id, std :: string nombre, int hora, int min, std :: string genero, int calificacion);
+        /*
+            En C++ la palabra reservada "virtual" se utiliza para
+            declarar una funcion miembro de una clase base qeu se 
+            espera que sea redefinida en las clases derivadas.
+        */
         virtual ~Video(){} 
         void setCalificacion(int calificacion); // Para asignar una nueva calificacion
+        /*
+            La palabra recervada const, en este contexto, sirve para indicar
+            que una funcion no midificara el objeto o los argumentos que recibe.
+            Esto ayuda a la seguridad del codigo.
+        */
         std :: string getNombre() const ;
         int getCalificacion() const;
         std :: string getGenero() const;

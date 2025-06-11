@@ -3,9 +3,6 @@
 #include "Video.h"
 #include "Episodio.h"
 
-// Clase Padre, esta es la clase abstracta
-// Movies y Series heredan de esta
-
 class Serie : public Video{
     private: 
         Episodio* capSeries;
