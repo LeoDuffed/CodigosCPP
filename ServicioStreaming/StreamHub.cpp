@@ -43,13 +43,13 @@ void StreamHub :: mostrarSeriesPorCalif(int calificacion) const{
     }
 }
 void StreamHub :: buscarCapPorCalif(const std :: string& nomSerie, int calificacion) const{
-    bool founded = false; // Para ver si se encontro lo que se busca
+    bool found = false; // Para ver si se encontro lo que se busca
 
     for(int i = 0; i < total; i++){
         Serie* serie = dynamic_cast<Serie*>(videos[i]);
 
         if(serie && serie -> getNombre() == nomSerie){
-            founded = true;
+            found = true;
              std :: cout << "\nEpisodios de " << nomSerie << " con calificacion de " << calificacion << ": " << std :: endl;
 
              bool coinciden = false; 
@@ -66,7 +66,7 @@ void StreamHub :: buscarCapPorCalif(const std :: string& nomSerie, int calificac
              break;
         }
     }
-    if(!founded){
+    if(!found){
         std :: cout << "\nNo se econtro ninguna serie con el nombre " << nomSerie << std :: endl;
     }
 }
