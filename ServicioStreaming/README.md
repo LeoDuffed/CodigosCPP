@@ -153,3 +153,5 @@ Este proyecto fue desarrollado por **Leo** como parte de un ejercicio final de p
 ---
 
 ¡Disfruta explorando el mundo del streaming al estilo C++! 🎥📺
+
+🛠️ Este archivo README fue elaborado con la ayuda de ChatGPT, una inteligencia artificial desarrollada por OpenAI, a partir del análisis automático del código fuente del proyecto.
