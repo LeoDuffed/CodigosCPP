@@ -1,115 +1,155 @@
-# 🎬 DUFF: Sistema de Streaming en C++
+# 🎬 DUFF Streaming Service – Proyecto Final en C++
 
-Este proyecto es un sistema tipo servicio de streaming (inspirado en plataformas como Netflix o Prime Video), desarrollado en C++ como práctica de programación orientada a objetos.
+## 📌 Descripción general
 
-Permite cargar películas y series desde archivos `.csv`, navegar por ellas según criterios como género o calificación, y calificar contenidos de forma interactiva desde consola.
+Este proyecto simula una plataforma de streaming, similar a servicios como Netflix o Prime Video. Permite al usuario cargar datos de películas y series desde archivos `.csv`, visualizarlos, filtrarlos por calificación o género, explorar episodios de series, y calificar videos directamente desde el menú del programa.
 
----
-
-## 🚀 ¿Qué hace este programa?
-
-- Carga automáticamente películas y series desde archivos `movies.csv` y `Series.csv`.
-- Muestra videos filtrados por:
-  - Calificación
-  - Género
-- Muestra series que tienen ciertos episodios con calificación específica.
-- Permite calificar cualquier video ingresando su nombre.
-- Organiza la información con clases orientadas a objetos (`Video`, `Movies`, `Serie`, `Episodio`, `StreamHub`).
-- Menú interactivo por consola.
+El programa está completamente desarrollado en **C++** utilizando **herencia**, **polimorfismo**, **sobrecarga de funciones** y el uso de **structs** para representar episodios. También se emplea manejo de archivos y uso de punteros dinámicos.
 
 ---
 
-## 🧠 Estructura del proyecto
+## 🎯 Objetivos del proyecto
 
-### Clases principales:
-
-- **Video (abstracta):** clase base para `Movies` y `Serie`. Contiene atributos comunes (`id`, `nombre`, `hora`, `min`, `genero`, `calificacion`) y un método virtual puro `mostrarVideos()`.
-
-- **Movies:** hereda de `Video`. Representa una película, sobreescribe el método para mostrarla en consola.
-
-- **Serie:** hereda de `Video`. Cada objeto guarda hasta 10 episodios usando un arreglo de `struct Episodio` con título, temporada y calificación. Tiene métodos para agregar y mostrar capítulos.
-
-- **Episodio (struct):** estructura auxiliar usada por `Serie` para representar los capítulos.
-
-- **StreamHub:** clase central que guarda un arreglo de hasta 50 videos (películas o series) y permite:
-  - Agregar videos
-  - Mostrar videos filtrados
-  - Buscar capítulos por calificación y nombre de serie
-  - Calificar videos
+- Aplicar conceptos avanzados de programación orientada a objetos en C++.
+- Crear un sistema de gestión de contenido multimedia (películas y series).
+- Practicar el manejo de archivos para cargar datos dinámicamente.
+- Implementar un menú interactivo para facilitar la navegación del usuario.
 
 ---
 
-## 🗂 Archivos principales
+## 🗂️ Estructura del proyecto
 
-| Archivo | Descripción |
-|--------|-------------|
-| `main.cpp` | Control del menú y carga de datos desde archivos `.csv` |
-| `Video.h / Video.cpp` | Clase base abstracta |
-| `Movies.h / Movies.cpp` | Clase para películas |
-| `Serie.h / Serie.cpp` | Clase para series y sus episodios |
-| `Episodio.h` | Struct auxiliar para `Serie` |
-| `StreamHub.h / StreamHub.cpp` | Clase gestora de todo el sistema |
+```
+📁 Proyecto
+│
+├── main.cpp              # Archivo principal con el menú del usuario
+├── Video.h / Video.cpp   # Clase abstracta base para todos los videos
+├── Movies.h / Movies.cpp # Clase derivada para representar películas
+├── Serie.h / Serie.cpp   # Clase derivada para representar series
+├── Episodio.h            # Struct que representa cada episodio
+├── StreamHub.h / StreamHub.cpp # Clase que gestiona el catálogo general de videos
+├── db/
+│   ├── movies.csv         # Archivo con datos de películas
+│   └── series.csv         # Archivo con datos de series y episodios
+```
 
 ---
 
-## 📁 Estructura de los CSV
+## ⚙️ Requisitos del sistema
 
-### `movies.csv`
+- Compilador C++ compatible con C++11 o superior (recomendado: `g++`)
+- Sistema operativo: Linux, macOS o Windows
+- Archivos CSV ubicados en la carpeta `db/` con el formato adecuado
+
+---
+
+## 🔔 Importante: 
+
+Antes de utilizar cualquiera de las funciones del programa, es necesario cargar los datos desde los archivos movies.csv y series.csv seleccionando la opción 1 del menú.
+Esto permitirá que el sistema tenga acceso a la información de películas y series, y que todas las demás opciones del menú funcionen correctamente.
+
+---
+
+## 🧠 Conceptos aplicados
+
+- 🧱 **Herencia**: La clase `Video` es una clase abstracta, de la cual heredan `Movies` y `Serie`.
+- 🔄 **Polimorfismo**: Se emplea `virtual` y `override` para permitir el comportamiento específico según el tipo de video.
+- ➕ **Sobrecarga de funciones**: En `Serie`, el método `addEpisod()` está sobrecargado para aceptar datos separados o un `struct Episodio`.
+- 🧩 **Uso de structs**: El `struct Episodio` permite manejar múltiples episodios por serie de forma limpia y organizada.
+- 📂 **Manejo de archivos**: Se leen archivos `.csv` para cargar datos de películas y series dinámicamente.
+
+---
+
+## 📥 Instrucciones de compilación y ejecución
+
+### 🔧 Opción 1: Usando `g++`
+
+1. Abre tu terminal y navega al directorio del proyecto.
+2. Compila el programa con:
+
+```bash
+g++ main.cpp StreamHub.cpp Serie.cpp Movies.cpp Video.cpp -o DUFF
+```
+
+3. Ejecuta el programa con:
+
+```bash
+./DUFF
+```
+
+---
+
+### 🔧 Opción 2: Usando `clang++`
+
+1. Abre tu terminal y navega a la carpeta donde están los archivos del proyecto.
+2. Compila el programa con:
+
+```bash
+clang++ main.cpp StreamHub.cpp Serie.cpp Movies.cpp Video.cpp -o DUFF
+```
+
+3. Ejecuta el programa con:
+
+```bash
+./DUFF
+```
+
+---
+
+## 📋 Instrucciones de uso
+
+Una vez ejecutado el programa, se mostrará el siguiente menú:
+
+```
+1. Cargar archivo de datos
+2. Mostrar videos por calificación o género
+3. Mostrar series con cierta calificación
+4. Mostrar películas con cierta calificación
+5. Mostrar los episodios de una determinada serie con una calificación determinada
+6. Calificar un video
+0. Salir
+```
+
+🔹 **Opción 1:** Carga los datos desde `db/movies.csv` y `db/series.csv`  
+🔹 **Opción 2:** Permite filtrar cualquier video por calificación o por género  
+🔹 **Opción 3 y 4:** Muestra solamente series o películas con una calificación específica  
+🔹 **Opción 5:** Busca una serie por nombre y muestra sus episodios que coincidan con una calificación dada  
+🔹 **Opción 6:** Permite modificar la calificación de un video por título
+
+---
+
+## 📄 Formato esperado de los archivos CSV
+
+**movies.csv**
+
 ```
 id,nombre,hora,min,genero,calificacion
 1,Inception,2,28,ciencia ficcion,5
 ...
 ```
 
-### `Series.csv`
+**series.csv**
+
 ```
-id,nombre,hora,min,genero,calificacion,tituloEpisodio,temporadaEpisodio,califEpisodio
-101,Stranger Things,0,50,fantasia,5,Capítulo 1,1,4
+id,nombre,hora,min,genero,calificacion,tituloCap,temporada,calificacionCap
+10,Breaking Bad,0,50,drama,5,Pilot,1,5
 ...
 ```
 
 ---
 
-## 📋 Cómo usarlo
+## 🙋 Autor
 
-1. Asegúrate de tener un compilador C++ compatible con C++11 o superior.
-2. Coloca los archivos `movies.csv` y `Series.csv` en el mismo directorio que el ejecutable.
-3. Compila el programa (por ejemplo con `g++`):
-   ```bash
-   g++ main.cpp StreamHub.cpp Movies.cpp Serie.cpp Video.cpp -o DUFF
-   ```
-4. Ejecuta:
-   ```bash
-   ./DUFF
-   ```
+Este proyecto fue desarrollado por **Leo** como parte de un ejercicio final de programación orientada a objetos en C++. Puedes revisar más proyectos en su [GitHub](https://github.com/LeoDuffed).
 
 ---
 
-## 🎯 Ejemplo de flujo
+## ✅ Notas finales
 
-```txt
-Bienvenido a servicio de streaming DUFF
-Menu:
-1. Cargar archivo de datos
-2. Mostrar videos por calificación o género
-3. Mostrar series con cierta calificación
-4. Mostrar películas con cierta calificación
-5. Mostrar episodios de una serie con cierta calificación
-6. Calificar un video
-0. Salir
-```
+- Se emplea memoria dinámica para gestionar los episodios de cada serie.
+- El uso de `dynamic_cast` permite distinguir entre películas y series en tiempo de ejecución.
+- El sistema está limitado a 100 videos y 10 episodios por serie como máximo, por simplicidad.
 
 ---
 
-## 💡 Notas extra
-
-- El sistema funciona solo con entradas exactas. Asegúrate de escribir correctamente los títulos.
-- Puedes modificar el número máximo de series o episodios desde las constantes internas.
-- Este código puede adaptarse fácilmente para cargar JSON, mejorar con `std::vector`, o agregar una interfaz gráfica.
-
----
-
-## 👨‍💻 Autor
-
-Desarrollado por **Leo** como proyecto final de programación en C++ con POO.  
-Repositorio creado para compartir con otros estudiantes y profesores como referencia de un sistema POO completo en consola.
+¡Disfruta explorando el mundo del streaming al estilo C++! 🎥📺
