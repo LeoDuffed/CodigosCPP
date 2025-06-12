@@ -31,6 +31,7 @@ El programa está completamente desarrollado en **C++** utilizando **herencia**,
 ├── db/
 │   ├── movies.csv         # Archivo con datos de películas
 │   └── series.csv         # Archivo con datos de series y episodios
+
 ```
 
 ---
