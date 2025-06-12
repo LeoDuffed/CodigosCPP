@@ -52,7 +52,7 @@ void Serie :: mostrarVideos() const{
     std :: cout << "Genero: " << genero << std :: endl;
     std :: cout << "Calificacion de la serie: " << calificacion << std :: endl;
     for(int i = 0; i < numCap; i++){
-        std :: cout << "    -T" << capSeries[i].temoporada << ": " << capSeries[i].titulo << " (" << capSeries[i].calificacion << "/5)" << std :: endl;
+        std :: cout << "    -T" << capSeries[i].temporada << ": " << capSeries[i].titulo << " (" << capSeries[i].calificacion << "/5)" << std :: endl;
     }
 }
 int Serie :: getNumCap() const{

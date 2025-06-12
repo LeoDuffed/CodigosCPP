@@ -18,7 +18,7 @@
 */
 struct Episodio{
     std :: string titulo;
-    int temoporada;
+    int temporada;
     int calificacion;
 };
 
