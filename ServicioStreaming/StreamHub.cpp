@@ -53,7 +53,7 @@ void StreamHub :: buscarCapPorCalif(const std :: string& nomSerie, int calificac
              std :: cout << "\nEpisodios de " << nomSerie << " con calificacion de " << calificacion << ": " << std :: endl;
 
              bool coinciden = false; 
-             for(int j = 0; j < 10; j++){
+             for(int j = 0; j < serie->getNumCap(); j++){
                 Episodio cap = serie -> getEpisodio(j);
                 if(!cap.titulo.empty() && cap.calificacion == calificacion){
                     std :: cout << "    -T" << cap.temoporada << ": " << cap.titulo << " (" << cap.calificacion << "/5)" << std :: endl;
