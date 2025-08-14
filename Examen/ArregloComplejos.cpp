@@ -1,45 +1,28 @@
 #include <iostream> 
 #include "ArregloComplejos.h"
 
-// Constructores
-ArregloComplejos :: ArregloComplejos(){
-    this -> nextSpace = 0;
-}
-ArregloComplejos :: ArregloComplejos(int nextSpace){
-    this -> nextSpace = nextSpace;
-}
-
 // Funciones y Metodos
 // Funcion para ir agregando los numeros complejos al arreglo
-bool ArregloComplejos :: agregar(NumComplejo newNumComp){
-    if(nextSpace < 6){
-        arreglo[nextSpace] = newNumComp;
-        nextSpace++;
-    } else {
-        std :: cout << "\nEl arreglo esta lleno" << std :: endl;
-        return false;
-    }
-    return true;
+bool ArregloComplejos :: agregar(const NumComplejo& num){
+    if(nextSpace < CAP){
+        arreglo[nextSpace++] = num;
+        return true;
+    } 
+    
+    std::cout << "\nEl arreglo esta lleno\n";
+    return false;
 }
 // Funcion de resta total de lo numeros del arreglo
-NumComplejo  ArregloComplejos :: restaTotal(){
+NumComplejo  ArregloComplejos :: restaTotal() const {
 
-    if (nextSpace == 0){
-        return NumComplejo();
-    }
-
-    NumComplejo restaTotal = arreglo[0];
-
-    for(int i = 0; i < nextSpace; i++){
-        restaTotal = restaTotal.resta(arreglo[i].getA(), arreglo[i].getB());
-    }
-
-    return restaTotal;
+    if (nextSpace == 0) return NumComplejo(0,0);
+    NumComplejo r = arreglo[0];
+    for(int i = 1; i < nextSpace; i++) r = r - arreglo[i];
+    return r;
 }
 // No se pide, pero es para mostrar los numeros complejos
-void ArregloComplejos :: mostrarArray(){
+void ArregloComplejos :: mostrarArray() const{
     for(int i = 0; i < nextSpace; i++){
-        std :: cout << "Numero Complejo " << i + 1 << " : " << std :: endl;
-        arreglo[i].imprimir();
+        std::cout << "Numero Complejo " << (i + 1) << " : " << arreglo[i] << "\n";
     }
 }

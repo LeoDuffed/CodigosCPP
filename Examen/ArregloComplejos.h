@@ -4,20 +4,19 @@
 #include "NumComplejo.h"
 
 class ArregloComplejos{
-    private:
-    NumComplejo arreglo[6];
-    int nextSpace;
+    static constexpr int CAP = 6;
+    NumComplejo arreglo[CAP]{};
+    int nextSpace{0};
 
     public: 
     // Constructores y Destructor
-    ArregloComplejos();
-    ~ArregloComplejos(){}
-    ArregloComplejos(int nextSpace);
+    ArregloComplejos() = default;
+    explicit ArregloComplejos(int next) : nextSpace(next){}
 
     // Funciones y Metodos
-    bool agregar(NumComplejo arreglo);
-    NumComplejo restaTotal();
-    void mostrarArray();
+    bool agregar(const NumComplejo& num);
+    NumComplejo restaTotal() const;
+    void mostrarArray() const;
 
 };
 

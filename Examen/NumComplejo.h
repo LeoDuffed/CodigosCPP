@@ -4,28 +4,27 @@
 #include <iostream> 
 
 class NumComplejo{
-    private: 
-    int a;
-    int b;
+    int a{};
+    int b{};
 
     public: 
     // Constructores y Destructor
-    NumComplejo();
-    ~NumComplejo(){}
-    NumComplejo(int a, int b);
+    NumComplejo() = default;
+    NumComplejo(int a, int b) : a(a), b(b) {}
+    ~NumComplejo() = default;
 
     // Setter
-    void setA(int a);
-    void setB(int b);
+    void setA(int v) {a = v;}
+    void setB(int v) {b = v;}
 
     // Getters
-    int getA();
-    int getB();
+    int getA() const {return a;}
+    int getB() const {return b;}
 
-    // Funciones
-    void imprimir();
-    NumComplejo suma(int a2, int b2);
-    NumComplejo resta(int a2, int b2);
+    // Operadores de salida
+    NumComplejo operator+(const NumComplejo& o) const;
+    NumComplejo operator-(const NumComplejo& o) const;
+    friend std::ostream& operator<<(std::ostream& os, const NumComplejo& c);
 
 };
 
