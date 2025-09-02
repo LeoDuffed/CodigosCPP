@@ -20,13 +20,13 @@ void MostrarArreglo(int(&array)[N]){for(int i=0;i<N;i++)std::cout<<array[i]<<(i+
 template<std::size_t N>
 void InsertionSort(int(&array)[N]){
     for(int i=1;i<N;i++){
-        int key=array[i];
+        int aux=array[i];
         int j=i-1;
-        while(j>=0 && array[j]>key){
+        while(j>=0 && array[j]>aux){
             array[j+1]=array[j];
             j=j-1;
         }
-        array[j+1]=key;
+        array[j+1]=aux;
     }
 }
 
