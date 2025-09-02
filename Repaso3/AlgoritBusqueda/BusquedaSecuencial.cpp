@@ -1,3 +1,12 @@
+/*
+Funcionamiento del Algoritmo
+- Inicialización: Comienza en el primer elemento de la lista. 
+- Comparación: Compara el elemento actual con el valor que se busca. 
+- Iteración: Si no hay coincidencia, avanza al siguiente elemento de la lista. 
+- Resultado: El proceso continúa hasta que se encuentra el valor o hasta que se han revisado todos los elementos. 
+
+*/
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>

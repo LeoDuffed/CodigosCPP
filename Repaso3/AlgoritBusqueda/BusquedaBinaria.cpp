@@ -1,3 +1,17 @@
+/*
+Cómo funciona la búsqueda binaria:
+1. Requiere una lista ordenada:
+Este es el requisito fundamental del algoritmo. 
+2. Comparación con el medio:
+Se empieza comparando el valor que se busca con el elemento que se encuentra en el centro de la lista. 
+3. Reducción del intervalo:
+Si el valor buscado es igual al elemento central, se ha encontrado el elemento y el proceso termina. 
+Si el valor buscado es menor que el elemento central, la búsqueda continúa en la mitad izquierda de la lista. 
+Si el valor buscado es mayor que el elemento central, la búsqueda continúa en la mitad derecha de la lista. 
+4. Repetición:
+Se repite este proceso de división y comparación en la sección restante hasta encontrar el elemento o hasta que la sección de búsqueda quede vacía (lo que indica que el elemento no está presente). 
+*/
+
 #include <iostream>
 
 template <std::size_t N>
