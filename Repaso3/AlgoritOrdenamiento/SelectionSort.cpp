@@ -1,0 +1,53 @@
+/*
+Pasos detallados del Selection Sort:
+1. Encuentra el mínimo:
+El algoritmo comienza en el primer elemento de la lista y busca el elemento más pequeño en toda la lista. 
+2. Intercambia:
+Una vez que se encuentra el elemento más pequeño, se intercambia con el elemento que está en la primera posición de la lista. 
+3. Repite el proceso:
+El algoritmo repite este proceso, pero ahora considera la lista a partir del segundo elemento. Busca el siguiente elemento más pequeño en la parte restante y lo intercambia con el segundo elemento. 
+4. Continúa hasta el final:
+Se repite este proceso hasta que todos los elementos de la lista estén en su posición correcta, creando así la lista ordenada. 
+*/
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+template<std::size_t N>
+void IniciarArreglo(int(&array)[N]){ for(int i=0;i<N;i++)array[i]=std::rand()%100; }
+template<std::size_t N>
+void MostrarArreglo(int(&array)[N]){ for(int i=0;i<N;i++)std::cout<<array[i]<<(i<N-1?" , ":"\n");}
+inline void switch_place(int& a, int&b){ int tmp=a; a=b; b=tmp; } 
+
+template<std::size_t N>
+void SelectionSort(int(&array)[N]){ 
+    int min;
+    for(int i=0;i<N-1;i++){
+        min=i;
+        bool swapped=false;
+        for(int j=i+1;j<N;j++){
+            if(array[j]<array[min]){
+                min=j;
+            }
+        }
+        if(min!=i){
+            switch_place(array[i], array[min]);
+            swapped=true;
+        }
+        if(!swapped) break;
+    }
+
+}
+
+int main(){
+    std::srand(static_cast<unsigned>(std::time(nullptr)));
+    int array[20];
+    IniciarArreglo(array);
+    std::cout<<"Arreglo antes: ";
+    MostrarArreglo(array);
+    SelectionSort(array);
+    std::cout<<"Arreglo despues: ";
+    MostrarArreglo(array);
+    return 0;
+}
