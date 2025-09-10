@@ -21,20 +21,30 @@ void MostrarArreglo(int(&array)[N]){ for(int i=0;i<N;i++)std::cout<<array[i]<<(i
 inline void switch_place(int& a, int&b){ int tmp=a; a=b; b=tmp; } 
 
 template<std::size_t N>
+// Complejidad: O(N^2) comparaciones y O(1) memoria. No es estable.
 void SelectionSort(int(&array)[N]){ 
+    // Índice del elemento mínimo dentro de la porción no ordenada
     int min;
+    // i delimita el inicio de la parte no ordenada [i..N)
     for(int i=0;i<N-1;i++){
+        // Suponemos que el mínimo está en la posición i
         min=i;
+        //'swapped' intenta una salida temprana. En Selection Sort,
+        // que el mínimo esté ya en 'i' NO garantiza que el resto esté
+        // ordenado, por lo que romper aquí puede dejar el arreglo sin ordenar.
         bool swapped=false;
+        // Buscar el índice del menor elemento en el rango [i+1..N)
         for(int j=i+1;j<N;j++){
             if(array[j]<array[min]){
-                min=j;
+                min=j; // Actualiza el índice del mínimo encontrado
             }
         }
+        // Si el mínimo está en otra posición, intercámbialo con la posición i
         if(min!=i){
             switch_place(array[i], array[min]);
             swapped=true;
         }
+
         if(!swapped) break;
     }
 
