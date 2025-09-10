@@ -53,7 +53,6 @@ void merge(int (&array)[N], std::size_t l, std::size_t m, std::size_t r, int (&t
 
     // Si quedaron elementos en la mitad izquierda, los copiamos tal cual
     while(i < m){ tmp[k++] = array[i++ ]; }
-
     // Si quedaron elementos en la mitad derecha, los copiamos tal cual
     while(j < r){ tmp[k++] = array[j++]; }
 
@@ -73,13 +72,10 @@ void mergeSortRec(int (&array)[N], std::size_t l, std::size_t r, int (&tmp)[N]){
 
     // Calculamos la mitad evitando overflow: l + (r - l)/2
     std::size_t m = l + (r - l) / 2;
-
     // Ordenamos recursivamente la mitad izquierda [l, m)
     mergeSortRec(array, l, m, tmp);
-
     // Ordenamos recursivamente la mitad derecha [m, r)
     mergeSortRec(array, m, r, tmp);
-
     // Fusionamos ambas mitades ya ordenadas
     merge(array, l, m, r, tmp);
 }
@@ -93,13 +89,11 @@ void MergeSort(int(&array)[N]){
     // Al estar en una función plantilla, N es constante en compilación y
     // esta declaración es válida como arreglo C de tamaño fijo.
     int tmp[N];
-
     // Llamamos a la función recursiva sobre todo el rango [0, N)
     mergeSortRec(array, 0, N, tmp);
 }
 
 int main(){
-   
     std::srand(static_cast<unsigned>(std::time(nullptr)));
     int array[20];
     IniciarArreglo(array);
