@@ -30,8 +30,8 @@ void MostrarArreglo(int(&array)[N]){ for(std::size_t i = 0; i < N; i++) std::cou
 usando el buffer temporal 'tmp' (del mismo tamaño que 'array').
 Rango [l, r) significa: l incluido, r excluido.
 - l: inicio del bloque total
-- m: separación entre izquierda y derecha (mitad)
-- r: final del bloque total (excluido
+- m: separación entre izquierda y derecha 
+- r: final del bloque total 
 */
 template<std::size_t N>
 void merge(int (&array)[N], std::size_t l, std::size_t m, std::size_t r, int (&tmp)[N]){
