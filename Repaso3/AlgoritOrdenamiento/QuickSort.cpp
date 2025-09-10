@@ -1,3 +1,26 @@
+/*
+Quick Sort – Pasos del algoritmo:
+1. Elegir un pivote
+   - Seleccionar un elemento del arreglo (comúnmente el último o el primero).
+   - El pivote servirá como referencia para dividir el arreglo.
+2. Partición
+   - Recorremos el arreglo comparando cada elemento con el pivote.
+   - Si el elemento es menor o igual al pivote, lo colocamos a la izquierda.
+   - Si es mayor, se queda a la derecha.
+   - Al terminar, el pivote queda en su posición final ordenada.
+3. Llamadas recursivas
+   - Ordenamos recursivamente los dos subarreglos:
+       a) Los elementos menores o iguales al pivote.
+       b) Los elementos mayores al pivote.
+4. Caso base
+   - Cuando el subarreglo tiene 0 o 1 elemento, ya está ordenado y no se hace nada.
+5. Complejidad
+   - Promedio y mejor caso: O(n log n).
+   - Peor caso: O(n^2) (si el pivote siempre es el mínimo o máximo).
+   - Es un algoritmo “in-place”: no necesita arreglos auxiliares grandes.
+*/
+
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
