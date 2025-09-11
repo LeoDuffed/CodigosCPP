@@ -19,18 +19,18 @@ void IniciarArray(int (&array) [N]){for(int i=0;i<N;i++)array[i]=static_cast<int
 
 template <std::size_t N>
 int BusquedaBinaria(const int (&array) [N], int num){
-    std::size_t min=0, max=N;
-    while(min < max){
-        std::size_t halfNum=min+(max-min)/2;
-        if(array[halfNum]==num)return static_cast<int>(halfNum);
-        if(array[halfNum]<num)min=halfNum+1;
-        else max=halfNum-1;
+    std::size_t l=0, r=N-1;
+    while(l <= r){
+        std::size_t mid=l+(r-l)/2;
+        if(array[mid]==num)return static_cast<int>(mid);
+        if(array[mid]<num)l=mid+1;
+        else r=mid-1;
     }
     return -1;
 }
 
 int main(){
-    int array[20], num=10;
+    int array[20], num=5;
     IniciarArray(array);
     int found=BusquedaBinaria(array, num);
     if(found>=0)std::cout<<"Encontrado en indice: "<<found<<"\n";
