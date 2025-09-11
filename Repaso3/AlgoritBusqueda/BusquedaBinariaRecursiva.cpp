@@ -2,7 +2,7 @@
 
 template<std::size_t N>
 void IniciarArreglo(int (&array)[N]) {
-    for (std::size_t i = 0; i < N; ++i) array[i] = static_cast<int>(i); // orden ascendente 0..N-1
+    for (std::size_t i = 0; i < N; ++i) array[i] = static_cast<int>(i); 
 }
 
 template<std::size_t N>
