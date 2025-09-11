@@ -29,7 +29,7 @@ void SelectionSort(int(&array)[N]){
         int min=i;
         // Buscar el índice del menor elemento en el rango [i+1..N)
         for(int j=i+1;j<N;j++){
-            if(array[j]<array[min]){
+            if(array[j]<array[min]){ // del mayor al menor array[j]<array[min]
                 min=j; // Actualiza el índice del mínimo encontrado
             }
         }

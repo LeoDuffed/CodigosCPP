@@ -24,7 +24,7 @@ void BubbleSort(int(&array)[N]){
     for(int i=0;i<N-1;i++){
         bool swapped = false;
         for(int j=0;j<N-i-1;j++){
-            if(array[j]>array[j+1]){
+            if(array[j]>array[j+1]){ // del mayor al menor array[j]<array[j+1]
                 swap_int(array[j], array[j+1]);
                 swapped=true;
             }
