@@ -24,7 +24,7 @@ int BusquedaBinaria(const int (&array) [N], int num){
         std::size_t halfNum=min+(max-min)/2;
         if(array[halfNum]==num)return static_cast<int>(halfNum);
         if(array[halfNum]<num)min=halfNum+1;
-        else max=halfNum;
+        else max=halfNum-1;
     }
     return -1;
 }
