@@ -1,12 +1,20 @@
 #include "Node.h"
+#include "BST.h"
 #include<iostream>
 using namespace std;
 
 int main(){
-    
-    Node<string> node1("A");
-    std::cout<<node1.getData()<<"\n";
-
-    
+    BST<string> tree;
+    tree.insert("D");
+    tree.insert("B");
+    tree.insert("A");
+    tree.insert("F");
+    tree.insert("E");
+    tree.insert("G");
+    tree.insert("C");
+    tree.insert("H");
+    tree.insert("J");
+    tree.insert("I");
+    tree.search("I");
     return 0;
 }

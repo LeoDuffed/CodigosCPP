@@ -1,11 +1,17 @@
 #pragma once
-#include "BST.h"
 #include <iostream>
-using namespace std;
+
+template<typename T>
+BST<T>::BST(): root(nullptr){}
+
+template<typename T>
+BST<T>::~BST(){
+    clear();
+}
 
 template<typename T>
 bool BST<T>::isEmpty() const{
-
+    return root == nullptr;
 }
 
 template<typename T>
@@ -14,8 +20,17 @@ void BST<T>::print(){
 }
 
 template<typename T>
-void BST<T>::clear(){
+void BST<T>::clear(Node<T>* n){
+    if(!n) return;
+    clear(n->getRight());
+    clear(n->getLeft());
+    delete n;
+}
 
+template<typename T>
+void BST<T>::clear(){
+    clear(root);
+    root = nullptr;
 }
 
 template<typename T>
@@ -43,26 +58,27 @@ void BST<T>::insert(const T& v){
     } else {
         parent->setRight(newNode);
     }
-    delete tmp;
 }
 
 template<typename T>
-bool BST<T>::search(const T& v) const{
-    return searchRec(root, v);
-}
-
-template<typename T>
-bool BST<T>::searchRec(Node<T>* root, const T& v){
+bool BST<T>::search(Node<T>* root, const T& v) const{
     if(root == nullptr){
         return false;
     }
-    cout<<"Visitando: "<<root->getData();
+    std::cout<<"Visitando: "<<root->getData()<<std::endl;
     if(v == root->getData()){
         return true;
     }
     if(v < root->getData()){
+        std::cout<<"Moviendo izquierda"<<std::endl;
         return search(root->getLeft(), v);
     } else {
+        std::cout<<"Moviendo derecha"<<std::endl;
         return search(root->getRight(), v);
     }
+}
+
+template<typename T>
+bool BST<T>::search(const T& v) const{
+    return search(root, v);
 }

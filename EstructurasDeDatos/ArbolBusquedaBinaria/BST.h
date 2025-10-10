@@ -6,7 +6,8 @@ template<typename T>
 class BST{
     private:
         Node<T>* root;
-        bool searchRec(Node<T>* root, const T& v);
+        bool search(Node<T>* root, const T& v) const;
+        void clear(Node<T>* n);
     public:
         BST();
         ~BST();
