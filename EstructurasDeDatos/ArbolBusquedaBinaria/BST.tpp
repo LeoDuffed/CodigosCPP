@@ -36,7 +36,7 @@ void BST<T>::clear(){
 template<typename T>
 void BST<T>::insert(const T& v){
     Node<T>* newNode = new Node<T>(v);
-    if(root == nullptr){
+    if(isEmpty()){
         root = newNode;
         return;
     }
@@ -62,7 +62,7 @@ void BST<T>::insert(const T& v){
 
 template<typename T>
 bool BST<T>::search(Node<T>* root, const T& v) const{
-    if(root == nullptr){
+    if(isEmpty()){
         return false;
     }
     std::cout<<"Visitando: "<<root->getData()<<std::endl;
