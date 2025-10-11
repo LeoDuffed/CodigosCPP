@@ -8,6 +8,8 @@ class BST{
         Node<T>* root;
         bool search(Node<T>* root, const T& v) const;
         void clear(Node<T>* n);
+        int height(Node<T>* n) const;
+        int powersOfTwo(int h);
     public:
         BST();
         ~BST();
