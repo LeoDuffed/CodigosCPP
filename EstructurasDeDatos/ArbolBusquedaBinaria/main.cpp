@@ -15,7 +15,6 @@ int main(){
     tree.insert("H");
     tree.insert("J");
     tree.insert("I");
-    tree.search("I");
     tree.print();
     return 0;
 }

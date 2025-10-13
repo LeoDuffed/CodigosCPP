@@ -57,8 +57,7 @@ void BST<T>::print(){
         else initialSpaces = 0;
         int betwenSpaces;
         if(h - i - 1 >= 0) betwenSpaces = powersOfTwo(h - i - 1) -1;
-        else betwenSpaces = 0;
-        if(betwenSpaces < 1) betwenSpaces = 1;
+        else if (betwenSpaces < 1) betwenSpaces = 1;
         // Espacios iniciales
         for(int n = 0; n < initialSpaces; ++n) std::cout<<" ";
         int nextNum = 0;
