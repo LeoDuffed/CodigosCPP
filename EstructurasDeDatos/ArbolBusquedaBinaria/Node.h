@@ -1,3 +1,7 @@
+// 
+// Creado por Leonardo Martínez 10/10/25
+//
+
 #ifndef NODE_H
 #define NODE_H
 

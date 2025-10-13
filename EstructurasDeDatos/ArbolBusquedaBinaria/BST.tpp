@@ -1,3 +1,7 @@
+// 
+// Creado por Leonardo Martínez 10/10/25
+//
+
 #pragma once
 #include <iostream>
 
