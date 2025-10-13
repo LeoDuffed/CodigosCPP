@@ -51,7 +51,7 @@ void BST<T>::print(){
     int actualNum = 1;
     // Recorremos cada nivel
     for(int i = 0; i < h; ++i){
-        // Vemos los espacios entre nodos
+        // Hay que calcular los espacios entre nodos
         int initialSpaces;
         if(h - i - 2 >= 0) initialSpaces = powersOfTwo(h - i - 2) - 1;
         else initialSpaces = 0;
