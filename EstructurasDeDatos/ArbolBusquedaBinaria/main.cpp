@@ -21,5 +21,9 @@ int main(){
     tree.insert("I");
     tree.print();
     tree.inOrder();
+    std::cout<<"\n\n";
+    tree.postOrder();
+    std::cout<<"\n\n";
+    tree.preOrder();
     return 0;
 }

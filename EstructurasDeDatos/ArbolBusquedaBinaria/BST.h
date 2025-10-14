@@ -16,6 +16,8 @@ class BST{
         int powersOfTwo(int h);
         void visit(Node<T>* node) const;
         void inOrder(Node<T>* node) const;
+        void postOrder(Node<T>* node) const;
+        void preOrder(Node<T>* node) const;
     public:
         BST();
         ~BST();
@@ -25,6 +27,8 @@ class BST{
         void insert(const T& v);
         bool search(const T& v) const;
         void inOrder() const;
+        void postOrder() const;
+        void preOrder() const;
 }; 
 
 #include "BST.tpp"

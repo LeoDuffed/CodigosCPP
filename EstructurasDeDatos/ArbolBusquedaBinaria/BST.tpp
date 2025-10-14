@@ -156,3 +156,29 @@ void BST<T>::inOrder(Node<T>* node) const{
     visit(node);
     inOrder(node->getRight());
 }
+
+template<typename T>
+void BST<T>::postOrder() const{
+    postOrder(root);
+}
+
+template<typename T>
+void BST<T>::postOrder(Node<T>* node) const{
+    if(node == nullptr) return;
+    postOrder(node->getLeft());
+    postOrder(node->getRight());
+    visit(node);
+}
+
+template<typename T>
+void BST<T>::preOrder() const{
+    preOrder(root);
+}
+
+template<typename T>
+void BST<T>::preOrder(Node<T>* node) const{
+    if(node == nullptr) return;
+    visit(node);
+    preOrder(node->getLeft());
+    preOrder(node->getRight());
+}
