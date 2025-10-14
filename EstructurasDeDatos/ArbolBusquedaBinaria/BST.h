@@ -14,6 +14,8 @@ class BST{
         void clear(Node<T>* n);
         int height(Node<T>* n) const;
         int powersOfTwo(int h);
+        void visit(Node<T>* node) const;
+        void inOrder(Node<T>* node) const;
     public:
         BST();
         ~BST();
@@ -22,6 +24,7 @@ class BST{
         void clear();
         void insert(const T& v);
         bool search(const T& v) const;
+        void inOrder() const;
 }; 
 
 #include "BST.tpp"

@@ -20,5 +20,6 @@ int main(){
     tree.insert("J");
     tree.insert("I");
     tree.print();
+    tree.inOrder();
     return 0;
 }

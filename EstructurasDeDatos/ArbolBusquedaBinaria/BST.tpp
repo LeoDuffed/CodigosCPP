@@ -138,3 +138,21 @@ template<typename T>
 bool BST<T>::search(const T& v) const{
     return search(root, v);
 }
+
+template<typename T>
+void BST<T>::visit(Node<T>* node) const{
+    std::cout<<"Visitando: "<<node->getData()<<"\n";
+}
+
+template<typename T>
+void BST<T>::inOrder() const{
+    inOrder(root);
+}
+
+template<typename T>
+void BST<T>::inOrder(Node<T>* node) const{
+    if(node == nullptr) return;
+    inOrder(node->getLeft());
+    visit(node);
+    inOrder(node->getRight());
+}
