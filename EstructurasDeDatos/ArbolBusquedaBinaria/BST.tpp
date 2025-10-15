@@ -75,7 +75,7 @@ void BST<T>::print(){
         int betwenSpaces = firstBetweenPlace / shrink;
         if(initialSpaces < 0) initialSpaces = 0;
         if(betwenSpaces < 1) betwenSpaces = 1;
-        // no se que comentario poner aqui
+        // Para mejorar la tendencia que tienen de separacion los nodos
         bool compressed = (i >= lastLevels);
         int tanteo = 0;
         if(compressed){
