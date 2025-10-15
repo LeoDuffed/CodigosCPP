@@ -20,4 +20,4 @@ template<typename T>
 T Node<T>::getData(){ return data; }
 
 template<typename T>
-void Node<T>::setData(T& v){ data = v; }
+void Node<T>::setData(const T& v){ data = v; }

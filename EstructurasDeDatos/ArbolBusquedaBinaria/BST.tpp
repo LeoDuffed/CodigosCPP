@@ -56,10 +56,10 @@ void BST<T>::print(){
     // Recorremos cada nivel
     for(int i = 0; i < h; ++i){
         // Hay que calcular los espacios entre nodos
-        int initialSpaces;
+        int initialSpaces = 0;
         if(h - i - 2 >= 0) initialSpaces = powersOfTwo(h - i - 2) - 1;
         else initialSpaces = 0;
-        int betwenSpaces;
+        int betwenSpaces = 1;
         if(h - i - 1 >= 0) betwenSpaces = powersOfTwo(h - i - 1) -1;
         else if (betwenSpaces < 1) betwenSpaces = 1;
         // Espacios iniciales
@@ -142,6 +142,48 @@ bool BST<T>::search(const T& v) const{
 template<typename T>
 void BST<T>::visit(Node<T>* node) const{
     std::cout<<"Visitando: "<<node->getData()<<"\n";
+}
+
+template<typename T>
+bool BST<T>::ancestors(Node<T>* node, const T& v) const{
+    if(!node) return false;
+    if(node->getData() == v) return true;
+    if(v < node->getData()){
+        if(ancestors(node->getLeft(), v)){
+            std::cout<<node->getData()<<" ";
+            return true;
+        }
+    } else {
+        if(ancestors(node->getRight(), v)){
+            std::cout<<node->getData()<<" ";
+            return true;
+        }
+    }
+    return false;
+}
+
+template<typename T>
+void BST<T>::ancestors(const T& v) const{
+    if(isEmpty()){
+        std::cout<<"Arbol vacio\n";
+        return;
+    }
+    bool found = ancestors(root, v);
+    if(!found) std::cout<<"No se econtro el valor: "<<v<<"\n";
+    else std::cout<<"\n";
+}
+
+template<typename T>
+int BST<T>::whatLevelAmI(Node<T>* node, const T& v, int level) const{
+    if(!node) return -1;
+    if(node->getData() == v) return level;
+    if(v < node->getData()) return whatLevelAmI(node->getLeft(), v, level + 1);
+    else return whatLevelAmI(node->getRight(), v, level + 1);
+}
+
+template<typename T>
+int BST<T>::whatLevelAmI(const T& v) const{
+    return whatLevelAmI(root, v, 0);
 }
 
 template<typename T>

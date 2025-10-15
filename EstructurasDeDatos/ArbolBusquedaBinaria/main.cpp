@@ -8,7 +8,7 @@
 using namespace std;
 
 int main(){
-    BST<string> tree;
+    BST<std::string> tree;
     tree.insert("D");
     tree.insert("B");
     tree.insert("A");
@@ -19,11 +19,15 @@ int main(){
     tree.insert("H");
     tree.insert("J");
     tree.insert("I");
+
     tree.print();
-    tree.inOrder();
-    std::cout<<"\n\n";
-    tree.postOrder();
-    std::cout<<"\n\n";
-    tree.preOrder();
+
+    std::cout << "\nAncestros de J: ";
+    tree.ancestors("J"); 
+
+    std::cout << "Nivel de D: " << tree.whatLevelAmI("D") << "\n"; 
+    std::cout << "Nivel de C: " << tree.whatLevelAmI("C") << "\n"; 
+    std::cout << "Nivel de Z: " << tree.whatLevelAmI("Z") << "\n"; 
+
     return 0;
 }

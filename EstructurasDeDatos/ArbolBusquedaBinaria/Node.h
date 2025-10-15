@@ -18,7 +18,7 @@ class Node{
         Node<T>* getRight();
         void setRight(Node<T>* node);
         T getData();
-        void setData(T& v);
+        void setData(const T& v);
 };
 
 #include "Node.tpp"
