@@ -55,7 +55,6 @@ void BST<T>::print(){
     int actualNum = 1;
     // Recorremos cada nivel
     for(int i = 0; i < h; ++i){
-        // Hay que calcular los espacios entre nodos
         int initialSpaces = 0;
         if(h - i - 2 >= 0) initialSpaces = powersOfTwo(h - i - 2) - 1;
         else initialSpaces = 0;
@@ -223,4 +222,56 @@ void BST<T>::preOrder(Node<T>* node) const{
     visit(node);
     preOrder(node->getLeft());
     preOrder(node->getRight());
+}
+
+template<typename T>
+Node<T>* BST<T>::smallestNode(Node<T>* node) const{
+    if(!node) return nullptr;
+    Node<T>* n = node;
+    while(n->getLeft() != nullptr) n = n->getLeft();
+    return n;
+}
+
+template<typename T>
+bool BST<T>::deleteNode(const T& v){
+    bool removed = false;
+    root = deleteNode(root, v, removed);
+    return removed;
+}
+
+template<typename T>
+Node<T>* BST<T>::deleteNode(Node<T>* node, const T& v, bool& removed){
+    if(!node) return nullptr;
+    if(v < node->getData()){
+        node->setLeft(deleteNode(node->getLeft(), v, removed));
+        return node;
+    } else if(v > node->getData()){
+        node->setRight(deleteNode(node->getRight(), v, removed));
+        return node;
+    }
+    removed = true;
+    Node<T>* left = node->getLeft();
+    Node<T>* right = node->getRight();
+    // Quitar hoja (sin hijos)
+    if(!left && !right){
+        delete node;
+        return nullptr;
+    }
+    // Un solo hijo
+    if(!left && right){ // solo hijo derecho
+        Node<T>* tmp = right;
+        delete node;
+        return tmp;
+    }
+    if(left && !right){ // solo hijo izquierdo
+        Node<T>* tmp = left;
+        delete node;
+        return tmp;
+    }
+    // Dos hijos
+    Node<T>* successor = smallestNode(right);
+    node->setData(successor->getData());
+    bool tmp = false;
+    node->setRight(deleteNode(right, successor->getData(), tmp));
+    return node;
 }

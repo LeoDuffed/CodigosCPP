@@ -36,7 +36,7 @@ class BST{
         void inOrder() const;
         void postOrder() const;
         void preOrder() const;
-        bool delete(const T& v);
+        bool deleteNode(const T& v);
 }; 
 
 #include "BST.tpp"
