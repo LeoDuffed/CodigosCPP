@@ -53,18 +53,50 @@ void BST<T>::print(){
     // Nivel 0
     actualLevel[0] = root;
     int actualNum = 1;
+    // Desde que nivel empezamos a hacer mas pequeños los espacios
+    int lastLevels = h - 3;
+    if(lastLevels < 0) lastLevels = 0;
     // Recorremos cada nivel
     for(int i = 0; i < h; ++i){
-        int initialSpaces = 0;
-        if(h - i - 2 >= 0) initialSpaces = powersOfTwo(h - i - 2) - 1;
-        else initialSpaces = 0;
-        int betwenSpaces = 1;
-        if(h - i - 1 >= 0) betwenSpaces = powersOfTwo(h - i - 1) -1;
-        else if (betwenSpaces < 1) betwenSpaces = 1;
+        // Para calcular los espacios normales
+        int firstInitialPlace;
+        if(h - i - 2 >= 0) firstInitialPlace = powersOfTwo(h - i- 2) - 1;
+        else firstInitialPlace = 0;
+        int firstBetweenPlace;
+        if(h - i - 1 >= 0) firstBetweenPlace = powersOfTwo(h - i - 1) - 1;
+        else firstBetweenPlace = 1;
+        // Para calcular los espacios de los ultimos niveles
+        int lastNodes;
+        if(i >= lastLevels) lastNodes = i - lastLevels + 1;
+        else lastNodes = 0;
+        int shrink = powersOfTwo(lastNodes);
+        if(shrink <= 0) shrink = 1;
+        int initialSpaces = firstInitialPlace / shrink;
+        int betwenSpaces = firstBetweenPlace / shrink;
+        if(initialSpaces < 0) initialSpaces = 0;
+        if(betwenSpaces < 1) betwenSpaces = 1;
+        // no se que comentario poner aqui
+        bool compressed = (i >= lastLevels);
+        int tanteo = 0;
+        if(compressed){
+            tanteo = betwenSpaces / 4;
+            if(tanteo < 1) tanteo = 1;
+        }
         // Espacios iniciales
         for(int n = 0; n < initialSpaces; ++n) std::cout<<" ";
         int nextNum = 0;
         for(int j = 0; j < actualNum; ++j){
+            if(j > 0){
+                int gap;
+                if(compressed){
+                    gap = betwenSpaces;
+                } else {
+                    if(j % 2 == 0) gap = betwenSpaces - tanteo;
+                    else gap = betwenSpaces + tanteo;
+                    if(gap < 0) gap = 0;
+                }
+                for(int n = 0; n < gap; n++) std::cout<<" ";
+            }
             if(actualLevel[j]){
                 std::cout<<actualLevel[j]->getData();
                 nextLevel[nextNum++] = actualLevel[j]->getLeft();
@@ -74,8 +106,6 @@ void BST<T>::print(){
                 nextLevel[nextNum++] = nullptr;
                 nextLevel[nextNum++] = nullptr;
             }
-            // Espacios entre los nodos
-            if(j != actualNum - 1) for(int n = 0; n < betwenSpaces; ++n) std::cout<<" ";
         }
         std::cout<<"\n";
         // Pasamos al siguiente nivel "actual"

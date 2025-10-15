@@ -29,7 +29,7 @@ int main(){
     std::cout << "Nivel de C: " << tree.whatLevelAmI("C") << "\n"; 
     std::cout << "Nivel de Z: " << tree.whatLevelAmI("Z") << "\n"; 
 
-    tree.deleteNode("D");
+    tree.deleteNode("J");
     tree.print();
 
 
