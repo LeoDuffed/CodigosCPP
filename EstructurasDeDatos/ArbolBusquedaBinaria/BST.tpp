@@ -83,7 +83,7 @@ void BST<T>::insert(const T& v){
 
 template<typename T>
 bool BST<T>::search(Node<T>* root, const T& v) const{
-    if(isEmpty()) return false;
+    if(root == nullptr) return false;
     if(v == root->getData()) return true;
     if(v < root->getData()){
         return search(root->getLeft(), v);
