@@ -13,10 +13,10 @@ class BST{
         bool search(Node<T>* root, const T& v) const;
         void clear(Node<T>* n);
         int height(Node<T>* n) const;
-        int powersOfTwo(int h);
         bool ancestors(Node<T>* node, const T& v) const;
         int whatLevelAmI(Node<T>* node, const T& v, int level) const;
         void visit(Node<T>* node) const;
+        void printNodes(Node<T>* node) const;
         void inOrder(Node<T>* node) const;
         void postOrder(Node<T>* node) const;
         void preOrder(Node<T>* node) const;

@@ -17,20 +17,7 @@ template<typename T>
 bool BST<T>::isEmpty() const{
     return root == nullptr;
 }
-
-/*
-    Usamos esta funcione en el metodo print() para calcular
-    el número máximo de nodos posibles en un nivel del árbol y
-    asi conseguimos la cantidad de espacios necesarios para alinear
-    los nodos de forma simétrica cuando imrpimamos el árbol.
-*/
-template<typename T>
-int BST<T>::powersOfTwo(int h){
-    int p = 1;
-    for (int i = 0; i < h; ++i) p *= 2; 
-    return p;
-}
-
+ 
 template<typename T>
 int BST<T>::height(Node<T>* n) const{
     if(!n) return 0;
@@ -46,93 +33,16 @@ void BST<T>::print(){
         std::cout<<"El arbol esta vacio\n";
         return;
     }
-    int h = height(root);
-    int maxNodes = powersOfTwo(h);
+    printNodes(root);
+    std::cout<<"\n";
+}
 
-    // Arreglos para ir guardando el nivel actual y el siguiente
-    Node<T>** actualLevel = new Node<T>*[maxNodes];
-    Node<T>** nextLevel = new Node<T>*[maxNodes];
-    
-    actualLevel[0] = root;
-    int actualNum = 1;
-
-    // A partir de nivel se empieza a comprimir el espacio
-    int lastLevels = h - 3;
-    if(lastLevels < 0) lastLevels = 0;
-
-    // Vamos nivel po nivel
-    for(int i = 0; i < h; ++i){
-        int start = 0;
-        int end = actualNum - 1;
-
-        // Calculamos cuantos espacios ponemos antes del primer nodo
-        int firstInitialPlace;
-        if(h - i - 2 >= 0) firstInitialPlace = powersOfTwo(h - i- 2) - 1;
-        else firstInitialPlace = 0;
-
-        // Calculamos cuantos espacios ponemos entre nodos
-        int firstBetweenPlace;
-        if(h - i - 1 >= 0) firstBetweenPlace = powersOfTwo(h - i - 1) - 1;
-        else firstBetweenPlace = 1;
-
-        // Calculamos cuantos espacios llevamos para ir cerrando la separacion de los nodos
-        int lastNodes;
-        if(i >= lastLevels) lastNodes = i - lastLevels + 1;
-        else lastNodes = 0;
-
-        // La usamos para ir haciendo mas pequeños los espacios
-        int shrink = powersOfTwo(lastNodes);
-        if(shrink <= 0) shrink = 1;
-
-        // Calculamos cuantos espacios vamos a ocupar 
-        int initialSpaces = firstInitialPlace / shrink;
-        int betwenSpaces = firstBetweenPlace / shrink;
-        if(initialSpaces < 0) initialSpaces = 0;
-        if(betwenSpaces < 1) betwenSpaces = 1;
-
-        if(i == h - 1){
-            while(start < actualNum && actualLevel[start] == nullptr) ++start;
-            while(end >= start && actualLevel[end] == nullptr) --end;
-            if(start > end) break; 
-            if(start % 2 == 1) --start;
-            if(end % 2 == 0 && end + 1 < actualNum) ++end;
-        }
-        for(int n = 0; n < initialSpaces; ++n) std::cout<<" ";
-        if(i == h - 1 && start > 0){
-            int leftSkipSpaces = 1 + (start - 1) * (betwenSpaces + 1);
-            int compensate = leftSkipSpaces / 2; 
-            if(compensate < 0) compensate = 0;
-            for(int n = 0; n < compensate; ++n) std::cout<<" ";
-        }
-        int nextNum = 0;
-        for(int j = start; j <= end; ++j){
-            if(j > start){
-                int gap;
-                if(i >= lastLevels){
-                    gap = betwenSpaces;
-                } else {
-                    if(j % 2 == 0) gap = betwenSpaces;
-                    else gap = betwenSpaces;
-                    if(gap < 0) gap = 0;
-                }
-                for(int n = 0; n < gap; n++) std::cout<<" ";
-            }
-            if(actualLevel[j]){
-                std::cout<<actualLevel[j]->getData();
-                nextLevel[nextNum++] = actualLevel[j]->getLeft();
-                nextLevel[nextNum++] = actualLevel[j]->getRight(); 
-            } else {
-                std::cout<<" ";
-                nextLevel[nextNum++] = nullptr;
-                nextLevel[nextNum++] = nullptr;
-            }
-        }
-        std::cout<<"\n";
-        for(int j = 0; j < nextNum; ++j) actualLevel[j] = nextLevel[j];
-        actualNum = nextNum;
-    }
-    delete[] actualLevel;
-    delete[] nextLevel;
+template<typename T>
+void BST<T>::printNodes(Node<T>* node) const{
+    if(!node) return;
+    printNodes(node->getLeft());
+    std::cout<<node->getData()<<" ";
+    printNodes(node->getRight());
 }
 
 template<typename T>
