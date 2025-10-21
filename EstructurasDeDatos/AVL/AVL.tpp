@@ -7,6 +7,9 @@ bool AVL<T>::isEmpty() const{
     return root == nullptr;
 }
 
+template<typename T>
+AVL<T>::~AVL(){}
+
 template<typename T>        
 int AVL<T>::height(Node<T>* n) const{
     return n ? n->getHeight() : 0;
@@ -37,7 +40,7 @@ template<typename T>
 void AVL<T>::print(Node<T>* node) const{
     if(!node) return;
     print(node->getLeft());
-    std::cout<<node->getData()<<"\n";
+    std::cout<<node->getData()<<" ";
     print(node->getRight());
 }
 
@@ -48,7 +51,7 @@ Node<T>* AVL<T>::rotateRight(Node<T>* node){
     tmp->setRight(node);
     node->setLeft(tmp2);
     node->setHeight(1 + maxValue(height(node->getLeft()), height(node->getRight())));
-    tmp->setHeight(1 + maxValue(height(tmp->getRight()), tmp->getLeft()));
+    tmp->setHeight(1 + maxValue(height(tmp->getRight()), height(tmp->getLeft())));
     return tmp;
 }
         
@@ -59,7 +62,7 @@ Node<T>* AVL<T>::rotateLeft(Node<T>* node){
     tmp->setLeft(node);
     node->setRight(tmp2);
     node->setHeight(1 + maxValue(height(node->getLeft()), height(node->getRight())));
-    tmp->setHeight(1 + maxValue(height(tmp->getRight()), tmp->getLeft()));
+    tmp->setHeight(1 + maxValue(height(tmp->getRight()), height(tmp->getLeft())));
     return tmp;
 }
         
@@ -77,7 +80,7 @@ Node<T>* AVL<T>::rotateRightLeft(Node<T>* node){
 
 template<typename T>  
 Node<T>* AVL<T>::insert(Node<T>* node, const T& value){
-    if(isEmpty()) return new Node<T>(value);
+    if(!node) return new Node<T>(value);
 
     if(value < node->getData()) node->setLeft(insert(node->getLeft(), value));
     else if( value > node->getData()) node->setRight(insert(node->getRight(), value));
@@ -111,4 +114,3 @@ template<typename T>
 void AVL<T>::destroy(Node<T>* node){
 
 }
-
