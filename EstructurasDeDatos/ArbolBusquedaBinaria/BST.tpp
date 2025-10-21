@@ -43,49 +43,52 @@ int BST<T>::height(Node<T>* n) const{
 template<typename T>
 void BST<T>::print(){
     if(isEmpty()){
-        std::cout<<"Esta vaci el arbol\n";
+        std::cout<<"El arbol esta vacio\n";
         return;
     }
     int h = height(root);
     int maxNodes = powersOfTwo(h);
+
+    // Arreglos para ir guardando el nivel actual y el siguiente
     Node<T>** actualLevel = new Node<T>*[maxNodes];
     Node<T>** nextLevel = new Node<T>*[maxNodes];
     
     actualLevel[0] = root;
     int actualNum = 1;
+
+    // A partir de nivel se empieza a comprimir el espacio
     int lastLevels = h - 3;
     if(lastLevels < 0) lastLevels = 0;
 
+    // Vamos nivel po nivel
     for(int i = 0; i < h; ++i){
         int start = 0;
         int end = actualNum - 1;
 
+        // Calculamos cuantos espacios ponemos antes del primer nodo
         int firstInitialPlace;
         if(h - i - 2 >= 0) firstInitialPlace = powersOfTwo(h - i- 2) - 1;
         else firstInitialPlace = 0;
 
+        // Calculamos cuantos espacios ponemos entre nodos
         int firstBetweenPlace;
         if(h - i - 1 >= 0) firstBetweenPlace = powersOfTwo(h - i - 1) - 1;
         else firstBetweenPlace = 1;
 
+        // Calculamos cuantos espacios llevamos para ir cerrando la separacion de los nodos
         int lastNodes;
         if(i >= lastLevels) lastNodes = i - lastLevels + 1;
         else lastNodes = 0;
 
+        // La usamos para ir haciendo mas pequeños los espacios
         int shrink = powersOfTwo(lastNodes);
         if(shrink <= 0) shrink = 1;
 
+        // Calculamos cuantos espacios vamos a ocupar 
         int initialSpaces = firstInitialPlace / shrink;
         int betwenSpaces = firstBetweenPlace / shrink;
         if(initialSpaces < 0) initialSpaces = 0;
         if(betwenSpaces < 1) betwenSpaces = 1;
-
-        bool compressed = (i >= lastLevels);
-        int tanteo = 0;
-        if(compressed){
-            tanteo = betwenSpaces / 4;
-            if(tanteo < 1) tanteo = 1;
-        }
 
         if(i == h - 1){
             while(start < actualNum && actualLevel[start] == nullptr) ++start;
@@ -105,11 +108,11 @@ void BST<T>::print(){
         for(int j = start; j <= end; ++j){
             if(j > start){
                 int gap;
-                if(compressed){
+                if(i >= lastLevels){
                     gap = betwenSpaces;
                 } else {
-                    if(j % 2 == 0) gap = betwenSpaces - tanteo;
-                    else gap = betwenSpaces + tanteo;
+                    if(j % 2 == 0) gap = betwenSpaces;
+                    else gap = betwenSpaces;
                     if(gap < 0) gap = 0;
                 }
                 for(int n = 0; n < gap; n++) std::cout<<" ";
