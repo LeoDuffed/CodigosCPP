@@ -18,5 +18,8 @@ int main(){
     avl.deleteNode(8);
     avl.print();
 
+    std::cout<<"Buscando el 15: \n";
     avl.searchPath(15);
+    std::cout<<"Buscando el 16: \n";
+    avl.searchPath(16);
 }
