@@ -193,32 +193,30 @@ void AVL<T>::clear(Node<T>* node){
 }
 
 template<typename T>
-bool AVL<T>::search(Node<T>* root, const T& v) const{
+bool AVL<T>::searchPath(Node<T>* root, const T& v) const{
     if(root == nullptr) return false;
-    if(v == root->getData()){
-        std::cout<<root->getData()<<"\n";
-        return true;
+    if(root == this->root) std::cout<<root->getData();
+    else std::cout<<" - "<<root->getData();
+    if(v == root->getData()){ 
+        std::cout<<"\n";
+        return true; 
     }
     if(v < root->getData()){
         if(root->getLeft() == nullptr) {
-            std::cout<<"Not Found\n";
+            std::cout<<" - Not Found\n";
             return false;
-        } else { 
-            std::cout<<root->getData()<<" ";
-            return search(root->getLeft(), v);
         }
+        return searchPath(root->getLeft(), v);
     } else {
         if(root->getRight() == nullptr){
-            std::cout<<"Not Found\n";
+            std::cout<<" - Not Found\n";
             return false;
-        } else {
-            std::cout<<root->getData()<<" ";
-            return search(root->getRight(), v);
         }
+        return searchPath(root->getRight(), v);
     }
 }
 
 template<typename T>
-bool AVL<T>::search(const T& v) const{
-    return search(root, v);
+bool AVL<T>::searchPath(const T& v) const{
+    return searchPath(root, v);
 }

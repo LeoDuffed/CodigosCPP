@@ -12,7 +12,7 @@ class AVL{
         int balanceFac(Node<T>* n)const;
         int maxValue(int a, int b) const;
         void print(Node<T>* node) const;
-        bool search(Node<T>* root, const T& v) const;
+        bool searchPath(Node<T>* root, const T& v) const;
         // Rotaciones
         Node<T>* rotateRight(Node<T>* node);
         Node<T>* rotateLeft(Node<T>* node);
@@ -30,7 +30,7 @@ class AVL{
         bool deleteNode(const T& v);
         void print();
         void insert(const T& value);
-        bool search(const T& node) const;
+        bool searchPath(const T& node) const;
 };
 
 #include "AVL.tpp"

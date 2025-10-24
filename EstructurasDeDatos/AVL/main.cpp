@@ -18,5 +18,5 @@ int main(){
     avl.deleteNode(8);
     avl.print();
 
-    avl.search(15);
+    avl.searchPath(15);
 }
