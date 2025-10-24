@@ -131,53 +131,45 @@ Node<T>* AVL<T>::deleteNode(Node<T>* node, const T& v, bool& removed){
     if(!node) return nullptr;
     if(v < node->getData()){
         node->setLeft(deleteNode(node->getLeft(), v, removed));
-        return node;
     } else if(v > node->getData()){
         node->setRight(deleteNode(node->getRight(), v, removed));
-        return node;
+    } else {
+        removed = true;
+        Node<T>* left = node->getLeft();
+        Node<T>* right = node->getRight();
+        // Quitar hoja
+        if(!left && !right){
+            delete node;
+            return nullptr;
+        }
+        // Un solo hijo
+        if(!left && right){ // solo hijo derecho
+            Node<T>* tmp = right;
+            delete node;
+            return tmp;
+        }
+        if(left && !right){ // solo hijo izquierdo
+            Node<T>* tmp = left;
+            delete node;
+            return tmp;
+        }
+        // Dos hijos
+        Node<T>* successor = smallestNode(right);
+        node->setData(successor->getData());
+        bool tmp = false;
+        node->setRight(deleteNode(right, successor->getData(), tmp));
     }
-    removed = true;
-    Node<T>* left = node->getLeft();
-    Node<T>* right = node->getRight();
-    // Quitar hoja (sin hijos)
-    if(!left && !right){
-        delete node;
-        return nullptr;
-    }
-    // Un solo hijo
-    if(!left && right){ // solo hijo derecho
-        Node<T>* tmp = right;
-        delete node;
-        return tmp;
-    }
-    if(left && !right){ // solo hijo izquierdo
-        Node<T>* tmp = left;
-        delete node;
-        return tmp;
-    }
-    // Dos hijos
-    Node<T>* successor = smallestNode(right);
-    node->setData(successor->getData());
-    bool tmp = false;
-    node->setRight(deleteNode(right, successor->getData(), tmp));
-    return node;
 
-    // Ver si esta balanceado
-    if(v < node->getData()) node->setLeft(insert(node->getLeft(), v));
-    else if( v > node->getData()) node->setRight(insert(node->getRight(), v));
-    else return node;
-
-    // Fijar nueva altura
+    // Fijar nueva altura y balancear
     node->setHeight(1 + maxValue(height(node->getLeft()), height(node->getRight())));
     const int bf = balanceFac(node);
-    if(bf > 1 && v < node->getLeft()->getData()){
-        return rotateRight(node);
-    } else if(bf < -1 && v > node->getRight()->getData()){
-        return rotateLeft(node);
-    } else if(bf > 1 && v > node->getLeft()->getData()){
-        return rotateLeftRight(node);
-    } else if(bf < -1 && v < node->getRight()->getData()){
-        return rotateRightLeft(node);
+    if(bf > 1){
+        if(balanceFac(node->getLeft()) >= 0) return rotateRight(node);   
+        else return rotateLeftRight(node);                               
+    }
+    if(bf < -1){
+        if(balanceFac(node->getRight()) <= 0) return rotateLeft(node);   
+        else return rotateRightLeft(node);                               
     }
     return node;
 }
