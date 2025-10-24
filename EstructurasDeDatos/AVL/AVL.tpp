@@ -160,7 +160,7 @@ Node<T>* AVL<T>::deleteNode(Node<T>* node, const T& v, bool& removed){
         node->setRight(deleteNode(right, successor->getData(), tmp));
     }
 
-    // Fijar nueva altura y balancear
+    // Nueva altura y balancear
     node->setHeight(1 + maxValue(height(node->getLeft()), height(node->getRight())));
     const int bf = balanceFac(node);
     if(bf > 1){
