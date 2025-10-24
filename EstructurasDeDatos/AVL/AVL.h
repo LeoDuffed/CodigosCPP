@@ -19,12 +19,14 @@ class AVL{
         Node<T>* rotateRightLeft(Node<T>* node); // rotacion doble a la izquierda
         // Insertar y Eliminar
         Node<T>* insert(Node<T>* node, const T& value);
-        Node<T>* remove(Node<T>* node, const T& value);
-        void destroy(Node<T>* node); // limpia cosillas
+        Node<T>* deleteNode(Node<T>* node, const T& value, bool& removed);
+        Node<T>* smallestNode(Node<T>* node) const;
+        void clear(Node<T>* node); // limpiar arbol completo
     public:
         AVL(): root(nullptr) {}
         ~AVL();
         void clear();
+        bool deleteNode(const T& v);
         void print();
         void insert(const T& value);
 

@@ -36,11 +36,17 @@ void AVL<T>::print(){
     std::cout<<"\n";
 }
         
-template<typename T>  
-void AVL<T>::print(Node<T>* node) const{
-    if(!node) return;
+template <typename T>
+void AVL<T>::print(Node<T>* node) const {
+    if (node == nullptr) return;
+    std::cout<<"Nodo: "<< node->getData() <<" (Izq: ";
+    if (node->getLeft()) std::cout << node->getLeft()->getData();
+    else std::cout << "null";
+    std::cout<<", Der: ";
+    if (node->getRight()) std::cout << node->getRight()->getData();
+    else std::cout << "null";
+    std::cout << ")\n";
     print(node->getLeft());
-    std::cout<<node->getData()<<" ";
     print(node->getRight());
 }
 
@@ -105,12 +111,83 @@ void AVL<T>::insert(const T& value){
     root = insert(root ,value);
 }
 
-template<typename T>  
-Node<T>* AVL<T>::remove(Node<T>* node, const T& value){
+template<typename T>
+Node<T>* AVL<T>::smallestNode(Node<T>* node) const{
+    if(!node) return nullptr;
+    Node<T>* n = node;
+    while(n->getLeft() != nullptr) n = n->getLeft();
+    return n;
+}
 
+template<typename T>
+bool AVL<T>::deleteNode(const T& v){
+    bool removed = false;
+    root = deleteNode(root, v, removed);
+    return removed;
 }
 
 template<typename T>  
-void AVL<T>::destroy(Node<T>* node){
+Node<T>* AVL<T>::deleteNode(Node<T>* node, const T& v, bool& removed){
+    if(!node) return nullptr;
+    if(v < node->getData()){
+        node->setLeft(deleteNode(node->getLeft(), v, removed));
+        return node;
+    } else if(v > node->getData()){
+        node->setRight(deleteNode(node->getRight(), v, removed));
+        return node;
+    }
+    removed = true;
+    Node<T>* left = node->getLeft();
+    Node<T>* right = node->getRight();
+    // Quitar hoja (sin hijos)
+    if(!left && !right){
+        delete node;
+        return nullptr;
+    }
+    // Un solo hijo
+    if(!left && right){ // solo hijo derecho
+        Node<T>* tmp = right;
+        delete node;
+        return tmp;
+    }
+    if(left && !right){ // solo hijo izquierdo
+        Node<T>* tmp = left;
+        delete node;
+        return tmp;
+    }
+    // Dos hijos
+    Node<T>* successor = smallestNode(right);
+    node->setData(successor->getData());
+    bool tmp = false;
+    node->setRight(deleteNode(right, successor->getData(), tmp));
+    return node;
+
+    // Ver si esta balanceado
+    if(v < node->getData()) node->setLeft(insert(node->getLeft(), v));
+    else if( v > node->getData()) node->setRight(insert(node->getRight(), v));
+    else return node;
+
+    // Fijar nueva altura
+    node->setHeight(1 + maxValue(height(node->getLeft()), height(node->getRight())));
+    const int bf = balanceFac(node);
+    if(bf > 1 && v < node->getLeft()->getData()){
+        return rotateRight(node);
+    } else if(bf < -1 && v > node->getRight()->getData()){
+        return rotateLeft(node);
+    } else if(bf > 1 && v > node->getLeft()->getData()){
+        return rotateLeftRight(node);
+    } else if(bf < -1 && v < node->getRight()->getData()){
+        return rotateRightLeft(node);
+    }
+    return node;
+}
+
+template<typename T>
+void AVL<T>::clear(){
+
+}
+
+template<typename T>  // metodo priv
+void AVL<T>::clear(Node<T>* node){
 
 }
