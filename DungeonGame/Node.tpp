@@ -19,11 +19,13 @@ Node<T>::Node(int id, const char* name, double prob, const T& extra){
     this->id = id;
     int i = 0;
     if(name){
-        for(; name[i] != '\0' && i < 63; i++){
+        for(; name[i] != '\0' && i < 63; ++i){
             this->name[i] = name[i];
         }
+        this->name[i] = '\0';
+    } else {
+        this->name[0] = '\0';
     }
-    name[i] = '\0';
     this->encounterProb = prob;
     visited = false;
     neighborNum = 0;
@@ -69,13 +71,15 @@ void Node<T>::setId(int id){ this->id = id; }
 
 template<typename T>
 void Node<T>::setName(const char* name){
-    int i = 0;
     if(name){
+        int i = 0;
         for(; name[i] != '\0' && i < 63; ++i){
-            this->name[0] = name[0];
+            this->name[i] = name[i];
         }
+        this->name[i] = '\0';
+    } else {
+        this->name[0] = '\0';
     }
-    name[i] = '\0';
 }
 
 template<typename T>
