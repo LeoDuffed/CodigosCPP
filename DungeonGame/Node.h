@@ -35,6 +35,6 @@ class Node{
         void addNeighbor(int neighborId);
 };
 
-#include "Node.tpp";
+#include "Node.tpp"
 
 #endif

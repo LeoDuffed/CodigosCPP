@@ -17,7 +17,7 @@ Graph<T>::~Graph(){
     // Borramos los nodos que creamos
     for(int i = 0; i < capability; ++i){
         if(corners[i] != nullptr){
-            delete corner[i];
+            delete corners[i];
             corners[i] = nullptr;
         }
     }
@@ -57,6 +57,10 @@ bool Graph<T>::addEdges(int idA, int idB){
         std::cout<<"No se puede crear arista "<<idA<<" - "<<idB<<" (uno no existe)\n";
         return false;
     }
+    if(idA == idB){
+        std::cout<<"No se permiten lazos sobre el mismo vertice ("<<idA<<")\n";
+        return false;
+    }
     // Como es un grafo no dirigido, agregamos en ambos sentido
     corners[idA]->addNeighbor(idB);
     corners[idB]->addNeighbor(idA);
@@ -65,6 +69,12 @@ bool Graph<T>::addEdges(int idA, int idB){
 
 template<typename T>
 Node<T>* Graph<T>::search(int id){
+    if(id < 0 || id >= capability) return nullptr;
+    return corners[id];
+}
+
+template<typename T>
+const Node<T>* Graph<T>::search(int id) const{
     if(id < 0 || id >= capability) return nullptr;
     return corners[id];
 }
@@ -102,7 +112,7 @@ void Graph<T>::printCheatBFS(int start, int end) const{
     while(front < back && !founded){
         int u = queue[front++];
         const Node<T>* node = corners[u];
-        if(!nodo) continue;
+        if(!node) continue;
 
         // recorremos los vecinos
         const int* neig = node->getNeighbor(); 
@@ -135,10 +145,22 @@ void Graph<T>::printCheatBFS(int start, int end) const{
             std::cout<<path[i];
             if(i > 0) std::cout<<" -> ";
         }
-        std::count<<"\n";
+        std::cout<<"\n";
         delete[] path;
     }
     delete[] queue;
     delete[] visit;
     delete[] father;
+}
+
+template<typename T>
+void Graph<T>::printSummary() const{
+    std::cout<<"Graph summary ("<<cornerNum<<"/"<<capability<<")\n";
+    for(int i = 0; i < capability; ++i){
+        const Node<T>* node = corners[i];
+        if(!node) continue;
+        std::cout<<"["<<node->getId()<<"] "<<node->getName()
+                 <<" prob="<<node->getEncounterProb()
+                 <<" vecinos="<<node->getNeighborNum()<<"\n";
+    }
 }
