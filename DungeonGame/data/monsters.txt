@@ -1,0 +1,8 @@
+# Archivo: monsters.txt
+# Catálogo de monstruos disponibles en el dungeon.
+MONSTERS 5
+0 Esqueleto  10 3 1 0.40  3 1 0
+1 Murcielago  8 2 0 0.30  2 1 0
+2 Slime       6 1 0 0.60  2 1 0
+3 Demonio    14 4 2 0.20  4 2 1
+4 Guardián   18 5 3 0.10  5 2 2
