@@ -42,8 +42,8 @@ bool Game::init(const char* dungeonFile, const char* monsterFile){
     return true;
 }
 
-void Game::run(bool chearBFS){
-    if(chearBFS){
+void Game::run(bool cheatBFS){
+    if(cheatBFS){
         showCheatPath();
         return;
     }
@@ -104,8 +104,8 @@ bool Game::combat(Monster m){
         std::cout<<hero.name<<" vencio a "<<m.name<<"!\n";
         hero.hp += m.r_hp;
         hero.atk += m.r_atk;
-        hero.def += m.def;
-        std::cout<<"Sube stats: +"<<m.r_hp<<" HP +"<<m.r_atk<<" ATK +"<<m.def<<" DEF\n";
+        hero.def += m.r_def;
+        std::cout<<"Sube stats: +"<<m.r_hp<<" HP +"<<m.r_atk<<" ATK +"<<m.r_def<<" DEF\n";
         std::cout<<"Nuevas stats: "<<hero.hp<<" HP, "<<hero.atk<<" ATK, "<<hero.def<<" DEF!\n";
         return true;
     } else {
@@ -140,12 +140,15 @@ void Game::explorationLoop(){
         Node<int>* section = graph.search(hero.pos);
         std::cout<<"\nEstas en: ["<<hero.pos<<"] "<<(section ? section->getName() : "(?)")<<"\n";
         // Si no ha visitado la casilla, hay posibilidad de que se tope con un monstruo
-        if(encounterProb(hero.pos)){
+        bool wasVisited = (section ? section->isVisited() : false);
+        if(!wasVisited && encounterProb(hero.pos)){
             Monster m = chooseMonster();
             if(!combat(m)){
                 return; // murio el heroe
             }
-            if(section) section->setVisited(true);
+        }
+        if(section && !wasVisited){
+            section->setVisited(true);
         }
         // Mostramos a los vecinos para ver a donde se puede mover
         showNeighbors(hero.pos);
@@ -165,7 +168,7 @@ void Game::explorationLoop(){
             }
         }
         if(!ok){
-            std::cout<<"Movimiento invlido\n";
+            std::cout<<"Movimiento invalido\n";
             continue;
         }
         hero.pos = nxt;
