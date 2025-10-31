@@ -1,6 +1,3 @@
-# Archivo: dungeon.txt
-# Mapa del dungeon: cada sala (id, nombre, probEncuentro)
-# Usa nombres sin espacios
 NODES 6
 0 Entrada 0.50
 1 Pasillo 0.40
