@@ -11,6 +11,8 @@ bool loadDungeon(const char* path, Graph<int>& G, int& startId, int& treasureId,
         return false;
     }
 
+
+    // comit del dia
     // Creamos un rreglo temporal para leer etiquetas 
     char characters[32];
     int N = 0; // Cantidad de nodos a leer
