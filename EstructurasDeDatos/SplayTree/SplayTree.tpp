@@ -16,12 +16,6 @@ int SplayTree<T>::height(Node<T>* n) const{
 }
 
 template<typename T>  
-int SplayTree<T>::balanceFac(Node<T>* n)const{
-    if(!n) return 0;
-    return height(n->getLeft()) - height(n->getRight());
-}
-
-template<typename T>  
 int SplayTree<T>::maxValue(int a, int b) const{
     return (a > b) ? a : b;
 }

@@ -9,7 +9,6 @@ class SplayTree {
         // Metodos utiles
         bool isEmpty() const;   
         int height(Node<T>* n) const;
-        int balanceFac(Node<T>* n)const;
         int maxValue(int a, int b) const;
         void print(Node<T>* node) const;
         bool searchPath(Node<T>* root, const T& v) const;
