@@ -21,9 +21,11 @@ class SplayTree {
         Node<T>* deleteNode(Node<T>* node, const T& value, bool& removed);
         Node<T>* smallestNode(Node<T>* node) const;
         void clear(Node<T>* node); // limpiar arbol completo
+        Node<T>* rotateLeftRight(Node<T>* node); // rotacion doble a la derecha
+        Node<T>* rotateRightLeft(Node<T>* node); // rotacion doble a la izquierda
     public:
-        AVL(): root(nullptr) {}
-        ~AVL();
+        SplayTree(): root(nullptr) {}
+        ~SplayTree();
         void clear();
         bool deleteNode(const T& v);
         void print();
