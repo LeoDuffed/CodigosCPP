@@ -10,11 +10,6 @@ bool SplayTree<T>::isEmpty() const{
     return root == nullptr;
 }
 
-template<typename T>  
-int SplayTree<T>::maxValue(int a, int b) const{
-    return (a > b) ? a : b;
-}
-
 template<typename T>
 void SplayTree<T>::print(){
     if(isEmpty()){ 
