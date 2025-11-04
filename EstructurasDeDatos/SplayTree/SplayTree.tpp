@@ -10,11 +10,6 @@ bool SplayTree<T>::isEmpty() const{
     return root == nullptr;
 }
 
-template<typename T>        
-int SplayTree<T>::height(Node<T>* n) const{
-    return n ? n->getHeight() : 0;
-}
-
 template<typename T>  
 int SplayTree<T>::maxValue(int a, int b) const{
     return (a > b) ? a : b;
@@ -50,8 +45,6 @@ Node<T>* SplayTree<T>::rotateRight(Node<T>* node){
     Node<T>* tmp2 = tmp->getRight();
     tmp->setRight(node);
     node->setLeft(tmp2);
-    node->setHeight(1 + maxValue(height(node->getLeft()), height(node->getRight())));
-    tmp->setHeight(1 + maxValue(height(tmp->getRight()), height(tmp->getLeft())));
     return tmp;
 }
         
@@ -61,21 +54,7 @@ Node<T>* SplayTree<T>::rotateLeft(Node<T>* node){
     Node<T>* tmp2 = tmp->getLeft();
     tmp->setLeft(node);
     node->setRight(tmp2);
-    node->setHeight(1 + maxValue(height(node->getLeft()), height(node->getRight())));
-    tmp->setHeight(1 + maxValue(height(tmp->getRight()), height(tmp->getLeft())));
     return tmp;
-}
-        
-template<typename T>  
-Node<T>* SplayTree<T>::rotateLeftRight(Node<T>* node){
-    node->setLeft(rotateLeft(node->getLeft()));
-    return rotateRight(node);
-}
-
-template<typename T>  
-Node<T>* SplayTree<T>::rotateRightLeft(Node<T>* node){
-    node->setRight(rotateRight(node->getRight()));
-    return rotateLeft(node);
 }
 
 template<typename T>
@@ -111,14 +90,6 @@ void SplayTree<T>::insert(const T& value){
     
     // El nuevo nodo se convierte en la raíz
     root = newNode;
-}
-
-template<typename T>
-Node<T>* SplayTree<T>::smallestNode(Node<T>* node) const{
-    if(!node) return nullptr;
-    Node<T>* n = node;
-    while(n->getLeft() != nullptr) n = n->getLeft();
-    return n;
 }
 
 template<typename T>
@@ -163,37 +134,8 @@ template<typename T>  // metodo priv
 void SplayTree<T>::clear(Node<T>* node){
     if(!node) return;
     clear(node->getRight());
-    clear(n->getLeft());
+    clear(node->getLeft());
     delete node;
-}
-
-template<typename T>
-bool SplayTree<T>::searchPath(Node<T>* root, const T& v) const{
-    if(root == nullptr) return false;
-    if(root == this->root) std::cout<<root->getData();
-    else std::cout<<" - "<<root->getData();
-    if(v == root->getData()){ 
-        std::cout<<"\n";
-        return true; 
-    }
-    if(v < root->getData()){
-        if(root->getLeft() == nullptr) {
-            std::cout<<" - Not Found\n";
-            return false;
-        }
-        return searchPath(root->getLeft(), v);
-    } else {
-        if(root->getRight() == nullptr){
-            std::cout<<" - Not Found\n";
-            return false;
-        }
-        return searchPath(root->getRight(), v);
-    }
-}
-
-template<typename T>
-bool SplayTree<T>::searchPath(const T& v) const{
-    return searchPath(root, v);
 }
 
 template<typename T>
@@ -240,18 +182,6 @@ Node<T>* SplayTree<T>::splay(Node<T>* root, const T& v) {
 
         return (root->getRight() == nullptr) ? root : rotateLeft(root);
     }
-}
-
-
-template<typename T>
-Node<T>* SplayTree<T>::search(Node<T>* root, const T& v) {
-    if (root == nullptr) return nullptr;
-
-    root = splay(root, v);  // mueve el nodo v (o el más cercano) a la raíz
-    if (root->getData() == v)
-        return root;
-    else
-        return nullptr;
 }
 
 template<typename T>

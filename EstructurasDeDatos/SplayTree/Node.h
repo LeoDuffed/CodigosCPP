@@ -17,7 +17,6 @@ class Node{
         void setData(const T& v);
         void setRight(Node<T>* right);
         void setLeft (Node<T>* left);
-        void setHeight(const int height);
 };
 
 #include "Node.tpp"

@@ -22,6 +22,3 @@ void Node<T>::setRight(Node<T>* right){ this->right = right; }
 
 template<typename T>
 void Node<T>::setLeft (Node<T>* left){ this->left = left; }
-
-template<typename T>
-void Node<T>::setHeight(const int height){ this->height = height; }
