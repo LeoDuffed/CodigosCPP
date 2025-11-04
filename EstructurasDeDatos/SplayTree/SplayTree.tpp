@@ -3,12 +3,12 @@
 #include "SplayTree.h"
 
 template<typename T>
+SplayTree<T>::~SplayTree() {};
+
+template<typename T>
 bool SplayTree<T>::isEmpty() const{
     return root == nullptr;
 }
-
-template<typename T>
-SplayTree<T>::~SplayTree(){}
 
 template<typename T>        
 int SplayTree<T>::height(Node<T>* n) const{
@@ -211,4 +211,68 @@ bool SplayTree<T>::searchPath(Node<T>* root, const T& v) const{
 template<typename T>
 bool SplayTree<T>::searchPath(const T& v) const{
     return searchPath(root, v);
+}
+
+template<typename T>
+Node<T>* SplayTree<T>::splay(Node<T>* root, const T& v) {
+    if (root == nullptr || root->getData() == v)
+        return root;
+
+    // 🡣 CASO IZQUIERDA
+    if (v < root->getData()) {
+        if (root->getLeft() == nullptr) 
+            return root; // No existe, devuelve el más cercano
+
+        // Zig-Zig (izquierda-izquierda)
+        if (v < root->getLeft()->getData()) {
+            root->getLeft()->setLeft(splay(root->getLeft()->getLeft(), v));
+            root = rotateRight(root);
+        }
+        // Zig-Zag (izquierda-derecha)
+        else if (v > root->getLeft()->getData()) {
+            root->getLeft()->setRight(splay(root->getLeft()->getRight(), v));
+            if (root->getLeft()->getRight() != nullptr)
+                root->setLeft(rotateLeft(root->getLeft()));
+        }
+
+        return (root->getLeft() == nullptr) ? root : rotateRight(root);
+    }
+
+    // 🡣 CASO DERECHA
+    else {
+        if (root->getRight() == nullptr) 
+            return root; // No existe, devuelve el más cercano
+
+        // Zig-Zig (derecha-derecha)
+        if (v > root->getRight()->getData()) {
+            root->getRight()->setRight(splay(root->getRight()->getRight(), v));
+            root = rotateLeft(root);
+        }
+        // Zig-Zag (derecha-izquierda)
+        else if (v < root->getRight()->getData()) {
+            root->getRight()->setLeft(splay(root->getRight()->getLeft(), v));
+            if (root->getRight()->getLeft() != nullptr)
+                root->setRight(rotateRight(root->getRight()));
+        }
+
+        return (root->getRight() == nullptr) ? root : rotateLeft(root);
+    }
+}
+
+
+template<typename T>
+Node<T>* SplayTree<T>::search(Node<T>* root, const T& v) {
+    if (root == nullptr) return nullptr;
+
+    root = splay(root, v);  // mueve el nodo v (o el más cercano) a la raíz
+    if (root->getData() == v)
+        return root;
+    else
+        return nullptr;
+}
+
+template<typename T>
+bool SplayTree<T>::search(const T& v) {
+    root = splay(root, v);  // ¡splay modifica la raíz!
+    return (root != nullptr && root->getData() == v);
 }
