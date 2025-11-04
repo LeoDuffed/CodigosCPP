@@ -218,7 +218,7 @@ Node<T>* SplayTree<T>::splay(Node<T>* root, const T& v) {
     if (root == nullptr || root->getData() == v)
         return root;
 
-    // 🡣 CASO IZQUIERDA
+    // Caso Izquierda
     if (v < root->getData()) {
         if (root->getLeft() == nullptr) 
             return root; // No existe, devuelve el más cercano
@@ -238,7 +238,7 @@ Node<T>* SplayTree<T>::splay(Node<T>* root, const T& v) {
         return (root->getLeft() == nullptr) ? root : rotateRight(root);
     }
 
-    // 🡣 CASO DERECHA
+    // Caso derecha
     else {
         if (root->getRight() == nullptr) 
             return root; // No existe, devuelve el más cercano
@@ -273,6 +273,6 @@ Node<T>* SplayTree<T>::search(Node<T>* root, const T& v) {
 
 template<typename T>
 bool SplayTree<T>::search(const T& v) {
-    root = splay(root, v);  // ¡splay modifica la raíz!
+    root = splay(root, v);
     return (root != nullptr && root->getData() == v);
 }
