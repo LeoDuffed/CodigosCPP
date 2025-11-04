@@ -22,7 +22,9 @@ class SplayTree {
         Node<T>* smallestNode(Node<T>* node) const;
         void clear(Node<T>* node); // limpiar arbol completo
         Node<T>* rotateLeftRight(Node<T>* node); // rotacion doble a la derecha
+        bool search(Node<T>* root, const T& v) const;
         Node<T>* rotateRightLeft(Node<T>* node); // rotacion doble a la izquierda
+        bool search(Node<T>* root, const T& v) const;
     public:
         SplayTree(): root(nullptr) {}
         ~SplayTree();
@@ -31,6 +33,9 @@ class SplayTree {
         void print();
         void insert(const T& value);
         bool searchPath(const T& node) const;
+        bool search(const T& v) const;
+
+
 };
 
 #endif
