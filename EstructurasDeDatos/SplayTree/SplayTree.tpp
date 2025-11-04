@@ -78,31 +78,39 @@ Node<T>* SplayTree<T>::rotateRightLeft(Node<T>* node){
     return rotateLeft(node);
 }
 
-template<typename T>  
-Node<T>* SplayTree<T>::insert(Node<T>* node, const T& value){
-    if(!node) return new Node<T>(value);
-
-    if(value < node->getData()) node->setLeft(insert(node->getLeft(), value));
-    else if( value > node->getData()) node->setRight(insert(node->getRight(), value));
-    else return node;
-
-    node->setHeight(1 + maxValue(height(node->getLeft()), height(node->getRight())));
-    const int bf = balanceFac(node);
-    if(bf > 1 && value < node->getLeft()->getData()){
-        return rotateRight(node);
-    } else if(bf < -1 && value > node->getRight()->getData()){
-        return rotateLeft(node);
-    } else if(bf > 1 && value > node->getLeft()->getData()){
-        return rotateLeftRight(node);
-    } else if(bf < -1 && value < node->getRight()->getData()){
-        return rotateRightLeft(node);
-    }
-    return node;
-}
-
 template<typename T>
 void SplayTree<T>::insert(const T& value){
-    root = insert(root ,value);
+    if(isEmpty()){
+        root = new Node<T>(value);
+        return;
+    }
+    
+    // Primero hacemos splay del valor
+    // Si existe, quedará en la raíz y no insertamos
+    // Si no existe, el nodo más cercano quedará en la raíz
+    root = splay(root, value);
+    
+    // Si el valor ya existe, no hacemos nada
+    if(root->getData() == value) return;
+    
+    // Creamos el nuevo nodo
+    Node<T>* newNode = new Node<T>(value);
+    
+    // Dividimos el árbol en dos según el valor
+    if(value < root->getData()){
+        // El nuevo nodo va a la izquierda
+        newNode->setRight(root);
+        newNode->setLeft(root->getLeft());
+        root->setLeft(nullptr);
+    } else {
+        // El nuevo nodo va a la derecha
+        newNode->setLeft(root);
+        newNode->setRight(root->getRight());
+        root->setRight(nullptr);
+    }
+    
+    // El nuevo nodo se convierte en la raíz
+    root = newNode;
 }
 
 template<typename T>
@@ -114,68 +122,49 @@ Node<T>* SplayTree<T>::smallestNode(Node<T>* node) const{
 }
 
 template<typename T>
-bool SplayTree<T>::deleteNode(const T& v){
-    bool removed = false;
-    root = deleteNode(root, v, removed);
-    return removed;
+bool SplayTree<T>::deleteNode(const T& value){
+    if(isEmpty()) return false;
+    
+    // Hacemos splay del nodo a eliminar
+    root = splay(root, value);
+    
+    // Si el nodo no existe, no hacemos nada
+    if(root->getData() != value) return false;
+    
+    // Guardamos los subárboles
+    Node<T>* leftSubtree = root->getLeft();
+    Node<T>* rightSubtree = root->getRight();
+    
+    // Eliminamos el nodo raíz
+    delete root;
+    
+    // Si no hay subárbol izquierdo, la nueva raíz es el subárbol derecho
+    if(leftSubtree == nullptr){
+        root = rightSubtree;
+        return true;
+    }
+    
+    // Si hay subárbol izquierdo, hacemos splay del máximo elemento
+    // para que no tenga hijo derecho, luego le agregamos el subárbol derecho
+    root = splay(leftSubtree, value); // Esto llevará el máximo a la raíz
+    root->setRight(rightSubtree);
+    
+    return true;
 }
 
-template<typename T>  
-Node<T>* SplayTree<T>::deleteNode(Node<T>* node, const T& v, bool& removed){
-    if(!node) return nullptr;
-    if(v < node->getData()){
-        node->setLeft(deleteNode(node->getLeft(), v, removed));
-    } else if(v > node->getData()){
-        node->setRight(deleteNode(node->getRight(), v, removed));
-    } else {
-        removed = true;
-        Node<T>* left = node->getLeft();
-        Node<T>* right = node->getRight();
-        // Quitar hoja
-        if(!left && !right){
-            delete node;
-            return nullptr;
-        }
-        // Un solo hijo
-        if(!left && right){ // solo hijo derecho
-            Node<T>* tmp = right;
-            delete node;
-            return tmp;
-        }
-        if(left && !right){ // solo hijo izquierdo
-            Node<T>* tmp = left;
-            delete node;
-            return tmp;
-        }
-        // Dos hijos
-        Node<T>* successor = smallestNode(right);
-        node->setData(successor->getData());
-        bool tmp = false;
-        node->setRight(deleteNode(right, successor->getData(), tmp));
-    }
-
-    // Nueva altura y balancear
-    node->setHeight(1 + maxValue(height(node->getLeft()), height(node->getRight())));
-    const int bf = balanceFac(node);
-    if(bf > 1){
-        if(balanceFac(node->getLeft()) >= 0) return rotateRight(node);   
-        else return rotateLeftRight(node);                               
-    }
-    if(bf < -1){
-        if(balanceFac(node->getRight()) <= 0) return rotateLeft(node);   
-        else return rotateRightLeft(node);                               
-    }
-    return node;
-}
 
 template<typename T>
 void SplayTree<T>::clear(){
-
+    clear(root);
+    root = nullptr;
 }
 
 template<typename T>  // metodo priv
 void SplayTree<T>::clear(Node<T>* node){
-
+    if(!node) return;
+    clear(node->getRight());
+    clear(n->getLeft());
+    delete node;
 }
 
 template<typename T>

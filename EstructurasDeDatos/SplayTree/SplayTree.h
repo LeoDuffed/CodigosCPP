@@ -16,8 +16,6 @@ class SplayTree {
         Node<T>* rotateRight(Node<T>* node);
         Node<T>* rotateLeft(Node<T>* node);
         // Insertar y Eliminar
-        Node<T>* insert(Node<T>* node, const T& value);
-        Node<T>* deleteNode(Node<T>* node, const T& value, bool& removed);
         Node<T>* smallestNode(Node<T>* node) const;
         void clear(Node<T>* node); // limpiar arbol completo
         Node<T>* rotateLeftRight(Node<T>* node); // rotacion doble a la derecha
