@@ -1,3 +1,6 @@
+// 4/11/2025
+// Codigo hecho por Leonardo Martínez y Juan Eduardo Barrón
+
 #ifndef NODE_H
 #define NODE_H
 

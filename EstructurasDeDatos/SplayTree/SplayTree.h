@@ -1,3 +1,6 @@
+// 4/11/2025
+// Codigo hecho por Leonardo Martínez y Juan Eduardo Barrón
+
 #ifndef SPLAYTREE_H
 #define SPLAYTREE_H
 
@@ -17,9 +20,9 @@ class SplayTree {
         Node<T>* rotateLeft(Node<T>* node);
         // Insertar y Eliminar
         Node<T>* smallestNode(Node<T>* node) const;
-        void clear(Node<T>* node); // limpiar arbol completo
-        Node<T>* rotateLeftRight(Node<T>* node); // rotacion doble a la derecha
-        Node<T>* rotateRightLeft(Node<T>* node); // rotacion doble a la izquierda
+        void clear(Node<T>* node); 
+        Node<T>* rotateLeftRight(Node<T>* node);
+        Node<T>* rotateRightLeft(Node<T>* node);
         Node<T>* search(Node<T>* root, const T& v);
         Node<T>* splay(Node<T>* root, const T& v);
 

@@ -1,3 +1,6 @@
+// 4/11/2025
+// Codigo hecho por Leonardo Martínez y Juan Eduardo Barrón
+
 #pragma once
 #include <iostream>
 #include "SplayTree.h"
@@ -59,31 +62,22 @@ void SplayTree<T>::insert(const T& value){
         return;
     }
     
-    // Primero hacemos splay del valor
-    // Si existe, quedará en la raíz y no insertamos
-    // Si no existe, el nodo más cercano quedará en la raíz
     root = splay(root, value);
     
-    // Si el valor ya existe, no hacemos nada
     if(root->getData() == value) return;
     
-    // Creamos el nuevo nodo
     Node<T>* newNode = new Node<T>(value);
     
-    // Dividimos el árbol en dos según el valor
     if(value < root->getData()){
-        // El nuevo nodo va a la izquierda
         newNode->setRight(root);
         newNode->setLeft(root->getLeft());
         root->setLeft(nullptr);
     } else {
-        // El nuevo nodo va a la derecha
         newNode->setLeft(root);
         newNode->setRight(root->getRight());
         root->setRight(nullptr);
     }
     
-    // El nuevo nodo se convierte en la raíz
     root = newNode;
 }
 
@@ -91,28 +85,21 @@ template<typename T>
 bool SplayTree<T>::deleteNode(const T& value){
     if(isEmpty()) return false;
     
-    // Hacemos splay del nodo a eliminar
     root = splay(root, value);
     
-    // Si el nodo no existe, no hacemos nada
     if(root->getData() != value) return false;
     
-    // Guardamos los subárboles
     Node<T>* leftSubtree = root->getLeft();
     Node<T>* rightSubtree = root->getRight();
     
-    // Eliminamos el nodo raíz
     delete root;
     
-    // Si no hay subárbol izquierdo, la nueva raíz es el subárbol derecho
     if(leftSubtree == nullptr){
         root = rightSubtree;
         return true;
     }
     
-    // Si hay subárbol izquierdo, hacemos splay del máximo elemento
-    // para que no tenga hijo derecho, luego le agregamos el subárbol derecho
-    root = splay(leftSubtree, value); // Esto llevará el máximo a la raíz
+    root = splay(leftSubtree, value); 
     root->setRight(rightSubtree);
     
     return true;
@@ -125,7 +112,7 @@ void SplayTree<T>::clear(){
     root = nullptr;
 }
 
-template<typename T>  // metodo priv
+template<typename T> 
 void SplayTree<T>::clear(Node<T>* node){
     if(!node) return;
     clear(node->getRight());
@@ -138,17 +125,17 @@ Node<T>* SplayTree<T>::splay(Node<T>* root, const T& v) {
     if (root == nullptr || root->getData() == v)
         return root;
 
-    // Caso Izquierda
+    // Izquierda
     if (v < root->getData()) {
         if (root->getLeft() == nullptr) 
-            return root; // No existe, devuelve el más cercano
+            return root; 
 
-        // Zig-Zig (izquierda-izquierda)
+        // Zig-Zig 
         if (v < root->getLeft()->getData()) {
             root->getLeft()->setLeft(splay(root->getLeft()->getLeft(), v));
             root = rotateRight(root);
         }
-        // Zig-Zag (izquierda-derecha)
+        // Zig-Zag 
         else if (v > root->getLeft()->getData()) {
             root->getLeft()->setRight(splay(root->getLeft()->getRight(), v));
             if (root->getLeft()->getRight() != nullptr)
@@ -161,14 +148,14 @@ Node<T>* SplayTree<T>::splay(Node<T>* root, const T& v) {
     // Caso derecha
     else {
         if (root->getRight() == nullptr) 
-            return root; // No existe, devuelve el más cercano
+            return root; 
 
-        // Zig-Zig (derecha-derecha)
+        // Zig-Zig 
         if (v > root->getRight()->getData()) {
             root->getRight()->setRight(splay(root->getRight()->getRight(), v));
             root = rotateLeft(root);
         }
-        // Zig-Zag (derecha-izquierda)
+        // Zig-Zag 
         else if (v < root->getRight()->getData()) {
             root->getRight()->setLeft(splay(root->getRight()->getLeft(), v));
             if (root->getRight()->getLeft() != nullptr)

@@ -1,3 +1,6 @@
+// 4/11/2025
+// Codigo hecho por Leonardo Martínez y Juan Eduardo Barrón
+
 #pragma once
 #include <iostream>
 #include "Node.h"
