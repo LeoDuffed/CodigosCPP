@@ -1,25 +1,27 @@
-// Pequeño main para probar Graph
 #include "Graph.h"
-#include <iostream>
+#include <string>
 
-int main() {
-    Graph<int> g(5);
+using namespace std;
 
-    g.addVertex(1);
-    g.addVertex(2);
-    g.addVertex(3);
-    g.addVertex(4);
 
-    // Arista no dirigida 1-2 con peso 1
-    g.addEdge(1, 2);
+int main () {
+    Graph<string > grafo(10);
 
-    // Arista dirigida 2->3 con peso 2
-    g.addEdge(2, 3, 2, true);
+    grafo.addVertex("CDM");
+    grafo.addVertex("GDL");
+    grafo.addVertex("MTY");
+    grafo.addVertex("TOL");
+    grafo.addVertex("QRO");
+    grafo.addVertex("MOR");
+    grafo.addEdge("CDM", "TOL");
+    grafo.addEdge("TOL", "GDL");
+    grafo.addEdge("MOR", "GDL");
+    grafo.addEdge("CDM", "QRO");
+    grafo.addEdge("QRO", "MTY");
 
-    // Arista no dirigida 3-4 con peso 5
-    g.addEdge(3, 4, 5, false);
+    grafo.BFS("MTY");
 
-    g.primtMatrix();
+    grafo.printMatrix();
 
     return 0;
 }

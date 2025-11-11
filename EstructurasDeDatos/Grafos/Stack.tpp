@@ -2,6 +2,8 @@
 #include "Stack.h"
 #include <iostream>
 #include <stdexcept>
+using namespace std;
+
 
 // Cambio: corregir las operaciones de la pila y validar casos vacíos.
 

@@ -2,6 +2,7 @@
 #include "Queue.h"
 #include <iostream>
 #include <stdexcept>
+using namespace std;
 
 template <typename T>
 void Queue<T>::enQueue(const T& v){
@@ -18,7 +19,7 @@ void Queue<T>::enQueue(const T& v){
 template <typename T>
 T Queue<T>::deQueue(){
     if (isEmpty()) {
-        cout<<"La cola esta vacia"
+        cout<<"La cola esta vacia";
     }
 
     Node<T>* tmp = topNode;

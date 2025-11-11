@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include "Graph.h"
+#include "Queue.h"
+#include "Stack.h"
 
 using namespace std;
 
@@ -50,16 +52,57 @@ bool Graph<T>::addEdge(const T& v, const T& u, int weight, bool directed) {
 }
 
 template<typename T>
-void Graph<T>::primtMatrix() const {
+void Graph<T>::printMatrix() const {
+    cout << "\n------- MATRIX -------" << endl;
+
+    cout << "    \t\t";
     for (int i = 0; i < count; i++) {
-        cout<<vertices[i]<<" ";
+        cout << vertices[i] << "\t";
     }
-    cout<<"\n";
-    for(int i = 0; i < count; i++){
-        cout<<vertices[i]<<" ";
-        for(int j = 0; j < count; j++){
-            cout<<matrix[i][j]<<" ";
+    cout << endl;
+
+    for (int i = 0; i < count; i++) {
+        cout << vertices[i] << "\t\t";
+        for (int j = 0; j < count; j++) {
+            cout << matrix[i][j] << "\t";
         }
-        cout<<endl;
+        cout << endl;
     }
 }
+
+template<typename T>
+void Graph<T>::resetVisited(){
+    for(int i = 0; i < count; i++){
+        visited[i] = false;
+    }
+}
+
+template<typename T>
+void Graph<T>::BFS(const T& start){
+    int startIndex = indexOf(start);
+    if(startIndex == - 1){
+        cout<<"Nodo inicial no encontrado"<<endl;
+        return;
+    }
+    resetVisited();
+    Queue<int> q;
+    visited[startIndex] = true;
+    q.enQueue(startIndex);
+    while(!q.isEmpty()){
+        int index = q.deQueue();
+        cout<<vertices[index]<<"->";
+        for(int neiIndex = 0; neiIndex < count; neiIndex++){
+            if(matrix[index][neiIndex] != 0 && !visited[neiIndex]){
+                visited[neiIndex] = true;
+                q.enQueue(startIndex);
+            }
+        }
+    }
+    cout<<""<<endl;
+}
+
+template<typename T>
+void Graph<T>::DFS(const T& start){
+
+}
+
