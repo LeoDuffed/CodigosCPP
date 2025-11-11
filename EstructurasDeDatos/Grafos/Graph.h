@@ -25,7 +25,7 @@ class Graph {
 
         ~Graph() {
             for (int i = 0; i < n; i++ ){
-                delete[] matrix[i]
+                delete[] matrix[i];
             }
             delete[] matrix;
             delete[] vertices;

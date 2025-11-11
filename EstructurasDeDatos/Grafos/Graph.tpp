@@ -34,7 +34,7 @@ bool Graph<T>::addVertex(const T& v) {
 }
 
 template<typename T>
-bool Graph<T>::addEdge(const T& v, const T& u, int weight = 1, bool directed = false) {
+bool Graph<T>::addEdge(const T& v, const T& u, int weight, bool directed) {
 
     int iu = indexOf(u);
     int iv = indexOf(v);
@@ -42,8 +42,8 @@ bool Graph<T>::addEdge(const T& v, const T& u, int weight = 1, bool directed = f
     if(iu == -1 || iv == -1) return false;
 
     matrix[iu][iv] = weight;
-    if(directed) {
-        matrix[iu][iv] = weight;
+    if(!directed) {
+        matrix[iv][iu] = weight;
     }
 
     return true;
@@ -52,8 +52,14 @@ bool Graph<T>::addEdge(const T& v, const T& u, int weight = 1, bool directed = f
 template<typename T>
 void Graph<T>::primtMatrix() const {
     for (int i = 0; i < count; i++) {
-        for (int j = 0; j < count; j++) {
-            cout << matrix[i][j] << endl;
+        cout<<vertices[i]<<" ";
+    }
+    cout<<"\n";
+    for(int i = 0; i < count; i++){
+        cout<<vertices[i]<<" ";
+        for(int j = 0; j < count; j++){
+            cout<<matrix[i][j]<<" ";
         }
+        cout<<endl;
     }
 }
