@@ -8,6 +8,7 @@ class Graph {
         int count;
         T* vertices;
         int** matrix;
+        bool* visited;
         int indexOf(const T& v) const;
 
     public:
