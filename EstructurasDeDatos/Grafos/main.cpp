@@ -19,9 +19,12 @@ int main () {
     grafo.addEdge("CDM", "QRO");
     grafo.addEdge("QRO", "MTY");
 
-    grafo.BFS("MTY");
-
     grafo.printMatrix();
+
+    cout<<"\n----BFS----"<<endl;
+    grafo.BFS("TOL");
+    cout<<"\n----DFS----"<<endl;
+    grafo.DFS("MTY");
 
     return 0;
 }

@@ -94,7 +94,7 @@ void Graph<T>::BFS(const T& start){
         for(int neiIndex = 0; neiIndex < count; neiIndex++){
             if(matrix[index][neiIndex] != 0 && !visited[neiIndex]){
                 visited[neiIndex] = true;
-                q.enQueue(startIndex);
+                q.enQueue(neiIndex);
             }
         }
     }
@@ -103,6 +103,25 @@ void Graph<T>::BFS(const T& start){
 
 template<typename T>
 void Graph<T>::DFS(const T& start){
-
+    int startIndex = indexOf(start);
+    if(startIndex == - 1){
+        cout<<"Nodo inicial no encontrado"<<endl;
+        return;
+    }
+    resetVisited();
+    Stack<int> s;
+    visited[startIndex] = true;
+    s.push(startIndex);
+    while(!s.isEmpty()){
+        int index = s.pop();
+        cout<<vertices[index]<<"->";
+        for(int neiIndex = 0; neiIndex < count; neiIndex++){
+            if(matrix[index][neiIndex] != 0 && !visited[neiIndex]){
+                visited[neiIndex] = true;
+                s.push(neiIndex);
+            }
+        }
+    }
+    cout<<""<<endl;
 }
 
