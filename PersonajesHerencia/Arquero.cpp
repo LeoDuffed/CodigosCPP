@@ -1,7 +1,6 @@
 //
 // Creado por Leonardo Martinez Peña
 //
-// nada
 #include "Arquero.h"
 #include <iostream> 
 using namespace std;
