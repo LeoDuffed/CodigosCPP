@@ -125,3 +125,42 @@ void Graph<T>::DFS(const T& start){
     cout<<""<<endl;
 }
 
+
+template<typename T>
+void Graph<T>::dijkstra(const T& start){
+    int starIndex = indexOf(start);
+    if(starIndex == -1){
+        cout<<"No existe el vertice origen"<<endl;
+        return;
+    }
+    int* distances = new int[count];
+    bool* use = new bool[count]; // arreglo de los no visitados
+    for(int i = 0; i < count; i++){
+        distances[i] = INT_MAX;
+        use[i] = false;
+    }
+    distances[starIndex] = 0;
+    for(int i = 0; i < count; i++){
+        int u = -1;
+        int minDist = INT_MAX;
+        for(int j = 0; j < count; j++){
+            if(!used[j] && distances[j] < minDist){
+                minDist = distances[j];
+                u = j; // es el indice no visitado al que vamos a analizar
+            }
+        }
+        if(u == -1){
+            // no hay mas vertices vecinos
+            break;
+        }
+        used[u] = true;
+        for(int k = 0; k < count; k++){
+            int weight = matrix[u][k]
+            if(weight > 0){
+                if(!used[k] && distances[u] != INT_MAX && distances[u] + weight < distances[k]){
+                    distances[k] = distances[u] + weight;
+                }
+            }
+        }
+    }
+}

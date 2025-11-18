@@ -40,6 +40,7 @@ class Graph {
         void printMatrix () const;
         void BFS(const T& start);
         void DFS(const T& start);
+        void dijkstra(const T& start);
 };
 
 #include "Graph.tpp"
