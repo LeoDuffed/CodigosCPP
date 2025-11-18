@@ -1,3 +1,7 @@
+//
+// Created by Andrés Torres on 30/09/25.
+//
+
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 #include "Node.h"
@@ -10,13 +14,13 @@ private:
 public:
     LinkedList();
     ~LinkedList();
+    unsigned int size() const;
     void pushBack(const T& value);
-    Node<T>* getHead();
+    Node<T>* getHead()const;
     bool empty() const;
     void print();
     bool insert(unsigned int index, const T& value);
     Node<T>* search(const T& value);
-
 
 };
 

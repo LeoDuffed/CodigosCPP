@@ -1,3 +1,6 @@
+//
+// Created by Andrés Torres on 30/09/25.
+//
 #pragma once
 #include <iostream>
 #include "LinkedList.h"
@@ -8,6 +11,13 @@ LinkedList<T>::LinkedList():head(nullptr), n(0){}
 
 template<typename T>
 LinkedList<T>::~LinkedList() {
+    Node<T>* current=head;
+    while (current) {
+        head= current->next;
+        delete current;
+        current= head;
+        n--;
+    }
 }
 
 template<typename T>
@@ -66,19 +76,21 @@ bool LinkedList<T>::insert(unsigned int index, const T &value) {
     return true;
 }
 
-template <typename T>
-Node<T>* LinkedList<T>::getHead(){
+
+template<typename T>
+Node<T> *LinkedList<T>::getHead() const{
     return head;
 }
 
-template <typename T>
-Node<T>* LinkedList<T>::search(const T& v){
+template<typename T>
+Node<T>* LinkedList<T>::search(const T& value) {
     Node<T>* current = head;
-    while(curret){
-        if(current->data == v){
+    while (current) {
+        if (current->data == value) {
             return current;
         }
-        current = current->next;
+        current= current->next;
     }
     return nullptr;
 }
+
