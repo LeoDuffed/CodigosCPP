@@ -1,6 +1,3 @@
-//
-// Created by Andrés Torres on 30/09/25.
-//
 #pragma once
 #include <iostream>
 #include "LinkedList.h"

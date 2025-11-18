@@ -1,7 +1,3 @@
-//
-// Created by Andrés Torres on 30/09/25.
-//
-
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 #include "Node.h"
