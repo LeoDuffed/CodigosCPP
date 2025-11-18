@@ -7,24 +7,19 @@ using namespace std;
 int main () {
     Graph<string > grafo(10);
 
-    grafo.addVertex("CDM");
-    grafo.addVertex("GDL");
-    grafo.addVertex("MTY");
-    grafo.addVertex("TOL");
-    grafo.addVertex("QRO");
-    grafo.addVertex("MOR");
-    grafo.addEdge("CDM", "TOL");
-    grafo.addEdge("TOL", "GDL");
-    grafo.addEdge("MOR", "GDL");
-    grafo.addEdge("CDM", "QRO");
-    grafo.addEdge("QRO", "MTY");
+    grafo.addVertex("A");
+    grafo.addVertex("B");
+    grafo.addVertex("C");
+    grafo.addVertex("D");
+    grafo.addVertex("E");
+    grafo.addEdge("A", "B", 1);
+    grafo.addEdge("A", "C", 4);
+    grafo.addEdge("B", "C", 2);
+    grafo.addEdge("B", "D", 5);
+    grafo.addEdge("C", "D", 1);
+    grafo.addEdge("D", "E", 3);
 
     grafo.printMatrix();
-
-    cout<<"\n----BFS----"<<endl;
-    grafo.BFS("TOL");
-    cout<<"\n----DFS----"<<endl;
-    grafo.DFS("MTY");
 
     return 0;
 }

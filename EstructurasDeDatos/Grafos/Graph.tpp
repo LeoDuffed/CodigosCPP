@@ -55,7 +55,7 @@ template<typename T>
 void Graph<T>::printMatrix() const {
     cout << "\n------- MATRIX -------" << endl;
 
-    cout << "    \t\t";
+    cout << " \t\t";
     for (int i = 0; i < count; i++) {
         cout << vertices[i] << "\t";
     }
