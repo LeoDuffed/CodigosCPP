@@ -1,3 +1,6 @@
+// 
+// Creado por Leonardo Martínez 
+//
 #ifndef GRAPH_H
 #define GRAPH_H
 #include "LinkedList.h"

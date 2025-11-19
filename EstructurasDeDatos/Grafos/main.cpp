@@ -21,5 +21,8 @@ int main () {
 
     grafo.printMatrix();
 
+    grafo.BFS("A");
+    grafo.DFS("A");
+
     return 0;
 }

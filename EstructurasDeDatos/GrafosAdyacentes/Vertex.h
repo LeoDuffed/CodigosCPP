@@ -1,3 +1,6 @@
+//
+// Creado por Leonardo Martínez 
+//
 #ifndef VERTEX_H
 #define VERTEX_H
 

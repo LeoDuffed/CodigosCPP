@@ -1,3 +1,6 @@
+//
+// Creado por Leonardo Martínez 
+//
 #pragma once
 #include "Vertex.h"
 template <typename T>
@@ -12,5 +15,4 @@ template <typename T>
 void Vertex<T>::setVisited(bool visited) {
     this->visited= visited;
 }
-
 

@@ -1,3 +1,6 @@
+//
+// Creado por Leonardo Martínez 
+//
 #pragma once
 #include "Node.h"
 

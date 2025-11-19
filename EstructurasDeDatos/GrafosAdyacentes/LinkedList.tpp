@@ -1,3 +1,6 @@
+//
+// Creado por Leonardo Martínez 
+//
 #pragma once
 #include <iostream>
 #include "LinkedList.h"
@@ -90,4 +93,3 @@ Node<T>* LinkedList<T>::search(const T& value) {
     }
     return nullptr;
 }
-

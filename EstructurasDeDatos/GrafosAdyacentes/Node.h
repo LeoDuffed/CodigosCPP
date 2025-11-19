@@ -1,3 +1,6 @@
+//
+// Creado por Leonardo Martínez 
+//
 #ifndef NODE_H
 #define NODE_H
 template <typename T>

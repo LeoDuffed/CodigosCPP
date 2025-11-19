@@ -144,7 +144,7 @@ void Graph<T>::dijkstra(const T& start){
         int u = -1;
         int minDist = INT_MAX;
         for(int j = 0; j < count; j++){
-            if(!used[j] && distances[j] < minDist){
+            if(!use[j] && distances[j] < minDist){
                 minDist = distances[j];
                 u = j; // es el indice no visitado al que vamos a analizar
             }
@@ -153,11 +153,11 @@ void Graph<T>::dijkstra(const T& start){
             // no hay mas vertices vecinos
             break;
         }
-        used[u] = true;
+        use[u] = true;
         for(int k = 0; k < count; k++){
-            int weight = matrix[u][k]
+            int weight = matrix[u][k];
             if(weight > 0){
-                if(!used[k] && distances[u] != INT_MAX && distances[u] + weight < distances[k]){
+                if(!use[k] && distances[u] != INT_MAX && distances[u] + weight < distances[k]){
                     distances[k] = distances[u] + weight;
                 }
             }
