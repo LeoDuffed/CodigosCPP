@@ -2,25 +2,27 @@
 #include "Graph.h"
 #include <iostream>
 using namespace std;
+
 template <typename T>
 Node<Vertex<T>>* Graph<T>::findVertexNode(const T& v){
-    Node<Vertex<T>>* current= vertices.getHead();
+    Node<Vertex<T>>* current = vertices.getHead();
     while (current) {
         if (current->data.getData() == v) {
             return current;
         }
-        current= current->next;
+        current = current->next;
     }
     return nullptr;
 }
 
 template <typename T>
 bool Graph<T>::addVertex(const T& v) {
-    if (findVertexNode(v) !=nullptr) {
+    if (findVertexNode(v) != nullptr) {
         return false;
     }
     Vertex<T> vertex(v);
     vertices.pushBack(vertex);
+    ++count;
     return true;
 }
 
@@ -49,24 +51,75 @@ void Graph<T>::print() const {
     while (current) {
         cout << current->data.getData() <<": ";
         current->data.adj.print();
-        current= current->next;
+        current = current->next;
         cout<<endl;
     }
 }
 
 template<typename T>
 void Graph<T>::resetVisited(){
-    for(int i = 0; i < count; i++){
-        
+    Node<Vertex<T>>* current = vertices.getHead();
+    while (current) {
+        current->data.setVisited(false);
+        current = current->next;
     }
 }
 
 template<typename T>
 void Graph<T>::BFS(const T& start){
-    int startIndex = indexOf(start);
-    if(startIndex = -1){
+    Node<Vertex<T>>* startNode = findVertexNode(start);
+    if(!startNode){
         cout<<"Nodo inicial no encontrado"<<endl;
         return;
     }
+    resetVisited();
+    Node<Vertex<T>>** queue = new Node<Vertex<T>>*[count];
+    int front = 0;
+    int back = 0;
+    startNode->data.setVisited(true);
+    queue[back++] = startNode;
+    while(front < back){
+        Node<Vertex<T>>* current = queue[front++];
+        cout<<current->data.getData()<<"->";
+        Node<Vertex<T>>* neighbor = current->data.adj.getHead();
+        while(neighbor){
+            Node<Vertex<T>>* neighborRef = findVertexNode(neighbor->data.getData());
+            if(neighborRef && !neighborRef->data.isVisited()){
+                neighborRef->data.setVisited(true);
+                queue[back++] = neighborRef;
+            }
+            neighbor = neighbor->next;
+        }
+    }
+    delete[] queue;
+    cout<<endl;
+}
 
+template<typename T>
+void Graph<T>::DFS(const T& start){
+    Node<Vertex<T>>* startNode = findVertexNode(start);
+    if(!startNode){
+        cout<<"Nodo inicial no encontrado"<<endl;
+        return;
+    }
+    resetVisited();
+    Node<Vertex<T>>** stack = new Node<Vertex<T>>*[count];
+    int top = -1;
+    startNode->data.setVisited(true);
+    stack[++top] = startNode;
+    while(top >= 0){
+        Node<Vertex<T>>* current = stack[top--];
+        cout<<current->data.getData()<<"->";
+        Node<Vertex<T>>* neighbor = current->data.adj.getHead();
+        while(neighbor){
+            Node<Vertex<T>>* neighborRef = findVertexNode(neighbor->data.getData());
+            if(neighborRef && !neighborRef->data.isVisited()){
+                neighborRef->data.setVisited(true);
+                stack[++top] = neighborRef;
+            }
+            neighbor = neighbor->next;
+        }
+    }
+    delete[] stack;
+    cout<<endl;
 }
