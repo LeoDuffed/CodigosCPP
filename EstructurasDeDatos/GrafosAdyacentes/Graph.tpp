@@ -53,3 +53,20 @@ void Graph<T>::print() const {
         cout<<endl;
     }
 }
+
+template<typename T>
+void Graph<T>::resetVisited(){
+    for(int i = 0; i < count; i++){
+        
+    }
+}
+
+template<typename T>
+void Graph<T>::BFS(const T& start){
+    int startIndex = indexOf(start);
+    if(startIndex = -1){
+        cout<<"Nodo inicial no encontrado"<<endl;
+        return;
+    }
+
+}
