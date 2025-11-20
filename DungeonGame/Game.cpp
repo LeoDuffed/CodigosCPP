@@ -25,19 +25,10 @@ bool Game::init(const char* dungeonFile, const char* monsterFile){
         std::cout<<"Error cargando al mapa\n";
         return false;
     }
-    if(startId < 0) startId = firstNodeRead; // si no hubo START, usamos el primer leido
-    if(startId < 0 || treasureId < 0){
-        std::cout<<"Id's de inicio o tesoro invalido\n";
-        return false;
-    }
     hero.pos = startId;
     // Cargamos montruos
     if(!loadMonsters(monsterFile, monster, nMonsters, MAX_MONSTERS)){
         std::cout<<"Error cargando montruos\n";
-        return false;
-    }
-    if(nMonsters <= 0){
-        std::cout<<"No hay montruos disponibles\n";
         return false;
     }
     return true;
