@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "IO.h"
 #include "Node.h"
+#include "ListNode.h"
 
 Game::Game(int maxCorners): graph(maxCorners), startId(-1), treasureId(-1), nMonsters(0){
     // Con esta linea es "completamente" randon rand() 
@@ -118,16 +119,17 @@ void Game::showNeighbors(int id) const {
     const Node<int>* n = graph.search(id);
     if(!n) return;
     std::cout<<"Vecinos disponibles: \n";
-    const int* vs = n->getNeighbor();
-    int k = n->getNeighborNum();
-    for(int i = 0; i < k; i++){
-        int v = vs[i];
+    const LinkedList<int>& nei = n->getNeighbors();
+    ListNode<int>* cur = nei.getHead();
+    while(cur){
+        int v = cur->data;
         const Node<int>* nv = graph.search(v);
         if(nv){
             std::cout<<" ["<<v<<"] "<<nv->getName()<<"\n";
         } else {
             std::cout<<" ["<<v<<"] (desconocido)\n";
         }
+        cur = cur->next;
     }
 }
 
@@ -139,12 +141,12 @@ void Game::explorationLoop(){
         }
         Node<int>* section = graph.search(hero.pos);
         std::cout<<"\nEstas en: ["<<hero.pos<<"] "<<(section ? section->getName() : "(?)")<<"\n";
-        // Si no ha visitado la casilla, hay posibilidad de que se tope con un monstruo
+        // Si no ha visitado la casilla se podria encontar a un monstruo
         bool wasVisited = (section ? section->isVisited() : false);
         if(!wasVisited && encounterProb(hero.pos)){
             Monster m = chooseMonster();
             if(!combat(m)){
-                return; // murio el heroe
+                return; // murio el heroe (gg)
             }
         }
         if(section && !wasVisited){
@@ -158,13 +160,14 @@ void Game::explorationLoop(){
         // Validamos que exista el id que ingresaron
         bool ok = false;
         if(section){
-            const int* vs = section->getNeighbor();
-            int k = section->getNeighborNum();
-            for(int i = 0; i < k; i++){
-                if(vs[i] == nxt){
+            const LinkedList<int>& nei = section->getNeighbors();
+            ListNode<int>* cur = nei.getHead();
+            while(cur){
+                if(cur->data == nxt){
                     ok = true;
                     break;
                 }
+                cur = cur->next;
             }
         }
         if(!ok){

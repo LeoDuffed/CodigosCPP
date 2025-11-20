@@ -1,5 +1,6 @@
 #pragma once
 #include "Graph.h"
+#include "ListNode.h"
 
 // Constructor
 template<typename T>
@@ -14,7 +15,6 @@ Graph<T>::Graph(int maxCorners){
 // Destructor
 template<typename T>
 Graph<T>::~Graph(){
-    // Borramos los nodos que creamos
     for(int i = 0; i < capability; ++i){
         if(corners[i] != nullptr){
             delete corners[i];
@@ -61,7 +61,6 @@ bool Graph<T>::addEdges(int idA, int idB){
         std::cout<<"No se permiten lazos sobre el mismo vertice ("<<idA<<")\n";
         return false;
     }
-    // Como es un grafo no dirigido, agregamos en ambos sentido
     corners[idA]->addNeighbor(idB);
     corners[idB]->addNeighbor(idA);
     return true;
@@ -115,12 +114,11 @@ void Graph<T>::printCheatBFS(int start, int end) const{
         if(!node) continue;
 
         // recorremos los vecinos
-        const int* neig = node->getNeighbor(); 
-        int n = node->getNeighborNum();
-        for(int i = 0; i < n; ++i){
-            int v = neig[i];
-            if(v < 0 || v >= capability) continue;
-            if(!visit[v] && idExists(v)){
+        const LinkedList<int>& neig = node->getNeighbors(); 
+        ListNode<int>* current = neig.getHead();
+        while(current){
+            int v = current->data;
+            if(v >= 0 && v < capability && idExists(v) && !visit[v]){
                 visit[v] = true;
                 father[v] = u;
                 queue[back++] = v;
@@ -129,12 +127,12 @@ void Graph<T>::printCheatBFS(int start, int end) const{
                     break;
                 }
             }
+            current = current->next;
         }
     }
     if(!founded){
         std::cout<<"No hay ruta, gg\n";
     } else {
-        // reconstruimos la ruta en un arreglo temporal
         int* path = new int[capability];
         int size = 0;
         for(int v = end; v != -1; v = father[v]){
