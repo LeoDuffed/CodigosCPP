@@ -1,6 +1,6 @@
 #ifndef NODE_H
 #define NODE_H
-#include <iostream>
+#include "LinkedList.h"
 
 template<typename T>
 class Node{
@@ -9,20 +9,20 @@ class Node{
         char name[64];
         double encounterProb;
         bool visited;
-        int neighborNum;
-        int* neighbors;
+        LinkedList<int> neighbors;
         T extra;
     public:
         Node();
         Node(int id, const char* name, double prob, const T& extra = T{});
-        ~Node();
+        ~Node() = default;
         // Getters
         int getId() const;
         const char* getName() const;
         double getEncounterProb() const;
         bool isVisited() const;
         int getNeighborNum() const;
-        const int* getNeighbor() const;
+        const LinkedList<int>& getNeighbors() const;
+        LinkedList<int>& getNeighbors();
         T& getExtra();
         const T& getExtra() const;
         // Setters
@@ -33,6 +33,7 @@ class Node{
         void setExtra(const T& extra);
         // Aristas
         void addNeighbor(int neighborId);
+        bool hasNeighbor(int neighborId) const;
 };
 
 #include "Node.tpp"

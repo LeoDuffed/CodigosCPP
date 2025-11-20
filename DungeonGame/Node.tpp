@@ -1,5 +1,6 @@
 #pragma once
 #include "Node.h"
+#include <cstring>
 
 // Constructor por defecto
 template<typename T>
@@ -8,8 +9,6 @@ Node<T>::Node(){
     name[0] = '\0';
     encounterProb = 0.0;
     visited = false;
-    neighborNum = 0;
-    neighbors = nullptr;
     extra = T{};
 }
 
@@ -17,27 +16,15 @@ Node<T>::Node(){
 template<typename T>
 Node<T>::Node(int id, const char* name, double prob, const T& extra){
     this->id = id;
-    int i = 0;
     if(name){
-        for(; name[i] != '\0' && i < 63; ++i){
-            this->name[i] = name[i];
-        }
-        this->name[i] = '\0';
+        std::strncpy(this->name, name, 63);
+        this->name[63] = '\0';
     } else {
         this->name[0] = '\0';
     }
     this->encounterProb = prob;
     visited = false;
-    neighborNum = 0;
-    neighbors = nullptr;
     this->extra = extra;
-}
-
-// Destructor
-template<typename T>
-Node<T>::~Node(){
-    delete[] neighbors;
-    neighbors = nullptr;
 }
 
 // Getters
@@ -54,10 +41,13 @@ template<typename T>
 bool Node<T>::isVisited() const { return visited; }
 
 template<typename T>
-int Node<T>::getNeighborNum() const { return neighborNum; }
+int Node<T>::getNeighborNum() const { return neighbors.size(); }
 
 template<typename T>
-const int* Node<T>::getNeighbor() const { return neighbors; }
+const LinkedList<int>& Node<T>::getNeighbors() const { return neighbors; }
+
+template<typename T>
+LinkedList<int>& Node<T>::getNeighbors() { return neighbors; }
 
 template<typename T>
 T& Node<T>::getExtra() { return extra; }
@@ -72,11 +62,8 @@ void Node<T>::setId(int id){ this->id = id; }
 template<typename T>
 void Node<T>::setName(const char* name){
     if(name){
-        int i = 0;
-        for(; name[i] != '\0' && i < 63; ++i){
-            this->name[i] = name[i];
-        }
-        this->name[i] = '\0';
+        std::strncpy(this->name, name, 63);
+        this->name[63] = '\0';
     } else {
         this->name[0] = '\0';
     }
@@ -94,11 +81,12 @@ void Node<T>::setExtra(const T& extra) { this->extra = extra; }
 // Aristas
 template<typename T>
 void Node<T>::addNeighbor(int neighborId){
-    // Creamos un nuevo arreglo con +1 espacio, para gragar y copiarlo
-    int* newArray = new int[neighborNum + 1];
-    for(int i = 0; i<neighborNum; ++i) newArray[i] = neighbors[i];
-    newArray[neighborNum] = neighborId;
-    delete[] neighbors;
-    neighbors = newArray;
-    ++neighborNum;
+    if(!hasNeighbor(neighborId)){
+        neighbors.pushBack(neighborId);
+    }
+}
+
+template<typename T>
+bool Node<T>::hasNeighbor(int neighborId) const{
+    return neighbors.search(neighborId) != nullptr;
 }

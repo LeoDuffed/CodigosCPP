@@ -1,15 +1,14 @@
 #pragma once
 #include "LinkedList.h"
-#include "ListNode.h"
 
 template<typename T>
 LinkedList<T>::LinkedList():head(nullptr), n(0){}
 
 template<typename T>
 LinkedList<T>::~LinkedList() {
-    ListNode<T>* current=head;
+    NeighborList<T>* current=head;
     while (current) {
-        ListNode<T>* nxt = current->next;
+        NeighborList<T>* nxt = current->next;
         delete current;
         current = nxt;
     }
@@ -29,11 +28,11 @@ int LinkedList<T>::size() const{
 
 template<typename T>
 void LinkedList<T>::pushBack(const T &value) {
-    ListNode<T>* newNode= new ListNode<T>(value);
+    NeighborList<T>* newNode= new NeighborList<T>(value);
     if (!head) {
         head= newNode;
     }else {
-        ListNode<T>* current= head;
+        NeighborList<T>* current= head;
         while (current->next) {
             current= current->next;
         }
@@ -43,13 +42,13 @@ void LinkedList<T>::pushBack(const T &value) {
 }
 
 template<typename T>
-ListNode<T>* LinkedList<T>::getHead() const{
+NeighborList<T>* LinkedList<T>::getHead() const{
     return head;
 }
 
 template<typename T>
-ListNode<T>* LinkedList<T>::search(const T& value) const{
-    ListNode<T>* current = head;
+NeighborList<T>* LinkedList<T>::search(const T& value) const{
+    NeighborList<T>* current = head;
     while (current) {
         if (current->data == value) {
             return current;

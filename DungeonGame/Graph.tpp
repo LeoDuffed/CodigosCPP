@@ -1,6 +1,6 @@
 #pragma once
 #include "Graph.h"
-#include "ListNode.h"
+#include "NeighborList.h"
 
 // Constructor
 template<typename T>
@@ -115,7 +115,7 @@ void Graph<T>::printCheatBFS(int start, int end) const{
 
         // recorremos los vecinos
         const LinkedList<int>& neig = node->getNeighbors(); 
-        ListNode<int>* current = neig.getHead();
+        NeighborList<int>* current = neig.getHead();
         while(current){
             int v = current->data;
             if(v >= 0 && v < capability && idExists(v) && !visit[v]){
