@@ -82,7 +82,7 @@ bool Game::combat(Monster m){
             int dmg = hero.atk - m.def;
             if(dmg < 1) dmg = 1;
             m.hp -= dmg;
-            std::cout<<hero.name<<" golpea "<<dmg<<" -> HP de "<<m.name<<" "<<m.hp<<"\n";
+            std::cout<<hero.name<<" golpea "<<dmg<<" -> HP de "<<m.name<<" "<<(m.hp <= 0 ? 0 : m.hp)<<"\n";
         } else {
             int dmg = m.atk - hero.def;
             if(dmg < 1) dmg = 1;
