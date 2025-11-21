@@ -4,55 +4,55 @@
 
 // Constructor
 template<typename T>
-Graph<T>::Graph(int maxCorners){
-    if(maxCorners <= 0) maxCorners = 1;
-    capability = maxCorners;
+Graph<T>::Graph(int maxnodes){
+    if(maxnodes <= 0) maxnodes = 1;
+    capability = maxnodes;
     cornerNum = 0;
-    corners = new Node<T>*[capability];
-    for(int i = 0; i<capability; ++i) corners[i] = nullptr;
+    nodes = new Node<T>*[capability]; // reservamos un arreglo dinamico de punteros a node
+    for(int i = 0; i<capability; ++i) nodes[i] = nullptr; // inicializamos todo en nullptr
 }
 
 // Destructor
 template<typename T>
 Graph<T>::~Graph(){
     for(int i = 0; i < capability; ++i){
-        if(corners[i] != nullptr){
-            delete corners[i];
-            corners[i] = nullptr;
+        if(nodes[i] != nullptr){
+            delete nodes[i];
+            nodes[i] = nullptr;
         }
     }
-    delete[] corners;
-    corners = nullptr;
+    delete[] nodes;
+    nodes = nullptr;
 }
 
 template<typename T>
 int Graph<T>::maxCapability() const { return capability; }
 
 template<typename T>
-int Graph<T>::totalCorners() const { return cornerNum; }
+int Graph<T>::totalNodes() const { return cornerNum; }
 
 template<typename T>
 bool Graph<T>::idExists(int id) const{
-    return (id >= 0 && id < capability && corners[id] != nullptr);
+    return (id >= 0 && id < capability && nodes[id] != nullptr);
 }
 
 template<typename T>
-bool Graph<T>::addCorners(int id, const char* name, double prob, const T& extra){
+bool Graph<T>::addNodes(int id, const char* name, double prob){ // clase para agregar nodos
     if(id < 0 || id >= capability){
-        std::cout<<"Fuera de rango: "<<id<<"\n";
+        std::cout<<"Error, nodo con el id: "<<id<<"\n";
         return false;
     }
-    if(corners[id] != nullptr){
-        std::cout<<"Ya existe un vertice con id "<<id<<"\n";
+    if(nodes[id] != nullptr){
+        std::cout<<"Ya existe un vertice con id: "<<id<<"\n";
         return false;
     }
-    corners[id] = new Node<T>(id, name, prob, extra);
+    nodes[id] = new Node<T>(id, name, prob);
     ++cornerNum;
     return true;
 }
 
 template<typename T>
-bool Graph<T>::addEdges(int idA, int idB){
+bool Graph<T>::addEdges(int idA, int idB){ // agregamos aristas al grafo
     if(!idExists(idA) || !idExists(idB)){
         std::cout<<"No se puede crear arista "<<idA<<" - "<<idB<<" (uno no existe)\n";
         return false;
@@ -61,40 +61,36 @@ bool Graph<T>::addEdges(int idA, int idB){
         std::cout<<"No se permiten lazos sobre el mismo vertice ("<<idA<<")\n";
         return false;
     }
-    corners[idA]->addNeighbor(idB);
-    corners[idB]->addNeighbor(idA);
+    nodes[idA]->addNeighbor(idB);
+    nodes[idB]->addNeighbor(idA);
     return true;
 }
 
 template<typename T>
 Node<T>* Graph<T>::search(int id){
     if(id < 0 || id >= capability) return nullptr;
-    return corners[id];
+    return nodes[id];
 }
 
 template<typename T>
 const Node<T>* Graph<T>::search(int id) const{
     if(id < 0 || id >= capability) return nullptr;
-    return corners[id];
+    return nodes[id];
 }
 
-template<typename T>
+template<typename T> // TODO, revisar mas a fondo este metodo
 void Graph<T>::printCheatBFS(int start, int end) const{
     if(start < 0 || start >= capability || end < 0 || end >= capability){
         std::cout<<"los id's estan fuera de rango\n";
         return;
     } 
-    if(!idExists(start) || !idExists(end)){
-        std::cout<<"no existe inicio o fin\n";
-        return;
-    }
     if(start == end){
         std::cout<<"Ruta: "<<start<<"\n";
         return;
     }
 
     // Estructuras
-    int* queue = new int[capability];
+    int* queue = new int[capability]; 
     bool* visit = new bool[capability];
     int* father = new int[capability];
     for(int i = 0; i < capability; ++i){
@@ -110,7 +106,7 @@ void Graph<T>::printCheatBFS(int start, int end) const{
     // BFS
     while(front < back && !founded){
         int u = queue[front++];
-        const Node<T>* node = corners[u];
+        const Node<T>* node = nodes[u];
         if(!node) continue;
 
         // recorremos los vecinos
@@ -151,14 +147,3 @@ void Graph<T>::printCheatBFS(int start, int end) const{
     delete[] father;
 }
 
-template<typename T>
-void Graph<T>::printSummary() const{
-    std::cout<<"Graph summary ("<<cornerNum<<"/"<<capability<<")\n";
-    for(int i = 0; i < capability; ++i){
-        const Node<T>* node = corners[i];
-        if(!node) continue;
-        std::cout<<"["<<node->getId()<<"] "<<node->getName()
-                 <<" prob="<<node->getEncounterProb()
-                 <<" vecinos="<<node->getNeighborNum()<<"\n";
-    }
-}

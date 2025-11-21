@@ -37,7 +37,7 @@ bool loadDungeon(const char* path, Graph<int>& G, int& startId, int& treasureId,
             return false;
         }
         if(firstNodeRead < 0) firstNodeRead = id; // Guardamos el primero por si falta START
-        if(!G.addCorners(id, name, prob, 0)){ // Insertamos el vértice en el grafo
+        if(!G.addNodes(id, name, prob)){ // Insertamos el vértice en el grafo
             std::cout<<"No se pudo agregar el nodo con el id "<<id<<"\n";
             return false;
         }

@@ -3,25 +3,27 @@
 #include <iostream>
 #include "Node.h"
 
-// Grafo usando lista de adyacencia
+// Grafo usando lista de adyacencia (Grafo no dirigido)
+// El grafo es un arreglo de punteros a node, y 
+// cada node tiene una lista de vicinos, loquisimo
+// (lista enlazada de ids)
 template<typename T>
 class Graph{
     private: 
-        Node<T>** corners; 
+        Node<T>** nodes; 
         int capability;
         int cornerNum;
         bool idExists(int id) const;
     public:
-        Graph(int maxCorners = 64);
+        Graph(int maxNodes = 64);
         ~Graph();
         int maxCapability() const;
-        int totalCorners() const;
-        bool addCorners(int id, const char* name, double prob, const T& extra = T{});
+        int totalNodes() const;
+        bool addNodes(int id, const char* name, double prob);
         bool addEdges(int idA, int idB);
         Node<T>* search(int id);
         const Node<T>* search(int id) const;
         void printCheatBFS(int start, int end) const;
-        void printSummary() const;
 };  
 
 #include "Graph.tpp"

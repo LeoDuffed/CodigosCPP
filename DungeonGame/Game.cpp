@@ -3,7 +3,7 @@
 #include "Node.h"
 #include "NeighborList.h"
 
-Game::Game(int maxCorners): graph(maxCorners), startId(-1), treasureId(-1), nMonsters(0){
+Game::Game(int maxNodes): graph(maxNodes), startId(-1), treasureId(-1), nMonsters(0){
     // Con esta linea es "completamente" randon rand() 
     srand((unsigned)time(nullptr));
     // Hero por defecto
