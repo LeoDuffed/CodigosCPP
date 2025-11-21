@@ -128,24 +128,24 @@ void Graph<T>::DFS(const T& start){
 
 template<typename T>
 void Graph<T>::dijkstra(const T& start){
-    int starIndex = indexOf(start);
-    if(starIndex == -1){
+    int startIndex = indexOf(start);
+    if(startIndex == -1){
         cout<<"No existe el vertice origen"<<endl;
         return;
     }
-    int* distances = new int[count];
+    int* distance = new int[count];
     bool* use = new bool[count]; // arreglo de los no visitados
     for(int i = 0; i < count; i++){
-        distances[i] = INT_MAX;
+        distance[i] = INT_MAX;
         use[i] = false;
     }
-    distances[starIndex] = 0;
+    distance[startIndex] = 0;
     for(int i = 0; i < count; i++){
         int u = -1;
         int minDist = INT_MAX;
         for(int j = 0; j < count; j++){
-            if(!use[j] && distances[j] < minDist){
-                minDist = distances[j];
+            if(!use[j] && distance[j] < minDist){
+                minDist = distance[j];
                 u = j; // es el indice no visitado al que vamos a analizar
             }
         }
@@ -157,10 +157,97 @@ void Graph<T>::dijkstra(const T& start){
         for(int k = 0; k < count; k++){
             int weight = matrix[u][k];
             if(weight > 0){
-                if(!use[k] && distances[u] != INT_MAX && distances[u] + weight < distances[k]){
-                    distances[k] = distances[u] + weight;
+                if(!use[k] && distance[u] != INT_MAX && distance[u] + weight < distance[k]){
+                    distance[k] = distance[u] + weight;
                 }
             }
         }
     }
+}
+
+template <typename T>
+void Graph<T>::dijkstra(const T& start, const T& end){
+    int startIndex = indexOf(start);
+    int endIndex = indexOf(end);
+    if(startIndex == -1 || endIndex == -1) {
+        cout << "Vertices de origen o destino no existen" << endl;
+        return;
+    }
+
+    int* distances = new int[count];
+    bool* used = new bool[count];
+    int* prevs = new int[count];
+
+    for (int i = 0; i < count; i++){
+        distances[i] = INT_MAX;
+        used[i] = false;
+        prevs[i] = -1;
+    }
+    distances[startIndex] = 0;
+    
+    for(int i = 0; i < count; i++) {
+        int u = -1;
+        int minDist = INT_MAX;
+        for(int j = 0; j < count; j++) {
+            if(!used[j] && distances[j] < minDist) {
+                minDist = distances[j];
+                u = j;
+            }
+        }
+        
+        if(u == -1) {
+            // No hay más vértices alcanzables
+            break;
+        }
+        if(u == endIndex) {
+            // Llegamos al nodo destino
+            break;
+        }
+        used[u] = true;
+        
+        for(int k = 0; k < count; k++){
+            int weight = matrix[u][k];
+            if(weight > 0 && !used[k]) {
+                if(distances[u] != INT_MAX && distances[u] + weight < distances[k]) {
+                    distances[k] = distances[u] + weight;
+                    prevs[k] = u;
+                }
+            }
+        }
+    }
+
+    if(distances[endIndex] == INT_MAX) {
+        cout << "No existe camino de " << start << " a " << end << endl;
+        delete[] distances;
+        delete[] used;
+        delete[] prevs;
+        return;
+    }
+
+    // Reconstrucción del camino
+    int pathSize = 0;
+    int* path = new int[count];
+    int current = endIndex;
+    
+    while(current != -1 && pathSize < count) {  // Protección contra bucles
+        path[pathSize++] = current;
+        if(current == startIndex) {
+            break;
+        }
+        current = prevs[current];
+    }
+
+    cout << "El mejor camino de " << start << " a " << end << ":" << endl;
+    for(int i = pathSize - 1; i >= 0; i--) {
+        cout << vertices[path[i]];
+        if(i > 0) {
+            cout << " -> ";
+        }
+    }
+    cout << " (distancia = " << distances[endIndex] << ")" << endl;
+
+    delete[] distances;
+    delete[] used;
+    delete[] prevs;
+    delete[] path;
 }

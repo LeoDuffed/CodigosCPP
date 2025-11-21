@@ -21,8 +21,13 @@ int main () {
 
     grafo.printMatrix();
 
+    cout<<"\nBFS"<<endl;
     grafo.BFS("A");
+    cout<<"\nDFS"<<endl;
     grafo.DFS("A");
+
+    cout<<"\n";
+    grafo.dijkstra("A", "E");
 
     return 0;
 }

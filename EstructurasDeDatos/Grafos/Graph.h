@@ -41,6 +41,8 @@ class Graph {
         void BFS(const T& start);
         void DFS(const T& start);
         void dijkstra(const T& start);
+        void dijkstra(const T& start, const T& end);
+
 };
 
 #include "Graph.tpp"
