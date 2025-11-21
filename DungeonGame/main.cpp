@@ -23,5 +23,5 @@ int main(){
     - Maybe despues de meter el cheat code, poder jugar
     - Agregar abilidades al heroe
     - Guardar partida
-    -  
+    - Que se disfruten mas las batallas
 */
