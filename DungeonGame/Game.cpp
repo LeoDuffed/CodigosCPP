@@ -78,6 +78,8 @@ bool Game::combat(Monster m){
     bool heroTurn = true;
 
     while(hero.alive() && m.hp > 0){
+        std::cout<<"[Turno de "<<(heroTurn ? hero.name : m.name)<<"] Presiona Enter para continuar...\n";
+        std::cin.get();
         if(heroTurn){
             int dmg = hero.atk - m.def;
             if(dmg < 1) dmg = 1;
@@ -96,7 +98,7 @@ bool Game::combat(Monster m){
         hero.hp += m.r_hp;
         hero.atk += m.r_atk;
         hero.def += m.r_def;
-        std::cout<<"Sube stats: +"<<m.r_hp<<" HP +"<<m.r_atk<<" ATK +"<<m.r_def<<" DEF\n";
+        std::cout<<"\nSube stats: +"<<m.r_hp<<" HP +"<<m.r_atk<<" ATK +"<<m.r_def<<" DEF\n";
         std::cout<<"Nuevas stats: "<<hero.hp<<" HP, "<<hero.atk<<" ATK, "<<hero.def<<" DEF!\n";
         return true;
     } else {
@@ -108,7 +110,7 @@ bool Game::combat(Monster m){
 void Game::showNeighbors(int id) const {
     const Node<int>* n = graph.search(id);
     if(!n) return;
-    std::cout<<"Vecinos disponibles: \n";
+    std::cout<<"\nVecinos disponibles: \n";
     const LinkedList<int>& nei = n->getNeighbors();
     NeighborList<int>* cur = nei.getHead();
     while(cur){
@@ -147,6 +149,7 @@ void Game::explorationLoop(){
         std::cout<<"Elige a donde moverte: ";
         int nxt;
         std::cin>>nxt;
+        std::cin.ignore(10000, '\n');
         // Validamos que exista el id que ingresaron
         bool ok = false;
         if(section){
