@@ -49,12 +49,6 @@ const LinkedList<int>& Node<T>::getNeighbors() const { return neighbors; }
 template<typename T>
 LinkedList<int>& Node<T>::getNeighbors() { return neighbors; }
 
-template<typename T>
-T& Node<T>::getExtra() { return extra; }
-
-template<typename T>
-const T& Node<T>::getExtra() const { return extra; }
-
 // Setters
 template<typename T>
 void Node<T>::setId(int id){ this->id = id; }
@@ -74,9 +68,6 @@ void Node<T>::setEncounterProb(double prob){ encounterProb = prob; }
 
 template<typename T>
 void Node<T>::setVisited(bool visited) { this->visited = visited; }
-
-template<typename T>
-void Node<T>::setExtra(const T& extra) { this->extra = extra; }
 
 // Aristas
 template<typename T>

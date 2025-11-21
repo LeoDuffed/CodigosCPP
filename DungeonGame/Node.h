@@ -23,14 +23,11 @@ class Node{
         int getNeighborNum() const;
         const LinkedList<int>& getNeighbors() const;
         LinkedList<int>& getNeighbors();
-        T& getExtra();
-        const T& getExtra() const;
         // Setters
         void setId(int id);
         void setName(const char* name);
         void setEncounterProb(double prob);
         void setVisited(bool visited);
-        void setExtra(const T& extra);
         // Aristas
         void addNeighbor(int neighborId);
         bool hasNeighbor(int neighborId) const;

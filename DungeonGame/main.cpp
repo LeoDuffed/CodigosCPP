@@ -16,3 +16,12 @@ int main(){
     cout << "\nGracias por jugar.\n";
     return 0;
 }
+
+
+/* Cosas que implementar
+
+    - Maybe despues de meter el cheat code, poder jugar
+    - Agregar abilidades al heroe
+    - Guardar partida
+    -  
+*/

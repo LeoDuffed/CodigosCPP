@@ -12,7 +12,7 @@ Game::Game(int maxNodes): graph(maxNodes), startId(-1), treasureId(-1), nMonster
     hero.name[2] = 'F';
     hero.name[3] = 'F';
     hero.name[4] = '\0';
-    hero.hp = 20;
+    hero.hp = 30;
     hero.atk = 5;
     hero.def = 2;
     hero.pos = -1;

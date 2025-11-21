@@ -1,6 +1,16 @@
-MONSTERS 5
-0 Esqueleto  10 3 1 0.40  3 1 0
-1 Murcielago  8 2 0 0.30  2 1 0
-2 Slime       6 1 0 0.60  2 1 0
-3 Demonio    14 4 2 0.20  4 2 1
-4 Guardián   18 5 3 0.10  5 2 2
+MONSTERS 15
+0 Esqueleto   10 3 1 0.40  3 1 0
+1 Murcielago   8 2 0 0.30  2 1 0
+2 Slime        6 1 0 0.60  2 1 0
+3 Demonio     14 4 2 0.20  4 2 1
+4 Guardián    18 5 3 0.10  5 2 2
+5 Lobo         9 3 1 0.50  3 1 0
+6 Arana        7 2 0 0.55  2 1 0
+7 Golem       20 5 4 0.15  5 2 2
+8 Espectro    12 4 2 0.25  4 2 1
+9 Nigromante  16 3 3 0.18  5 1 2
+10 Mimico     14 5 2 0.22  4 2 1
+11 Elemental  18 6 3 0.12  6 2 2
+12 Quimera    22 7 4 0.10  7 3 2
+13 Sierpe     19 6 3 0.14  6 2 2
+14 Titan      28 8 5 0.08  8 3 3
