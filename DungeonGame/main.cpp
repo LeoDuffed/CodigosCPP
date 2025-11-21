@@ -7,7 +7,7 @@ int main(){
     string clave;
     getline(cin, clave);
     bool cheat = (clave == "cheatPath");
-    Game game(64); // capacidad máxima de vértices = 64
+    Game game(64); 
     if(!game.init("data/dungeon.txt", "data/monsters.txt")){
         cout << "Error: no se pudo inicializar el juego." << endl;
         return 1;
@@ -18,7 +18,6 @@ int main(){
 }
 
 /* ToDo
-    - Maybe despues de meter el cheat code, poder jugar
     - Que se disfruten mas las batallas
     - Ponerle pesos a cambiar de nodo (agregar xp)
                 ----- EXTRA -----

@@ -37,7 +37,6 @@ bool Game::init(const char* dungeonFile, const char* monsterFile){
 void Game::run(bool cheatBFS){
     if(cheatBFS){
         showCheatPath();
-        return;
     }
     explorationLoop();
 }
