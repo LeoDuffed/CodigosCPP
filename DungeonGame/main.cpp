@@ -17,11 +17,11 @@ int main(){
     return 0;
 }
 
-
-/* Cosas que implementar
-
+/* ToDo
     - Maybe despues de meter el cheat code, poder jugar
-    - Agregar abilidades al heroe
-    - Guardar partida
     - Que se disfruten mas las batallas
+    - Ponerle pesos a cambiar de nodo (agregar xp)
+                ----- EXTRA -----
+    - Agregar abilidades al heroe (puntos extras)
+    - Guardar partida (puntos extras)
 */
