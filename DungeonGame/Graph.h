@@ -15,7 +15,7 @@ class Graph{
         int cornerNum;
         bool idExists(int id) const;
     public:
-        Graph(int maxNodes = 64);
+        Graph(int maxNodes = 65);
         ~Graph();
         int maxCapability() const;
         int totalNodes() const;

@@ -10,7 +10,7 @@
 class Game{
     public:
         enum {MAX_MONSTERS = 64};
-        Game(int maxNodes = 64);
+        Game(int maxNodes = 65);
         // Se inicializa con archivos, si falla I/O o los datos son invalidos da false
         bool init(const char* dungeonFile, const char* monsterFile);
         // Funcion para ejecutar el juego, si cheatBFS = true se muestra el cheat path
