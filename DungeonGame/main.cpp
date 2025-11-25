@@ -16,10 +16,3 @@ int main(){
     cout << "\nGracias por jugar.\n";
     return 0;
 }
-
-/* ToDo
-    - Ponerle pesos a cambiar de nodo (camino con menos probabilidad de encuentro)
-                ----- EXTRA -----
-    - Agregar abilidades al heroe (puntos extras)
-    - Guardar partida (puntos extras)
-*/
