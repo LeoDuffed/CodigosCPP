@@ -1,6 +1,7 @@
 #pragma once
 #include "Graph.h"
 #include "NeighborList.h"
+#include <limits>
 
 // Constructor
 template<typename T>
@@ -78,63 +79,70 @@ const Node<T>* Graph<T>::search(int id) const{
     return nodes[id];
 }
 
-template<typename T> // TODO, revisar mas a fondo este metodo
-void Graph<T>::printCheatBFS(int start, int end) const{
-    if(start < 0 || start >= capability || end < 0 || end >= capability){
-        std::cout<<"los id's estan fuera de rango\n";
-        return;
-    } 
+template<typename T> 
+void Graph<T>::printCheatDijstrak(int start, int end) const{
     if(start == end){
         std::cout<<"Ruta: "<<start<<"\n";
         return;
     }
-
-    // Estructuras
-    int* queue = new int[capability]; 
-    bool* visit = new bool[capability];
+    // como mis "pesos" son las probabilidades de encuentro
+    // uso la libreria de numeric_limits, para usar doubles
+    const double MAX_DOUBLE = std::numeric_limits<double>::infinity();
+    // arreglos para el dijstrak
+    double* dist = new double[capability];
     int* father = new int[capability];
-    for(int i = 0; i < capability; ++i){
-        queue[i] = -1;
-        visit[i] = false;
+    bool* visit = new bool[capability];
+    for(int i = 0; i < capability; i++){
+        dist[i] = MAX_DOUBLE;
         father[i] = -1;
+        visit[i] = false;
     }
-    int front = 0, back = 0;
-    queue[back++] = start;
-    visit[start] = true;
-    bool founded = false;
-
-    // BFS
-    while(front < back && !founded){
-        int u = queue[front++];
+    dist[start] = 0.0;
+    //Disjtrak
+    for(int i = 0; i < capability; i++){
+        int u = -1;
+        double best = MAX_DOUBLE;
+        for(int j = 0; j < capability; j++){
+            if(!visit[j] && idExists(j) && dist[j] < best){
+                best = dist[j];
+                u = j;
+            }
+        }
+        // si ya no hay mas o llegamos al tesoro = break;
+        if(u == -1) break;
+        if(u == end) break;
+        visit[u] = true;
         const Node<T>* node = nodes[u];
         if(!node) continue;
-
-        // recorremos los vecinos
-        const LinkedList<int>& neig = node->getNeighbors(); 
+        // Empieza la relajacion xd
+        const LinkedList<int>& neig = node->getNeighbors();
         NeighborList<int>* current = neig.getHead();
         while(current){
             int v = current->data;
             if(v >= 0 && v < capability && idExists(v) && !visit[v]){
-                visit[v] = true;
-                father[v] = u;
-                queue[back++] = v;
-                if(v == end){
-                    founded = true;
-                    break;
+                const Node<T>* nv = nodes[v];
+                double weight = 0.0;
+                if(nv){
+                    weight = nv->getEncounterProb();
+                }
+                double cand = dist[u] + weight;
+                if(cand < dist[v]){
+                    dist[v] = cand;
+                    father[v] = u;
                 }
             }
             current = current->next;
         }
     }
-    if(!founded){
+    if(dist[end] == MAX_DOUBLE){
         std::cout<<"No hay ruta, gg\n";
     } else {
+        // ahora reconstruimos el caminito 
         int* path = new int[capability];
         int size = 0;
         for(int v = end; v != -1; v = father[v]){
             path[size++] = v;
         }
-        std::cout<<"Ruta: ";
         for(int i = size - 1; i >= 0; --i){
             std::cout<<path[i];
             if(i > 0) std::cout<<" -> ";
@@ -142,8 +150,7 @@ void Graph<T>::printCheatBFS(int start, int end) const{
         std::cout<<"\n";
         delete[] path;
     }
-    delete[] queue;
-    delete[] visit;
+    delete[] dist;
     delete[] father;
+    delete[] visit;
 }
-

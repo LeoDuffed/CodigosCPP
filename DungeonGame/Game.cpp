@@ -42,8 +42,8 @@ void Game::run(bool cheatBFS){
 }
 
 void Game::showCheatPath() const{
-    std::cout<<"Cheat path: ";
-    graph.printCheatBFS(startId, treasureId);
+    std::cout<<"La ruta mas segura: ";
+    graph.printCheatDijstrak(startId, treasureId);
 }
 
 bool Game::encounterProb(int roomID){
@@ -128,7 +128,7 @@ void Game::showNeighbors(int id) const {
 void Game::explorationLoop(){
     while(hero.alive()){
         if(hero.pos == treasureId){
-            std::cout<<"!Llegaste al tesoro!!!\n";
+            std::cout<<"Llegaste al tesoro!\nNo ganas nada gg.";
             return;
         }
         Node<int>* section = graph.search(hero.pos);

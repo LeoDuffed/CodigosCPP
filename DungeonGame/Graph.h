@@ -23,7 +23,7 @@ class Graph{
         bool addEdges(int idA, int idB);
         Node<T>* search(int id);
         const Node<T>* search(int id) const;
-        void printCheatBFS(int start, int end) const;
+        void printCheatDijstrak(int start, int end) const;
 };  
 
 #include "Graph.tpp"
