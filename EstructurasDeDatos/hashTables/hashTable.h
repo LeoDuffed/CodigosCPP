@@ -13,7 +13,7 @@ class HashTable{
         ~HashTable();
         void insert(int key, T value);
         void remove(int key);
-        T& search(int key);
+        T* search(int key);
         void printTable() const;
 };
 

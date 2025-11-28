@@ -20,10 +20,12 @@ template<typename T>
 HashTable<T>::~HashTable(){
     for(int i = 0; i < TABLE_SIZE; i++){
         Node<T>* current = table[i];
-        while(current!= nullptr){
+        while(current != nullptr){
             Node<T>* tmp = current;
-
+            current = current->next;
+            delete tmp;
         }
+        table[i] = nullptr;
     }
 }
 
@@ -46,6 +48,26 @@ void HashTable<T>::insert(int key, T value){
 }
 
 template<typename T>
+void HashTable<T>::remove(int key){
+    int index = hashFunction(key);
+    Node<T>* current = table[index];
+    Node<T>* prev = nullptr;
+    while(current != nullptr && current->key != key){
+        prev = current;
+        current = current->next;
+    }
+    if(current == nullptr){
+        return;
+    }
+    if(prev == nullptr){
+        table[index] = current->next;
+    } else {
+        prev->next = current->next;
+    }
+    delete current;
+}
+
+template<typename T>
 void HashTable<T>::printTable() const{
     for(int i = 0; i < TABLE_SIZE; i++){
         Node<T>* current = table[i];
@@ -64,14 +86,14 @@ void HashTable<T>::printTable() const{
 }
 
 template<typename T>
-T& HashTable<T>::search(int key){
+T* HashTable<T>::search(int key){
     int index = hashFunction(key);
     Node<T>* current = table[index];
-    while(current->key != key && current != nullptr){
+    while(current != nullptr && current->key != key){
         current = current->next;
     }
     if(current != nullptr){
-        return current->data;
+        return &(current->data);
     }
     return nullptr;
 }
