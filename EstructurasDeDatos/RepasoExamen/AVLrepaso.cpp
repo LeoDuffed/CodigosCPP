@@ -10,7 +10,7 @@ class Node{
         Node* der;
 
         Node(int data){
-            data = data;
+            this->data = data; // asignar al miembro, no al parámetro
             height = 1;
             izq = nullptr;
             der = nullptr;
@@ -61,7 +61,7 @@ class AVL{
             node->der = tmp2; // es para conservar el subarbol intermedio si es nullptr
             // Acutalizamos las alturas
             node->height = 1+maxInt(height(node->izq), height(node->der));
-            node->height = 1+maxInt(height(tmp->izq), height(tmp->der));
+            tmp->height = 1+maxInt(height(tmp->izq), height(tmp->der));
             // Returneamos el nuevo nodo
             return tmp;
         }
@@ -108,10 +108,30 @@ class AVL{
             // si no se necesitaba balancer regresamos el nodo como llego
             return node;
         }
+        void print(Node* node) const{
+            if(node == nullptr) return;
+            cout<<"Nodo: "<<node->data<<" ( Izq: ";
+            if(node->izq) cout<<node->izq->data;
+            else cout<<"null";
+            cout<<", Der: ";
+            if(node->der) cout<<node->der->data;
+            else cout<<"null";
+            cout<<" )"<<endl;
+            print(node->izq);
+            print(node->der);
+        }
 
     public:
         AVL(){ root = nullptr; }
         void insert(int value){ root = insertRec(root, value); }
+        void print(){
+            if( root == nullptr) {
+                cout<<"El arbol esta vacio"<<endl;
+                return;
+            }
+            print(root);
+            cout<<"\n";
+        }
 };
 
 
@@ -126,5 +146,6 @@ int main(){
     for (int i = 0; i < n; i++) {
         tree.insert(valores[i]);
     }
+    tree.print();
     return 0;
 }
