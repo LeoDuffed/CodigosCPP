@@ -3,7 +3,6 @@
 #include "Graph.h"
 #include "Queue.h"
 #include "Stack.h"
-
 using namespace std;
 
 template <typename T>
@@ -13,25 +12,17 @@ int Graph<T>::indexOf(const T& v) const {
             return i;
         }
     }
-    
     return -1;
 }
 
 template<typename T>
 bool Graph<T>::addVertex(const T& v) {
     // Si llego al limite no puedo meter más
-    if (count >= n) {
-        return false;
-    }
-
+    if (count >= n) { return false; }
     // Ya existe
-    if(indexOf(v) != -1) {
-        return false;
-    }
-
+    if(indexOf(v) != -1) { return false; }
     vertices[count] = v;
     count++;
-
     return true;
 }
 

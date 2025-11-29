@@ -2,7 +2,6 @@
 #define STACK_H
 #include "Node.h"
 
-// Cambio: usar Node<T> en miembros y ajustar firmas const donde aplica.
 template <typename T>
 class Stack{
     
@@ -13,14 +12,14 @@ class Stack{
         Stack():topNode(nullptr), count(0) {}
         ~Stack(){
             while (topNode){
-                Node<T>* tmp = topNode; // Para no perder la referencia
+                Node<T>* tmp = topNode; 
                 topNode = topNode->next;
                 delete tmp;
             }
             count = 0;
         }
         void push(const T& v);
-        T pop(); // Mejor no usar bool
+        T pop();
         T top();
         bool isEmpty() const;
         void print() const;
