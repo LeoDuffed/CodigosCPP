@@ -124,12 +124,16 @@ private:
         // y llamar a la rotación correspondiente.
 
         if(balance > 1 && valor < nodo->izquierdo->dato){
+            rotacionesDerechaSimples += 1;
             return rotacionDerecha(nodo);
         } else if(balance < -1 && valor > nodo->derecho->dato){
+            rotacionesIzquierdaSimples += 1;
             return rotacionIzquierda(nodo);
         } else if(balance > 1 && valor > nodo->izquierdo->dato){
+            rotacionesDobles += 1;
             return rotacionIzqDer(nodo);
         } else if(balance < -1 && valor < nodo->derecho->dato){
+            rotacionesDobles += 1;
             return rotacionDerIzq(nodo);
         }
 
