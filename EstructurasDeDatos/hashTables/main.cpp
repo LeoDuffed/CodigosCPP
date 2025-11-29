@@ -4,8 +4,11 @@ using namespace std;
 
 int main(){
     HashTable<string> table;
-    table.insert(30, "Leo");
+    table.insert("A01669629", "Leo");
+    cout<<"\nTabla 1: "<<endl;
     table.printTable();
-    table.search(55);
+    table.insert("A01669629", "Leonardo Mrtz.");
+    cout<<"\nTabla 2: "<<endl;
+    table.printTable();
     return 0;
 }
