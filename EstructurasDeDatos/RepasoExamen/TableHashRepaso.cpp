@@ -30,14 +30,16 @@ class HashTable{
             for(int i = 0; i < TABLE_SIZE; i++) table[i] = nullptr;
         }
         void insert(int key, string value){
-            // Calcula indice por hash, busca si ya existe y actualiza; si no, inserta al frente
+            // Calcula índice por hash (bucket) y recorre la lista de ese bucket
+            // Si la llave ya existe, solo actualiza el dato. Si no existe, crea nodo y lo encadena al inicio.
             int index = hashFunction(key);
             Node* current = table[index];
             while(current != nullptr){
-                if(current->key == key){
-                    current->data = value;
-                    return;
+                if(current->key == key){    // clave repetida: actualizar
+                    current->data = value;  // sobrescribe el valor anterior
+                    return;                  // y termina
                 }
+                // seguimos al siguiente en la lista (encadenamiento por colisión)
                 current = current->next;
             }
             // se inserta al inicio de la lista ligada
@@ -100,6 +102,9 @@ int main(){
     table.insert(742, "Leonardo");
     table.insert(83, "Julslol");
     cout<<"Tabla 1: "<<endl;
+    table.printTable();
+    table.insert(742, "Duffed");
+    cout<<"Tabla 2: "<<endl;
     table.printTable();
     return 0;
 };
