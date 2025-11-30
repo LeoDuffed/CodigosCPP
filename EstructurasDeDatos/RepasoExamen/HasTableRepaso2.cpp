@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-// clase Node
+// class nodo
 class Node{
     public: 
         string data;
@@ -16,64 +16,52 @@ class Node{
         void print(){ cout<<data; }
 };
 
-// clase TableHash
+// class Table Hash
 class HashTable{
-    private:
-        static const int TABLE_SIZE = 20; // Definimos el tamaño de la tabla
-        int hashFunction(int key) const{ // funcion de hashe (int`s)
-            return key%TABLE_SIZE;
+    private: 
+        static const int TABLE_SIZE = 20;
+        int hashFunction(int key) const{ 
+            return key % TABLE_SIZE;
         }
-        // Creamos una tabla de tipo Nodo con un tamaño de TABLE_SIZE
-        Node* table[TABLE_SIZE]; 
+        Node* table[TABLE_SIZE];
     public:
-        HashTable(){ // inizializamos la tabla con valores en null
+        HashTable(){
             for(int i = 0; i < TABLE_SIZE; i++) table[i] = nullptr;
         }
         void insert(int key, string data){
-            // Calcula índice por hash (bucket) y recorre la lista de ese bucket
-            // Si la llave ya existe, solo actualiza el dato. Si no existe, crea nodo y lo encadena al inicio.
             int index = hashFunction(key);
             Node* current = table[index];
             while(current != nullptr){
-                if(current->key == key){    // clave repetida: actualizar
-                    current->data = data;  // sobrescribe el valor anterior
-                    return;                  // y termina
+                if(current->key == key){
+                    current->data = data;
+                    return;
                 }
-                // seguimos al siguiente en la lista (encadenamiento por colisión)
                 current = current->next;
             }
-            // se inserta al inicio de la lista ligada
             Node* newNode = new Node(key, data);
             newNode->next = table[index];
             table[index] = newNode;
         }
         void remove(int key){
-            // Busca en la lista del bucket y elimina el nodo que coincide con la llave
             int index = hashFunction(key);
             Node* current = table[index];
             Node* prev = nullptr;
             while(current != nullptr && current->key != key){
                 prev = current;
                 current = current->next;
-            } 
-            if(current == nullptr){
-                return;
             }
-            if(prev == nullptr){
-                table[index] = current->next;
-            } else {
-                prev->next = current->next;
-            }
+            if(current == nullptr) return;
+            if(prev == nullptr) table[index] = current->next;
+            else prev->next = current->next;
             delete current;
         }
-        void printTable() const {
-            // Recorre todos los buckets y muestra sus nodos enlazados
+        void printTable() const{
             for(int i = 0; i < TABLE_SIZE; i++){
                 Node* current = table[i];
                 if(table[i] != nullptr){
                     cout<<"[ "<<table[i]->key<<" -> ";
                 } else {
-                    cout<<"[ Vacio ";
+                    cout<<" vacio ";
                 }
                 while(current != nullptr){
                     current->print();
@@ -82,15 +70,14 @@ class HashTable{
                 cout<<" ]"<<endl;
             }
         }
-        bool search(int key, string& outdata){
-            // Busca la llave en su bucket; si existe, coloca el valor en outdata y devuelve true
+        bool search(int key, string& value){
             int index = hashFunction(key);
             Node* current = table[index];
             while(current != nullptr && current->key != key){
                 current = current->next;
             }
             if(!current) return false;
-            outdata = current->data;
+            value = current->data;
             return true;
         }
 };
