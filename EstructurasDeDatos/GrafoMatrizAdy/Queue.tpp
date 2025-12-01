@@ -1,4 +1,6 @@
-#pragma once
+// Se usa unicamente para el BFS
+
+#pragma once 
 #include "Queue.h"
 #include <iostream>
 #include <stdexcept>

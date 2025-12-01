@@ -1,3 +1,5 @@
+// Se usa unicamente para el DFS
+
 #ifndef STACK_H
 #define STACK_H
 #include "Node.h"

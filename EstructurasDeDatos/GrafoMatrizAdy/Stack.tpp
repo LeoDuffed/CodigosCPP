@@ -1,3 +1,5 @@
+// Se usa unicamente para el DFS
+
 #pragma once
 #include "Stack.h"
 #include <iostream>

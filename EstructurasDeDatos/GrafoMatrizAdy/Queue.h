@@ -1,3 +1,5 @@
+// Se usa unicamente para el BFS
+
 #ifndef QUEUE_H
 #define QUEUE_H
 #include "Node.h"
