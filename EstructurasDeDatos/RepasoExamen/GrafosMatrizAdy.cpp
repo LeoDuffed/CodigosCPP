@@ -100,8 +100,7 @@ class Queue{
             if(count == 0) {
                 cout<<"La cola esta vacia"<<endl;
                 return -1;
-            }
-            else return topNode->data;
+            } else return topNode->data;
         }
         int isEmpty(){ return count == 0; }
 };
