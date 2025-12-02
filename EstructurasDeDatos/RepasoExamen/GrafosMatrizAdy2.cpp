@@ -151,5 +151,86 @@ class Graph{
             }
             return true;
         }
-        
+        void printMatrix() const{
+            cout<<"\n--- MATRIZ DE ADYACENCIA ---\n\t";
+            for(int i = 0; i < count; i++){
+                cout<<vertex[i]<<"\t";
+            }
+            cout<<"\n";
+            for(int i = 0; i < count; i++){
+                cout<<vertex[i]<<"\t";
+                for(int j = 0; j < count; j++){
+                    cout<<matrix[i][j]<<"\t";
+                }
+                cout<<"\n";
+            }
+        }
+        void DFS(const int& start){
+            int startIndex = indexOf(start);
+            if(startIndex == -1){
+                cout<<"Index not found"<<endl;
+            }
+            resetVisited();
+            Stack s;
+            visited[startIndex] = true;
+            s.push(startIndex);
+            while(!s.isEmpty()){
+                int index = s.pop();
+                cout<<vertex[index]<<" -> ";
+                for(int neiIndex = 0; neiIndex < count; neiIndex++){
+                    if(matrix[index][neiIndex] != 0 && !visited[neiIndex]){
+                        visited[neiIndex] = true;
+                        s.push(neiIndex);
+                    }
+                }
+            }
+            cout<<endl;
+        }
+        void BFS(const int& start){
+            int startIndex = indexOf(start);
+            if(startIndex == -1){
+                cout<<"Index not found"<<endl;
+            }
+            resetVisited();
+            Queue q;
+            visited[startIndex] = true;
+            q.enQueue(startIndex);
+            while(!q.isEmpty()){
+                int index = q.deQueue();
+                cout<<vertex[index]<<" -> ";
+                for(int neiIndex = 0; neiIndex < count; neiIndex++){
+                    if(matrix[index][neiIndex] != 0 && !visited[neiIndex]){
+                        visited[neiIndex] = true;
+                        q.enQueue(neiIndex);
+                    }
+                }
+            }
+            cout<<" "<<endl;
+        }
 };
+// Ejemplo de uso básico
+int main(){
+    Graph g(6); // capacidad de 6 vértices
+
+    // Insertamos vértices
+    g.addVertex(10);
+    g.addVertex(20);
+    g.addVertex(30);
+    g.addVertex(40);
+    g.addVertex(50);
+    g.addVertex(60);
+
+    // Aristas (no dirigidas por default)
+    g.addEdge(10, 20);
+    g.addEdge(20, 30, 2);
+    g.addEdge(30, 40, 3);
+    g.addEdge(10, 50, 4);
+    g.addEdge(50, 60, 5);
+    g.addEdge(20, 60, 1, true); // dirigida 20 -> 60
+
+    g.printMatrix();
+
+    g.DFS(10);
+
+    g.BFS(10);
+}
