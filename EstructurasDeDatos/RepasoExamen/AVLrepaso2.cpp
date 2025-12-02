@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// class node
 class Node{
 public: 
     int data;
@@ -15,8 +14,6 @@ public:
         right = nullptr;
     }
 };
-
-// class AVL
 class AVL{
 private:
     Node* root;
@@ -70,6 +67,15 @@ private:
         } else {
             return node;
         }
+        /* mas grandes a la izquierda, mas pequeños a la derecha
+        if(value < node->data){
+            node->left = insertRec(node->left, value);
+        } else if( value > node->data){
+            node->right = insertRec(node->right, value); 
+        } else {
+            return node; 
+        }
+        */
         node->height = 1 + maxInt(height(node->left), height(node->right));
         int bf = balaceFactor(node);
         if(bf > 1 && value < node->left->data) {  
@@ -81,6 +87,17 @@ private:
         } else if(bf < -1 && value > node->right->data) {
             return leftRotation(node);
         }
+        /* mas grandes a la izquierda, mas pequeños a la derecha
+        if(bf > 1 && value > node->left->data){
+            return rightRotation(node);
+        } else if(bf > 1 && value < node->left->data){
+            return leftRightRotation(node);
+         } else if(bf < -1 && value < node->right->data){
+            return leftRotation(node);  
+        } else if(bf < -1 && value > node->right->data){
+            return rightLeftRotation(node); 
+        }
+        */
         return node;
     }
     void print(Node* node) const{
@@ -95,7 +112,6 @@ private:
         print(node->left);
         print(node->right);
     }
-
 public:
     AVL(){ root = nullptr; }
     void insert(int value){ root = insertRec(root, value); }
@@ -108,19 +124,12 @@ public:
         cout<<"\n";
     }
 };
-
-
-// Main
 int main(){
     AVL tree;
-
-    // Secuencia que provoca rotaciones simples y dobles
     int valores[] = {30, 10, 20, 5, 3, 4, 40, 50, 45};
     int n = 9;
     cout << "Insertando valores en el AVL:\n";
-    for (int i = 0; i < n; i++) {
-        tree.insert(valores[i]);
-    }
+    for (int i = 0; i < n; i++) tree.insert(valores[i]);
     tree.print();
     return 0;
 };
