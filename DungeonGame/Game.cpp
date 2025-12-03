@@ -7,15 +7,11 @@ Game::Game(int maxNodes): graph(maxNodes), startId(-1), treasureId(-1), nMonster
     // Con esta linea es "completamente" randon rand() 
     srand((unsigned)time(nullptr));
     // Hero por defecto
-    hero.name[0] = 'D';
-    hero.name[1] = 'U';
-    hero.name[2] = 'F';
-    hero.name[3] = 'F';
-    hero.name[4] = '\0';
-    hero.hp = 30;
-    hero.atk = 5;
-    hero.def = 2;
-    hero.pos = -1;
+    hero.setName("DUFF");
+    hero.setHp(30);
+    hero.setAtk(5);
+    hero.setDef(2);
+    hero.setPos(-1);
 }
 
 bool Game::init(const char* dungeonFile, const char* monsterFile){
@@ -25,7 +21,7 @@ bool Game::init(const char* dungeonFile, const char* monsterFile){
         std::cout<<"Error cargando al mapa\n";
         return false;
     }
-    hero.pos = startId;
+    hero.setPos(startId);
     // Cargamos montruos
     if(!loadMonsters(monsterFile, monster, nMonsters, MAX_MONSTERS)){
         std::cout<<"Error cargando montruos\n";
@@ -60,49 +56,49 @@ bool Game::encounterProb(int roomID){
 
 Monster Game::chooseMonster() const{
     double total = 0.0;
-    for(int i = 0; i < nMonsters; i++) total += monster[i].prob;
+    for(int i = 0; i < nMonsters; i++) total += monster[i].getProb();
     if(total <= 0.0){
         // fallback
         return monster[0];
     }
     double u = ((double)rand()/(double)RAND_MAX)*total;
     for(int i = 0; i < nMonsters; i++){
-        if(u <= monster[i].prob) return monster[i];
-        u -= monster[i].prob;
+        if(u <= monster[i].getProb()) return monster[i];
+        u -= monster[i].getProb();
     }
     return monster[nMonsters-1];
 }
 
 bool Game::combat(Monster m){
-    std::cout<<"Aparecio "<<m.name<<"! (HP= "<<m.hp<<", ATK= "<<m.atk<<", DEF= "<<m.def<<")\n";
+    std::cout<<"Aparecio "<<m.getName()<<"! (HP= "<<m.getHp()<<", ATK= "<<m.getAtk()<<", DEF= "<<m.getDef()<<")\n";
     bool heroTurn = true;
 
-    while(hero.alive() && m.hp > 0){
-        std::cout<<"[Turno de "<<(heroTurn ? hero.name : m.name)<<"] Presiona Enter para continuar...\n";
+    while(hero.alive() && m.getHp() > 0){
+        std::cout<<"[Turno de "<<(heroTurn ? hero.getName() : m.getName())<<"] Presiona Enter para continuar...\n";
         std::cin.get();
         if(heroTurn){
-            int dmg = hero.atk - m.def;
+            int dmg = hero.getAtk() - m.getDef();
             if(dmg < 1) dmg = 1;
-            m.hp -= dmg;
-            std::cout<<hero.name<<" golpea "<<dmg<<" -> HP de "<<m.name<<" "<<(m.hp <= 0 ? 0 : m.hp)<<"\n";
+            m.setHp(m.getHp() - dmg);
+            std::cout<<hero.getName()<<" golpea "<<dmg<<" -> HP de "<<m.getName()<<" "<<(m.getHp() <= 0 ? 0 : m.getHp())<<"\n";
         } else {
-            int dmg = m.atk - hero.def;
+            int dmg = m.getAtk() - hero.getDef();
             if(dmg < 1) dmg = 1;
-            hero.hp -= dmg;
-            std::cout<<m.name<<" golpea "<<dmg<<" -> HP de "<<hero.name<<" "<<hero.hp<<"\n";
+            hero.setHp(hero.getHp() - dmg);
+            std::cout<<m.getName()<<" golpea "<<dmg<<" -> HP de "<<hero.getName()<<" "<<hero.getHp()<<"\n";
         }
         heroTurn = !heroTurn;
     }
     if(hero.alive()){
-        std::cout<<hero.name<<" vencio a "<<m.name<<"!\n";
-        hero.hp += m.r_hp;
-        hero.atk += m.r_atk;
-        hero.def += m.r_def;
-        std::cout<<"\nSube stats: +"<<m.r_hp<<" HP +"<<m.r_atk<<" ATK +"<<m.r_def<<" DEF\n";
-        std::cout<<"Nuevas stats: "<<hero.hp<<" HP, "<<hero.atk<<" ATK, "<<hero.def<<" DEF!\n";
+        std::cout<<hero.getName()<<" vencio a "<<m.getName()<<"!\n";
+        hero.addHp(m.getRewardHp());
+        hero.addAtk(m.getRewardAtk());
+        hero.addDef(m.getRewardDef());
+        std::cout<<"\nSube stats: +"<<m.getRewardHp()<<" HP +"<<m.getRewardAtk()<<" ATK +"<<m.getRewardDef()<<" DEF\n";
+        std::cout<<"Nuevas stats: "<<hero.getHp()<<" HP, "<<hero.getAtk()<<" ATK, "<<hero.getDef()<<" DEF!\n";
         return true;
     } else {
-        std::cout<<hero.name<<" ha sido vencido, GG\n";
+        std::cout<<hero.getName()<<" ha sido vencido, GG\n";
         return false;
     }
 }
@@ -127,15 +123,15 @@ void Game::showNeighbors(int id) const {
 
 void Game::explorationLoop(){
     while(hero.alive()){
-        if(hero.pos == treasureId){
+        if(hero.getPos() == treasureId){
             std::cout<<"Llegaste al tesoro!\nNo ganas nada gg.";
             return;
         }
-        Node<int>* section = graph.search(hero.pos);
-        std::cout<<"\nEstas en: ["<<hero.pos<<"] "<<(section ? section->getName() : "(?)")<<"\n";
+        Node<int>* section = graph.search(hero.getPos());
+        std::cout<<"\nEstas en: ["<<hero.getPos()<<"] "<<(section ? section->getName() : "(?)")<<"\n";
         // Si no ha visitado la casilla se podria encontar a un monstruo
         bool wasVisited = (section ? section->isVisited() : false);
-        if(!wasVisited && encounterProb(hero.pos)){
+        if(!wasVisited && encounterProb(hero.getPos())){
             Monster m = chooseMonster();
             if(!combat(m)){
                 return; // murio el heroe (gg)
@@ -145,7 +141,7 @@ void Game::explorationLoop(){
             section->setVisited(true);
         }
         // Mostramos a los vecinos para ver a donde se puede mover
-        showNeighbors(hero.pos);
+        showNeighbors(hero.getPos());
         std::cout<<"Elige a donde moverte: ";
         int nxt;
         std::cin>>nxt;
@@ -167,6 +163,6 @@ void Game::explorationLoop(){
             std::cout<<"Movimiento invalido\n";
             continue;
         }
-        hero.pos = nxt;
+        hero.setPos(nxt);
     }
 }

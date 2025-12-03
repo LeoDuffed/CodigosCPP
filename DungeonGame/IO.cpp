@@ -134,11 +134,29 @@ bool loadMonsters(const char* path, Monster* monster, int& nMonsters, int maxMon
 
     for(int i = 0; i < M; i++){ // Para leer los n montruos
         Monster m;
-        in>>m.id>>m.name>>m.hp>>m.atk>>m.def>>m.prob>>m.r_hp>>m.r_atk>>m.r_def;
+        int id;
+        char name[32];
+        int hp;
+        int atk;
+        int def;
+        double prob;
+        int r_hp;
+        int r_atk;
+        int r_def;
+        in>>id>>name>>hp>>atk>>def>>prob>>r_hp>>r_atk>>r_def;
         if(!in){
             std::cout<<"Error leyendo monstuio "<<i<<"\n";
             return false;
         }
+        m.setId(id);
+        m.setName(name);
+        m.setHp(hp);
+        m.setAtk(atk);
+        m.setDef(def);
+        m.setProb(prob);
+        m.setRewardHp(r_hp);
+        m.setRewardAtk(r_atk);
+        m.setRewardDef(r_def);
         monster[nMonsters++] = m; 
     }
     return true;  
