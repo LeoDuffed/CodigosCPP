@@ -28,7 +28,7 @@ bool loadDungeon(const char* path, Graph<int>& G, int& startId, int& treasureId,
         double prob;
         in>>id;         
         in>>name;       
-        in>>prob; // prob encounter [0,1]
+        in>>prob;
         if(!in){
             std::cout<<"Error leyendo el nodo "<<i<<"\n";
             return false;
