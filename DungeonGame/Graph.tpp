@@ -1,6 +1,6 @@
 #pragma once
 #include "Graph.h"
-#include "NeighborList.h"
+#include "NeighborNode.h"
 #include <limits>
 
 // Constructor
@@ -116,7 +116,7 @@ void Graph<T>::printCheatDijstrak(int start, int end) const{
         if(!node) continue;
         // Empieza la relajacion xd
         const LinkedList<int>& neig = node->getNeighbors();
-        NeighborList<int>* current = neig.getHead();
+        NeighborNode<int>* current = neig.getHead();
         while(current){
             int v = current->data;
             if(v >= 0 && v < capability && idExists(v) && !visit[v]){

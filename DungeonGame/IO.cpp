@@ -11,42 +11,37 @@ bool loadDungeon(const char* path, Graph<int>& G, int& startId, int& treasureId,
         return false;
     }
 
-    // Creamos un rreglo temporal para leer etiquetas 
     char characters[32];
-    int N = 0; // Cantidad de nodos a leer
-    int A = 0; // Cantidad de aristas a leer
+    int N = 0; // cuantos nodos 
+    int A = 0; //  cuants aristas
 
-    // Leemos la cabecera de NODES
-    in>>characters; // Nodes
-    in>>N; // Cantidad de nodos
+    in>>characters; 
+    in>>N; 
     if(!in || characters[0] == '\0' || N <= 0){
         std::cout<<"Formato invalido o Nodos faltantes\n";
         return false;
     }
 
-    // Leemos los N nodos
     for (int i = 0; i < N; i++){
         int id;
         char name[64];
         double prob;
         in>>id;         
         in>>name;       
-        in>>prob; // probabilidad de encuentro [0,1]
+        in>>prob; // prob encounter [0,1]
         if(!in){
             std::cout<<"Error leyendo el nodo "<<i<<"\n";
             return false;
         }
-        if(firstNodeRead < 0) firstNodeRead = id; // Guardamos el primero por si falta START
-        if(!G.addNodes(id, name, prob)){ // Insertamos el vértice en el grafo
+        if(!G.addNodes(id, name, prob)){ // metemos los vertices en el grafo
             std::cout<<"No se pudo agregar el nodo con el id "<<id<<"\n";
             return false;
         }
     }
 
-    // Leemos las etiquetas START / TREASURE / EDGES
-    bool gotEdges = false; // bandera para saber cuándo parar
+    bool gotEdges = false; 
     while(true){
-        in>>characters; // Leemos la etiqueta siguiente (START/TREASURE/EDGES)
+        in>>characters; // Leemos la etiqueta (START/TREASURE/EDGES)
         if(!in){
             std::cout<<"Faltan etiquetas despues de los nodos\n";
             return false;
@@ -56,7 +51,7 @@ bool loadDungeon(const char* path, Graph<int>& G, int& startId, int& treasureId,
             return false;
         }
 
-        if(characters[0] == 'S'){ // START 
+        if(characters[0] == 'S'){ 
             in>>startId; // id de inicio
             if(!in){
                 std::cout<<"Start invalido\n";
@@ -65,7 +60,7 @@ bool loadDungeon(const char* path, Graph<int>& G, int& startId, int& treasureId,
             continue;               
         }
 
-        if(characters[0] == 'T'){ // TREASURE 
+        if(characters[0] == 'T'){ 
             in>>treasureId; // id del tesoro
             if(!in || treasureId < 0){
                 std::cout<<"Tesoro invalido\n";
@@ -74,19 +69,15 @@ bool loadDungeon(const char* path, Graph<int>& G, int& startId, int& treasureId,
             continue;
         }
 
-        if(characters[0] == 'E'){ // EDGES 
+        if(characters[0] == 'E'){ 
             in>>A; // cantidad de aristas
             if(!in || A < 0){
                 std::cout<<"Faltan o formato incorrecto de edges\n";
                 return false;
             }
-            gotEdges = true; // ya podemos pasar a leer las aristas
+            gotEdges = true;
             break;
         }
-
-        // Si llegamos aquí, se leyó una etiqueta desconocida
-        std::cout<<"Etiqueta desconocida: "<<characters<<"\n";
-        return false;
     }
 
     // Leemos las A aristas

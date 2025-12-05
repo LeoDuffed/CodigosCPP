@@ -6,9 +6,9 @@ LinkedList<T>::LinkedList():head(nullptr), n(0){}
 
 template<typename T>
 LinkedList<T>::~LinkedList() {
-    NeighborList<T>* current=head;
+    NeighborNode<T>* current=head;
     while (current) {
-        NeighborList<T>* nxt = current->next;
+        NeighborNode<T>* nxt = current->next;
         delete current;
         current = nxt;
     }
@@ -28,11 +28,11 @@ int LinkedList<T>::size() const{
 
 template<typename T>
 void LinkedList<T>::pushBack(const T &value) {
-    NeighborList<T>* newNode= new NeighborList<T>(value);
+    NeighborNode<T>* newNode= new NeighborNode<T>(value);
     if (!head) {
         head= newNode;
     }else {
-        NeighborList<T>* current= head;
+        NeighborNode<T>* current= head;
         while (current->next) {
             current= current->next;
         }
@@ -42,13 +42,13 @@ void LinkedList<T>::pushBack(const T &value) {
 }
 
 template<typename T>
-NeighborList<T>* LinkedList<T>::getHead() const{
+NeighborNode<T>* LinkedList<T>::getHead() const{
     return head;
 }
 
 template<typename T>
-NeighborList<T>* LinkedList<T>::search(const T& value) const{
-    NeighborList<T>* current = head;
+NeighborNode<T>* LinkedList<T>::search(const T& value) const{
+    NeighborNode<T>* current = head;
     while (current) {
         if (current->data == value) {
             return current;

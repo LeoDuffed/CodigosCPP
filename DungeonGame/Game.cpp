@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "IO.h"
 #include "Node.h"
-#include "NeighborList.h"
+#include "NeighborNode.h"
 
 Game::Game(int maxNodes): graph(maxNodes), startId(-1), treasureId(-1), nMonsters(0){
     // Con esta linea es "completamente" randon rand() 
@@ -57,10 +57,6 @@ bool Game::encounterProb(int roomID){
 Monster Game::chooseMonster() const{
     double total = 0.0;
     for(int i = 0; i < nMonsters; i++) total += monster[i].getProb();
-    if(total <= 0.0){
-        // fallback
-        return monster[0];
-    }
     double u = ((double)rand()/(double)RAND_MAX)*total;
     for(int i = 0; i < nMonsters; i++){
         if(u <= monster[i].getProb()) return monster[i];
@@ -108,7 +104,7 @@ void Game::showNeighbors(int id) const {
     if(!n) return;
     std::cout<<"\nVecinos disponibles: \n";
     const LinkedList<int>& nei = n->getNeighbors();
-    NeighborList<int>* cur = nei.getHead();
+    NeighborNode<int>* cur = nei.getHead();
     while(cur){
         int v = cur->data;
         const Node<int>* nv = graph.search(v);
@@ -150,7 +146,7 @@ void Game::explorationLoop(){
         bool ok = false;
         if(section){
             const LinkedList<int>& nei = section->getNeighbors();
-            NeighborList<int>* cur = nei.getHead();
+            NeighborNode<int>* cur = nei.getHead();
             while(cur){
                 if(cur->data == nxt){
                     ok = true;
