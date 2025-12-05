@@ -11,12 +11,10 @@ bool loadDungeon(const char* path, Graph<int>& G, int& startId, int& treasureId,
         return false;
     }
 
-    // Creamos un rreglo temporal para leer etiquetas 
     char characters[32];
     int N = 0; // Cantidad de nodos a leer
     int A = 0; // Cantidad de aristas a leer
 
-    // Leemos la cabecera de NODES
     in>>characters; // Nodes
     in>>N; // Cantidad de nodos
     if(!in || characters[0] == '\0' || N <= 0){
@@ -36,17 +34,17 @@ bool loadDungeon(const char* path, Graph<int>& G, int& startId, int& treasureId,
             std::cout<<"Error leyendo el nodo "<<i<<"\n";
             return false;
         }
-        if(firstNodeRead < 0) firstNodeRead = id; // Guardamos el primero por si falta START
-        if(!G.addNodes(id, name, prob)){ // Insertamos el vértice en el grafo
+        if(firstNodeRead < 0) firstNodeRead = id; 
+        if(!G.addNodes(id, name, prob)){
             std::cout<<"No se pudo agregar el nodo con el id "<<id<<"\n";
             return false;
         }
     }
 
     // Leemos las etiquetas START / TREASURE / EDGES
-    bool gotEdges = false; // bandera para saber cuándo parar
+    bool gotEdges = false; 
     while(true){
-        in>>characters; // Leemos la etiqueta siguiente (START/TREASURE/EDGES)
+        in>>characters; 
         if(!in){
             std::cout<<"Faltan etiquetas despues de los nodos\n";
             return false;
@@ -75,16 +73,16 @@ bool loadDungeon(const char* path, Graph<int>& G, int& startId, int& treasureId,
         }
 
         if(characters[0] == 'E'){ // EDGES 
-            in>>A; // cantidad de aristas
+            in>>A; 
             if(!in || A < 0){
                 std::cout<<"Faltan o formato incorrecto de edges\n";
                 return false;
             }
-            gotEdges = true; // ya podemos pasar a leer las aristas
+            gotEdges = true; 
             break;
         }
 
-        // Si llegamos aquí, se leyó una etiqueta desconocida
+        // se leyó una etiqueta desconocida
         std::cout<<"Etiqueta desconocida: "<<characters<<"\n";
         return false;
     }

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <string>
 #include "Hero.h"
 #include "Graph.h"
 #include "Monster.h"
@@ -22,6 +23,8 @@ class Game{
         Hero hero;
         Monster monster[MAX_MONSTERS];
         int nMonsters;
+        bool saveGame(const char* path) const;
+        bool loadGame(const char* path);
         // funcion para la probabilidad de encuentro si la sala no se ha visitado
         bool encounterProb(int roomId);
         // funcion para elegir un montruo

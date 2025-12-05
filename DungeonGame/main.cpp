@@ -6,7 +6,7 @@ int main(){
     cout<<"Introduce palabra secreta o presiona ENTER para jugar: ";
     string clave;
     getline(cin, clave);
-    bool cheat = (clave == "cheatPath");
+    bool cheat = (clave == "mysticpath"); 
     Game game(65); 
     if(!game.init("data/dungeon.txt", "data/monsters.txt")){
         cout << "Error: no se pudo inicializar el juego." << endl;
@@ -16,3 +16,4 @@ int main(){
     cout << "\nGracias por jugar.\n";
     return 0;
 }
+    

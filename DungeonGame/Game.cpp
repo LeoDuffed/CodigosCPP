@@ -2,6 +2,9 @@
 #include "IO.h"
 #include "Node.h"
 #include "NeighborList.h"
+#include <fstream>
+#include <string>
+#include <cstdlib>
 
 Game::Game(int maxNodes): graph(maxNodes), startId(-1), treasureId(-1), nMonsters(0){
     // Con esta linea es "completamente" randon rand() 
@@ -31,6 +34,18 @@ bool Game::init(const char* dungeonFile, const char* monsterFile){
 }
 
 void Game::run(bool cheatBFS){
+    std::cout<<"¿Cargar partida desde save.txt? (s/n): ";
+    char loadOpt;
+    std::cin>>loadOpt;
+    std::cin.ignore(10000, '\n');
+    if(loadOpt == 's' || loadOpt == 'S'){
+        if(loadGame("save.txt")){
+            std::cout<<"Partida cargada.\n";
+        } else {
+            std::cout<<"No se pudo cargar la partida, se inicia una nueva.\n";
+            hero.setPos(startId);
+        }
+    }
     if(cheatBFS){
         showCheatPath();
     }
@@ -67,6 +82,99 @@ Monster Game::chooseMonster() const{
         u -= monster[i].getProb();
     }
     return monster[nMonsters-1];
+}
+
+bool Game::saveGame(const char* path) const{
+    std::ofstream out(path);
+    if(!out.is_open()){
+        std::cout<<"No se pudo abrir "<<path<<" para guardar\n";
+        return false;
+    }
+    out<<"HERO "<<hero.getName()<<" "<<hero.getHp()<<" "<<hero.getAtk()<<" "<<hero.getDef()<<" "<<hero.getPos()<<"\n";
+    int cap = graph.maxCapability();
+    int visitedCount = 0;
+    for(int i = 0; i < cap; i++){
+        const Node<int>* n = graph.search(i);
+        if(n && n->isVisited()){
+            ++visitedCount;
+        }
+    }
+    out<<"VISITED "<<visitedCount;
+    for(int i = 0; i < cap; i++){
+        const Node<int>* n = graph.search(i);
+        if(n && n->isVisited()){
+            out<<" "<<i;
+        }
+    }
+    out<<"\n";
+    if(!out){
+        std::cout<<"Error escribiendo el archivo de guardado\n";
+        return false;
+    }
+    std::cout<<"Partida guardada en "<<path<<"\n";
+    return true;
+}
+
+bool Game::loadGame(const char* path){
+    std::ifstream in(path);
+    if(!in.is_open()){
+        std::cout<<"No se pudo abrir "<<path<<" para cargar\n";
+        return false;
+    }
+    std::string tag;
+    in>>tag;
+    if(tag != "HERO"){
+        std::cout<<"Formato de guardado invalido (falta HERO)\n";
+        return false;
+    }
+    std::string name;
+    int hp, atk, def, pos;
+    in>>name>>hp>>atk>>def>>pos;
+    if(!in){
+        std::cout<<"Datos de HERO incompletos\n";
+        return false;
+    }
+    int cap = graph.maxCapability();
+    for(int i = 0; i < cap; i++){
+        Node<int>* n = graph.search(i);
+        if(n) n->setVisited(false);
+    }
+    in>>tag;
+    if(tag != "VISITED"){
+        std::cout<<"Formato de guardado invalido (falta VISITED)\n";
+        return false;
+    }
+    int cnt;
+    in>>cnt;
+    if(!in || cnt < 0){
+        std::cout<<"Cantidad de visitados invalida\n";
+        return false;
+    }
+    for(int i = 0; i < cnt; i++){
+        int id;
+        in>>id;
+        if(!in){
+            std::cout<<"Error leyendo id visitado\n";
+            return false;
+        }
+        Node<int>* n = graph.search(id);
+        if(!n){
+            std::cout<<"Id visitado "<<id<<" no existe en el grafo\n";
+            return false;
+        }
+        n->setVisited(true);
+    }
+    if(pos < 0 || pos >= cap || !graph.search(pos)){
+        std::cout<<"Posicion del heroe invalida en guardado\n";
+        return false;
+    }
+    hero.setName(name.c_str());
+    hero.setHp(hp);
+    hero.setAtk(atk);
+    hero.setDef(def);
+    hero.setPos(pos);
+    std::cout<<"Guardado cargado desde "<<path<<"\n";
+    return true;
 }
 
 bool Game::combat(Monster m){
@@ -142,10 +250,21 @@ void Game::explorationLoop(){
         }
         // Mostramos a los vecinos para ver a donde se puede mover
         showNeighbors(hero.getPos());
-        std::cout<<"Elige a donde moverte: ";
-        int nxt;
-        std::cin>>nxt;
+        std::cout<<"Elige a donde moverte (o 'g' para guardar en save.txt): ";
+        std::string input;
+        std::cin>>input;
         std::cin.ignore(10000, '\n');
+        if(input == "g" || input == "G" || input == "save"){
+            saveGame("save.txt");
+            continue;
+        }
+        char* end = nullptr;
+        long parsed = std::strtol(input.c_str(), &end, 10);
+        if(end == input.c_str() || *end != '\0'){
+            std::cout<<"Entrada invalida\n";
+            continue;
+        }
+        int nxt = static_cast<int>(parsed);
         // Validamos que exista el id que ingresaron
         bool ok = false;
         if(section){
